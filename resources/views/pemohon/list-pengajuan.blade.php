@@ -30,11 +30,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $no = 1;
+                        @endphp
+
+                        @foreach ($pengajuan as $key )
+
                         <tr>
-                            <td>1</td>
-                            <td>Griya Lawang</td>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $key->nama_pro }}</td>
                             <td>
-                                <span class="badge light badge-success">Selesai</span>
+                                <span class="badge badge-warning">{{ $key->status_pengajuan }}</span>
                             </td>
                             <td>
                                 <a href="{{ route('pengajuan-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
@@ -43,19 +49,8 @@
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Perumahan</td>
-                            <td>
-                                <span class="badge light badge-danger">Draft</span></td>
-                            </td>
-                            <td>
-                                <a href="{{ route('pengajuan-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                  data-placement="top" title="Lihat Rincian Pengajuan"><i
-                                    class="fa fa-eye color-muted"></i> </a>
-                            </td>
+                        @endforeach
 
-                        </tr>
                     </tbody>
                 </table>
             </div>

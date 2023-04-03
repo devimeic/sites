@@ -25,6 +25,6 @@ protected $table = 'psus';
 
 public function psu()
 {
-    return $this->hasMany(Pengajuan::class, 'pengajuan_id');
+    return $this->belongsTo(Pengajuan::class, 'pengajuan_id');
 }
 }

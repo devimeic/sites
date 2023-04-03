@@ -1,7 +1,5 @@
 <div>
     @push('css')
-        <!-- Datatable -->
-        <link href="/disk/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     @endpush
     <div class="col-12">
         <div class="card">
@@ -26,7 +24,7 @@
 
 
                 <div class="table-responsive" >
-                    <table  class="table table-striped table-responsive-sm">
+                    <table  class="table table-responsive-md">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -46,15 +44,15 @@
 
                             @foreach ($data as $usr)
                             <tr>
-                                <td>{{ $no++ }}</td>
+                                <td><strong>{{ $no++ }}</strong></td>
                                 <td>{{ $usr->name }}</td>
                                 <td>{{ $usr->username }}</td>
                                 <td>{{ $usr->no_hp }}</td>
                                 <td>{{ $usr->role }}</td>
                                 <td> @if ($usr->status_users == 'aktif')
-                                    <span class="badge light badge-success">{{ $usr->status_users }}</span></td>
+                                    <span class="badge badge-success">{{ $usr->status_users }}</span></td>
                                     @else
-                                    <span class="badge light badge-danger">{{ $usr->status_users }}</span></td>
+                                    <span class="badge badge-danger">{{ $usr->status_users }}</span></td>
                                     @endif</td>
                                 <td>
                                     <div class="d-flex">
@@ -79,8 +77,11 @@
             </div>
 
             <div class="card-footer">
-                {{ $data->links() }}
+                <ul class="pagination pagination-gutter pagination-primary no-bg">
+                    {{ $data->links() }}
+                </ul>
             </div>
+
         </div>
     </div>
     @include('livewire.admin.edit')
@@ -89,9 +90,6 @@
 
     @include('livewire.admin.resetpassword')
     @push('js')
-         <!-- Datatable -->
-        <script src="/disk/vendor/datatables/js/jquery.dataTables.min.js"></script>
-        <script src="/disk/js/plugins-init/datatables.init.js"></script>
 
         <script>
              window.addEventListener('simpan', event => {

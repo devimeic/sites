@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berkas;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 
 class PemohonController extends Controller
@@ -23,13 +24,15 @@ class PemohonController extends Controller
     public function list()
     {
         $tittle = 'List Pengajuan';
-        return view('pemohon.list-pengajuan', compact('tittle'));
+        $pengajuan = Pengajuan::where('status_pengajuan','Draft')->get();
+        return view('pemohon.list-pengajuan', compact('tittle','pengajuan'));
     }
 
     public function riwayat()
     {
         $tittle = 'Riwayat Pengajuan';
-        return view('pemohon.riwayat', compact('tittle'));
+        $pengajuan = Pengajuan::all();
+        return view('pemohon.riwayat', compact('tittle','pengajuan'));
     }
 
 }

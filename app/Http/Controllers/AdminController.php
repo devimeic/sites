@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Redirect,Response;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,7 +55,7 @@ class AdminController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Data Berhasil Disimpan!',
-            'data'    => $post  
+            'data'    => $post
         ]);
     }
 
@@ -85,7 +86,7 @@ class AdminController extends Controller
         // } else {
         //     return redirect()->route('user-management')->with('failed', 'Data gagal di tambahkan');
         // }
-        
+
                 // $r=$request->validate([
                 //     'name' => 'required',
                 //     'username' => 'required|unique:users,username',
@@ -109,7 +110,7 @@ class AdminController extends Controller
                 //         return redirect()->route('user-management')->with('success','Data berhasil di tambahkan');
                 //     }else{
                 //         return redirect()->route('user-management')->with('success','Data berhasil di Update');
-	
+
                 //     }
     // }
 
@@ -121,7 +122,7 @@ class AdminController extends Controller
         //     'username' => 'max:11|unique:users',
         //     'password' => 'min:8|',
         //     'no_hp' => 'numeric|max:14',
-        // ]); 
+        // ]);
 
         // Mengambil data berdasarkan id
         $data = [
@@ -131,9 +132,9 @@ class AdminController extends Controller
             'no_hp' => $request->no_hp,
             'role' => $request->role,
             'status_users' => $request->status_users
-        ]; 
+        ];
 
-        // 
+        //
         $updateData = User::where('id', $request->id)->update($data);
 
         if($updateData){
@@ -176,7 +177,7 @@ class AdminController extends Controller
 
         // return dd($user);
         // return view('admin.user', compact('data1','data','tittle'));
-    
+
     // }
 
     public function hapus($id)
@@ -189,7 +190,8 @@ class AdminController extends Controller
     public function riwayat()
     {
         $tittle = 'Riwayat Pengajuan';
-        return view('admin.riwayat', compact('tittle'));
+        $pengajuan = Pengajuan::whereNotIn('status_pengajuan', ['Draft'])->get();
+        return view('admin.riwayat', compact('tittle','pengajuan'));
     }
 
 }

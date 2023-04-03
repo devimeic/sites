@@ -138,7 +138,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Luas Total</label>
                                         <div class="col-sm-9">
-                                            <input type="text" wire:model="total" class="form-control text-black @error('total') is invalid @enderror" placeholder="Masukkan Luas Total">
+                                            <input type="number" wire:model="total" class="form-control text-black @error('total') is invalid @enderror" placeholder="Masukkan Luas Total">
                                             @error("total") <span class="text-danger">{{ $message }}</span>@enderror
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                         <div wire:ignore.self id="type" class="tab-pane" role="tabpanel">
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <strong class="text-black"> * Kavling Efektif {{ $i }}</strong>
+                                    <strong class="text-black"> * Kavling Efektif</strong>
                                         <div class="add-input">
                                             <div class="row mt-3">
                                                 <div class="col-xl-3">

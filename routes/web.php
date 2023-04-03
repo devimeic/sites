@@ -7,6 +7,8 @@ use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Livewire\Admin\Riwayat;
+use App\Http\Livewire\Admin\ShowRiwayat;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Berkas\Berkas;
 use App\Http\Livewire\Berkas\InputBerkas;
@@ -36,10 +38,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], function(){
     Route::get('/index', [AdminController::class, 'index'])->name('admin');
     Route::get('/user-management', UserManagement::class)->name('user-management');
-    Route::post('/tambahadmin', [AdminController::class, 'store'])->name('tambahadmin');
-    Route::post('/ubahadmin/{id}', [AdminController::class, 'updateadmin']);
-    Route::get('/hapus/{id}', [AdminController::class, 'hapus'])->name('hapus');
-    Route::get('/riwayat', [AdminController::class, 'riwayat'])->name('riwayat-admin');
+    Route::get('/riwayat', Riwayat::class)->name('riwayat-admin');
+    Route::get('/show-riwayat/{id}', ShowRiwayat::class)->name('show-admin');
 });
 
 Route::group(['prefix'=>'pemohon', 'middleware'=>['auth', 'cekRole:pemohon']], function(){

@@ -21,9 +21,6 @@ class CreateUploadsTable extends Migration
                 ->onUpdate('cascade');
             $table->string('lokasi_berkas');
             $table->string('catatan')->nullable();
-            $table->enum('status_berkas', ['setuju', 'tidak setuju'])->nullable();
-            $table->enum('status_pengajuan', ['0','1','2','3','4','5','6'])->nullable();
-            $table->enum('status_lapangan', ['setuju', 'tidak setuju'])->nullable();
             $table->timestamps();
         });
     }

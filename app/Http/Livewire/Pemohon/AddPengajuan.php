@@ -132,7 +132,8 @@ class AddPengajuan extends Component
                     'no_hp' => Auth::user()->no_hp,
                     'alamat_dev' => $this->alamat_dev,
                     'pengaju' => Auth::user()->id,
-
+                    'status_pengajuan' => 'Draft',
+                    'tanggal' => Carbon::now(),
                     'asosiasi' => $this->asosiasi,
                     'no_anggota' => $this->no_anggota,
 
@@ -156,6 +157,9 @@ class AddPengajuan extends Component
                         'alamat_dev' => $this->alamat_dev,
                         'asosiasi' => $this->asosiasi,
                         'no_anggota' => $this->no_anggota,
+                        'status_pengajuan' => 'Draft',
+                        'tanggal' => Carbon::now(),
+
 
                     ]
                 );
@@ -188,7 +192,7 @@ class AddPengajuan extends Component
             'pemohon2' => $this->pemohon2,
             'tel_pemohon2' => $this->tel_pemohon2,
             'total' => $this->total,
-            'tanggal' => Carbon::now(),
+
         ]);
         $this->alert('success', 'Data Berhasil Diupdate', [
             'position' => 'top-right',

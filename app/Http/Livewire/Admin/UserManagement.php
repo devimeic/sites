@@ -4,8 +4,9 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
 use Livewire\Component;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Models\Pengajuan;
 use Livewire\WithPagination;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class UserManagement extends Component
 {
@@ -180,9 +181,13 @@ class UserManagement extends Component
             $this->password = $Users->password;
         }
 
+
+        public $password_confirmation;
+
         public function updatepsswrd(){
-            $this->validate([
+        $validatedData = $this->validate([
                 'password' => 'required|min:8',
+                'password_confirmation' => ['required', 'same:password'],
             ]);
 
             $user = User::find($this->ids);
@@ -201,5 +206,7 @@ class UserManagement extends Component
             // return redirect()->route('user-management');
 
         }
+
+
 
 }

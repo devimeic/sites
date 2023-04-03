@@ -16,7 +16,7 @@
         <div class="col-xl-12 col-xxl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Form Pengajuan {{ $nama_pro }}</h4>
+                    <h4 class="card-title">Form Pengajuan {{ $pengajuan->nama_pro }}</h4>
                 </div>
                 <div class="card-body">
                     <div wire:ignore.self  class="form-wizard order-create">

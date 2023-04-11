@@ -11,4 +11,9 @@ class Berkas extends Model
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
     protected $table = 'berkas';
+
+    public function upload()
+    {
+        return $this->hasMany(Upload::class,'berkas_id');
+    }
 }

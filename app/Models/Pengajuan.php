@@ -21,4 +21,8 @@ class Pengajuan extends Model
     {
         return $this->hasMany(tipe::class,'pengajuan_id');
     }
+    public function upload()
+    {
+        return $this->hasMany(Upload::class,'pengajuan_id');
+    }
 }

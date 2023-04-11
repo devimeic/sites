@@ -4,7 +4,7 @@
 <div class="page-titles">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0)">Ajukan Pengajuan</a></li>
-        <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $tittle }}</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)">List Draft</a></li>
     </ol>
 </div>
 <a href="{{ route('pengajuan-pemohon') }}">
@@ -15,7 +15,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">{{ $tittle }}</h4>
+            <h4 class="card-title"></h4>
         </div>
         <div class="card-body">
 
@@ -43,7 +43,7 @@
                                 <span class="badge badge-warning">{{ $key->status_pengajuan }}</span>
                             </td>
                             <td>
-                                <a href="{{ route('pengajuan-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                <a href="{{ route('show-draft',$key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                   data-placement="top" title="Lihat Rincian Pengajuan"><i
                                     class="fa fa-eye color-muted"></i> </a>
                             </td>

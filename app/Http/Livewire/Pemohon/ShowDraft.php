@@ -3,21 +3,22 @@
 namespace App\Http\Livewire\Pemohon;
 
 use Carbon\Carbon;
-use App\Models\Berkas;
-use Livewire\Component;
-use App\Models\Pengajuan;
 use App\Models\Psu;
 use App\Models\Tipe;
+use App\Models\Berkas;
 use App\Models\Upload;
+use Livewire\Component;
+use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 
-class AddPengajuan extends Component
+class ShowDraft extends Component
 {
-
     use LivewireAlert;
     use WithFileUploads;
+
+    public $pengajuan;
 
     public $dev;
     public $nama_dev;
@@ -32,18 +33,84 @@ class AddPengajuan extends Component
     public $pemohon2;
     public $tel_pemohon2;
     public $total;
-    public $slug;
-    public $tanggal;
+    public $kategori = [];
+    public $tipe = [];
+    public $juml_unit = [];
+    public $jln_saluran;
+    public $taman;
+    public $rth;
+    public $ibadah;
+    public $olahraga;
+    public $kesehatan;
+    public $lain;
+    public $step;
 
     public function render()
     {
 
-        return view('livewire.pemohon.pengajuan',[
-            'berkas'  => Berkas::all(),
-          ])->extends('layouts.main',[
-              'tittle' => 'Pengajuan Berkas',
-          ])->section('isi');
 
+        if ($this->pengajuan->status_pengajuan == 'Revisi Berkas') {
+            $berkas = Berkas::with(['upload' => function ($query) {
+                $query->where('pengajuan_id', $this->pengajuan->id);
+            }])->get();
+        }else{
+        $berkas = Berkas::all();
+        }
+
+        return view('livewire.pemohon.show-draft',[
+            'berkas'  => $berkas,
+        ])
+        ->extends('layouts.main',[
+            'tittle' => 'Melihat Draft',
+        ])->section('isi');
+    }
+
+
+
+    public function mount($id)
+    {
+        $this->pengajuan = Pengajuan::where('id', $id)->first();
+
+        $this->dev  = $this->pengajuan->dev;
+        $this->nama_dev  = $this->pengajuan->nama_dev;
+        $this->alamat_dev  = $this->pengajuan->alamat_dev;
+        $this->no_hp  = $this->pengajuan->no_hp;
+        $this->asosiasi  = $this->pengajuan->asosiasi;
+        $this->no_anggota  = $this->pengajuan->no_anggota;
+        $this->nama_pro  = $this->pengajuan->nama_pro;
+        $this->alamat_pro  = $this->pengajuan->alamat_pro;
+        $this->pemohon1  = $this->pengajuan->pemohon1;
+        $this->tel_pemohon1  = $this->pengajuan->tel_pemohon1;
+        $this->pemohon2  = $this->pengajuan->pemohon2;
+        $this->tel_pemohon2  = $this->pengajuan->tel_pemohon2;
+        $this->total  = $this->pengajuan->total;
+
+
+        $tipes =  Tipe::where('pengajuan_id',$this->pengajuan->id)->get();
+        $j = 1;
+        foreach ($tipes as $key ) {
+
+            // [$key]  = $key->tipe;
+            array_push($this->kategori ,$key->kategori);
+            array_push($this->juml_unit ,$key->juml_unit);
+            array_push($this->tipe ,$key->tipe);
+            array_push($this->inputs ,$j++);
+
+            // $this->kategori[$j++]  = $key->kategori ;
+            // $this->juml_unit[$j++]  = $key->juml_unit;
+        }
+
+
+        $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
+        $this->jln_saluran  = $psus->jln_saluran;
+        $this->taman  = $psus->taman;
+        $this->rth  = $psus->rth;
+        $this->ibadah  = $psus->ibadah;
+        $this->olahraga  = $psus->olahraga;
+        $this->kesehatan  = $psus->kesehatan;
+        $this->lain  = $psus->lain;
+
+        $this->step = 0;
     }
 
     public $updateMode = false;
@@ -61,10 +128,6 @@ class AddPengajuan extends Component
     {
         unset($this->inputs[$i]);
     }
-
-
-    public $step;
-
     public $pengajuans;
     public $pengajuan_id;
     private $stepActions = [
@@ -74,23 +137,6 @@ class AddPengajuan extends Component
         'submit5',
     ];
 
-    public function mount()
-    {
-        $this->step = 0;
-    }
-    public function minus()
-    {
-        $this->step--;
-    }
-    public function plus()
-    {
-        $this->step++;
-    }
-    public function jump($to)
-    {
-        $this->step = $to;
-    }
-
     public function submit()
     {
 
@@ -98,7 +144,6 @@ class AddPengajuan extends Component
 
         $this->$action();
     }
-
     protected $rules=
     [
         'dev' => 'required',
@@ -107,6 +152,7 @@ class AddPengajuan extends Component
         'asosiasi' => 'required',
         'no_anggota' => 'required',
         'tel_pemohon1' => 'required|min:12',
+        'tel_pemohon2' => 'min:12',
 ];
 
     protected $messages = [
@@ -128,8 +174,8 @@ class AddPengajuan extends Component
             'no_anggota' => 'required',
         ]);
 
-        if ($this->pengajuans) {
-            $this->pengajuans = tap($this->pengajuans)->update(
+
+            $this->pengajuan = tap($this->pengajuan)->update(
                 [
                     'dev' => $this->dev,
                     'nama_dev' => $this->nama_dev,
@@ -149,79 +195,59 @@ class AddPengajuan extends Component
                     'text' => 'Mengubah Pengajuan',
                     'timerProgressBar' => true,
                 ]);
-            } else {
-                $this->pengajuans = Pengajuan::create(
-                    [
-                        'dev' => $this->dev,
-                        'nama_dev' => $this->nama_dev,
-                        'no_hp' => Auth::user()->no_hp,
-                        'pengaju' => Auth::user()->id,
-                        'date' => Carbon::now()->format('d-m-Y'),
-                        'tahun' => Carbon::now()->year,
-                        'alamat_dev' => $this->alamat_dev,
-                        'asosiasi' => $this->asosiasi,
-                        'no_anggota' => $this->no_anggota,
-                        'status_pengajuan' => 'Draft',
-                        'tanggal' => Carbon::now(),
 
-
-                    ]
-                );
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'top-right',
-                    'timer' => 3000,
-                    'toast' => true,
-                ]);
-            }
-            $this->pengajuan_id = $this->pengajuans->id;
+            $this->alert('success', 'Berhasil', [
+                'position' => 'top-right',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
 
         public function submit3()
-    {
-        $this->validate([
-            'nama_pro' => 'required',
-            'alamat_pro' => 'required',
-            'pemohon1' => 'required',
-            'tel_pemohon1' => 'required|min:12',
-            'tel_pemohon2' => 'min:12',
-            'total' => 'required',
+        {
+            $this->validate([
+                'nama_pro' => 'required',
+                'alamat_pro' => 'required',
+                'pemohon1' => 'required',
+                'tel_pemohon1' => 'required|min:12',
+                'tel_pemohon2' => 'min:12',
+                'total' => 'required',
 
-        ]);
-        $this->pengajuans = tap($this->pengajuans)->update([
-            'nama_pro' => $this->nama_pro,
-            'alamat_pro' => $this->alamat_pro,
-            'pemohon1' => $this->pemohon1,
-            'tel_pemohon1' => $this->tel_pemohon1,
-            'pemohon2' => $this->pemohon2,
-            'tel_pemohon2' => $this->tel_pemohon2,
-            'total' => $this->total,
+            ]);
+            $this->pengajuan = tap($this->pengajuan)->update([
+                'nama_pro' => $this->nama_pro,
+                'alamat_pro' => $this->alamat_pro,
+                'pemohon1' => $this->pemohon1,
+                'tel_pemohon1' => $this->tel_pemohon1,
+                'pemohon2' => $this->pemohon2,
+                'tel_pemohon2' => $this->tel_pemohon2,
+                'total' => $this->total,
 
-        ]);
-        $this->alert('success', 'Data Berhasil Diupdate', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
-        $this->pengajuan_id = $this->pengajuans->id;
-        $this->step++;
-    }
+            ]);
+            $this->alert('success', 'Data Berhasil Diupdate', [
+                'position' => 'top-right',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            $this->pengajuan_id = $this->pengajuan->id;
+            $this->step++;
+        }
 
+        public function submit4()
+        {
+            $this->pengajuan_id = $this->pengajuan->id;
 
-    public $kategori, $tipe, $juml_unit, $jln_saluran, $taman, $rth,
-    $ibadah, $olahraga, $kesehatan, $lain ;
+            // $this->store();
+            $this->step++;
+        }
 
-    public function submit4()
-    {
-        $this->pengajuan_id = $this->pengajuans->id;
+        public $bangun;
+        public $berkas_id = [];
+        public $nama_berkas = [];
 
-        // $this->store();
-        $this->step++;
-    }
-
-    public $nama_berkas = [];
-    public $berkas_id = [];
-    public function submit5()
+        public function submit5()
     {
 
         if ($this->nama_berkas) {
@@ -246,11 +272,9 @@ class AddPengajuan extends Component
         // $this->step++;
     }
 
-    public $bangun;
-
-    public function store()
+        public function store()
     {
-        $this->pengajuan_id = $this->pengajuans->id;
+        $this->pengajuan_id = $this->pengajuan->id;
 
         $validatedDate = $this->validate(
             [
@@ -338,5 +362,17 @@ class AddPengajuan extends Component
 
     }
 
- }
 
+    public function plus()
+    {
+        $this->step++;
+    }
+    public function minus()
+    {
+        $this->step--;
+    }
+    public function jump($to)
+    {
+        $this->step = $to;
+    }
+}

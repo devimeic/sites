@@ -20,6 +20,8 @@ class CreateUploadsTable extends Migration
             $table->unsignedBigInteger('berkas_id')->constrained()
                 ->onUpdate('cascade');
             $table->string('lokasi_berkas');
+            $table->enum('status_berkas', ['setuju', 'tolak', 'belum diverifikasi'])->nullable();
+            $table->enum('status_lapangan', ['setuju', 'tolak', 'belum diverifikasi'])->nullable();
             $table->string('catatan')->nullable();
             $table->timestamps();
         });

@@ -12,8 +12,15 @@ use App\Http\Livewire\Admin\ShowRiwayat;
 use App\Http\Livewire\Admin\UserManagement;
 use App\Http\Livewire\Berkas\Berkas;
 use App\Http\Livewire\Berkas\InputBerkas;
+use App\Http\Livewire\Berkas\ListPengajuan;
+use App\Http\Livewire\Berkas\Pengajuan as BerkasPengajuan;
+use App\Http\Livewire\Berkas\ShowList as BerkasShowList;
 use App\Http\Livewire\Pemohon\AddPengajuan;
 use App\Http\Livewire\Pemohon\Pengajuan;
+use App\Http\Livewire\Pemohon\Riwayat as PemohonRiwayat;
+use App\Http\Livewire\Pemohon\ShowDraft;
+use App\Http\Livewire\Pemohon\ShowList;
+use App\Http\Livewire\Pemohon\ShowRiwayat as PemohonShowRiwayat;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,14 +52,20 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], funct
 Route::group(['prefix'=>'pemohon', 'middleware'=>['auth', 'cekRole:pemohon']], function(){
     Route::get('/index', [PemohonController::class, 'index'])->name('pemohon');
     Route::get('/pengajuan', AddPengajuan::class)->name('pengajuan-pemohon');
+    Route::get('/show-draft/{id}', ShowDraft::class)->name('show-draft');
     Route::get('/list-pengajuan', [PemohonController::class, 'list'])->name('list-pengajuan');
-    Route::get('/riwayat', [PemohonController::class, 'riwayat'])->name('riwayat-pemohon');
+    // Route::get('/riwayat', [PemohonController::class, 'riwayat'])->name('riwayat-pemohon');
+    Route::get('/riwayat', PemohonRiwayat::class)->name('riwayat-pemohon');
+    Route::get('/show-riwayat/{id}', PemohonShowRiwayat::class)->name('show-pemohon');
+    Route::get('/show-revisi/{id}', ShowDraft::class)->name('show-revisi');
 });
 
 Route::group(['prefix'=>'berkas', 'middleware'=>['auth', 'cekRole:verifikator berkas']], function(){
     Route::get('/index', [BerkasController::class, 'index'])->name('berkas');
-    Route::get('/pengajuan', [BerkasController::class, 'pengajuan'])->name('pengajuan-berkas');
-    Route::get('/view-berkas', [BerkasController::class, 'view'])->name('view-berkas');
+    // Route::get('/pengajuan', [BerkasController::class, 'pengajuan'])->name('pengajuan-berkas');
+    Route::get('/pengajuan', ListPengajuan::class)->name('pengajuan-berkas');
+    // Route::get('/view-berkas', [BerkasController::class, 'view'])->name('view-berkas');
+    Route::get('/show-list/{id}', BerkasShowList::class)->name('show-berkas');
     Route::get('/input-berkas', InputBerkas::class)->name('input-berkas');
 });
 Route::group(['prefix'=>'lapangan', 'middleware'=>['auth', 'cekRole:verifikator lapangan']], function(){

@@ -1,3 +1,5 @@
+use App\Models\Psu;
+use App\Models\Upload;
 @extends('layouts.main')
 
 @section('isi')

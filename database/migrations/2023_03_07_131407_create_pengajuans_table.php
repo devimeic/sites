@@ -33,8 +33,7 @@ class CreatePengajuansTable extends Migration
             $table->string('slug')->nullable();
             $table->date('tanggal')->nullable();
             $table->enum('status_pengajuan', ['Draft','Verifikasi Berkas','Revisi Berkas','Verifikasi Lapangan','Revisi Lapangan','Rekomendasi','Dikembalikan','Selesai'])->nullable();
-            $table->enum('status_berkas', ['setuju', 'tolak'])->nullable();
-            $table->enum('status_lapangan', ['setuju', 'tolak'])->nullable();
+            
             $table->timestamps();
         });
     }

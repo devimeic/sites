@@ -1,43 +1,58 @@
 <div>
-    @push('css')
-        <!-- Form step -->
-        <link href="/disk/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet">
-    @endpush
 
-    {{-- @section('isi') --}}
-    <div class="page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('list-pengajuan') }}">list pengajuan</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Form Pengajuan</a></li>
-        </ol>
-    </div>
+  
     <!-- row -->
     <div class="row">
         <div class="col-xl-12 col-xxl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Form Pengajuan {{ $pengajuan->nama_pro }}</h4>
+
+                    <h4 class="card-title">Form Pengajuan
+                        {{ $pengajuan->nama_pro }}
+
+                </h4>
+
                 </div>
                 <div class="card-body">
+
+                    {{-- @foreach ($pengajuan as $key) --}}
                     <div wire:ignore.self  class="form-wizard order-create">
-                        <ul class="nav nav-wizard  d-flex justify-content-between"  >
-                            <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
-                                <span class="w-100 px-2">Developer</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
-                                <span class="w-100 px-2">Pengajuan</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
-                                <span class="w-100 px-2">Tipe Bangunan</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
-                                <span class="w-100 px-2">Upload Berkas</span>
-                            </a></li>
+                        <ul class="nav nav-wizard d-flex justify-content-between"  >
+                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
+                                    <span class="w-100 px-2">Developer</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
+                                    <span class="w-100 px-2">Pengajuan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
+                                    <span class="w-100 px-2">Tipe Bangunan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                                    <span class="w-100 px-2">Upload Berkas</span>
+                                </a></li>
                             @if ($pengajuan->status_pengajuan == 'Selesai')
                             <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 4 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 4 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(4)">
                                 <span class="w-100 px-2">Rekomendasi</span>
                             </a></li>
                         @endif
+
+                            {{-- @elseif ($key->status_pengajuan == 'Selesai') --}}
+                                {{-- <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
+                                    <span class="w-100 px-2">Developer</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
+                                    <span class="w-100 px-2">Pengajuan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
+                                    <span class="w-100 px-2">Tipe Bangunan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                                    <span class="w-100 px-2">Upload Berkas</span>
+                                </a></li>
+
+                        @endforeach --}}
+
+
                         </ul>
                         <div class="">
                             @if ($step == 0)
@@ -242,14 +257,17 @@
                                                         <td>{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                         <td >
-                                                            <a href="{{ route('show-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                                            data-placement="top" title="Lihat Berkas"><i
-                                                                class="fa fa-eye color-muted"></i> </a>
+
+                                                                <button type="button" data-toggle="modal" wire:click.prevent="showBerkas({{ $value->id }})" data-target="#modal-berkas" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                                    data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                                    <i class="fa fa-eye color-muted"></i>
+                                                                </button>
                                                         </td>
                                                     </tr>
 
                                                 </tbody>
                                                 @endforeach
+                                                @include('livewire.pemohon.modal-berkas')
                                             </table>
                                         </div>
                                     </div>
@@ -257,7 +275,8 @@
                                 </div>
 
                             </div>
-                            @elseif ($step == 4)
+                            @endif
+                            @if ($step  > 3)
                             <div wire:ignore.self id="rekomendasi" class="tab-pane" role="tabpanel">
                                 <div class="card-body">
                                     <div class="basic-form">
@@ -266,6 +285,7 @@
                                 </div>
                             </div>
                             @endif
+
 
                         </div>
                         <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
@@ -296,20 +316,5 @@
 
     {{-- @endsection --}}
 
-    @push('js')
-        <script src="/disk/vendor/jquery-steps/build/jquery.steps.min.js"></script>
-        <script src="/disk/vendor/jquery-validation/jquery.validate.min.js"></script>
-        <!-- Form validate init -->
-        <script src="/disk/js/plugins-init/jquery.validate-init.js"></script>
-        <!-- Form Steps -->
-        <script src="/disk/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
 
-        <script>
-            $(document).ready(function(){
-                // SmartWizard initialize
-                $('#smartwizard').smartWizard();
-            });
-        </script>
-    @endpush
-
-    </div>
+</div>

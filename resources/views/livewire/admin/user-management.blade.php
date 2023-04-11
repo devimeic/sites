@@ -61,7 +61,7 @@
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                         <button type="button" data-toggle="modal" wire:click.prevent="resetpsswd({{ $usr->id }})" data-target="#reset" class="btn btn-secondary shadow btn-xs sharp mr-1"
-                                            data-toggle="tooltip" data-placement="top" title="Hapus User">
+                                            data-toggle="tooltip" data-placement="top" title="Edit Password User">
                                             <i class="fa fa-key"></i>
                                         </button>
                                     </div>

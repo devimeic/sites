@@ -21,16 +21,16 @@
             <div class="card-body">
                 <div wire:ignore.self  class="form-wizard order-create">
                     <ul class="nav nav-wizard"  >
-                        <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(0)">
+                        <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
                             <span class="w-100 px-2">Developer</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(1)">
+                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Pengajuan</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(2)">
+                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Tipe Bangunan</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(3)">
+                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Upload Berkas</span>
                         </a></li>
                     </ul>
@@ -297,30 +297,37 @@
                                                     <th>No</th>
                                                     <th>Persyaratan</th>
                                                     <th>Unggah</th>
-                                                    <th>Lihat</th>
                                                 </tr>
+                                                {{ $pengajuan_id }}
                                                 @json($berkas_id)
+                                                @json($nama_berkas)
                                             </thead>
                                             <tbody>
                                                 @php
                                                     $no = 1;
                                                 @endphp
 
+
                                                 @foreach ($berkas as $brks => $value)
-                                                <input type="hidden" wire:model="berkas_id.{{ $value->id }}">
+                                                <input type="hidden" wire:model="berkas_id.{{ $value->id }}" value="{{ $value->id }}">
                                                 <tr>
                                                     <th>{{ $no++ }}</th>
                                                     <td>{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                     <td class="input-group mt-4">
-                                                        <input wire:model="nama_berkas.{{ $value }}" type="file" class="custom-file-input">
-                                                        <label class="custom-file-label">Choose file</label>
+                                                        <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                        <label class="custom-file-label">Pilih file</label>
                                                     </td>
-                                                    <td >
-                                                        <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1">
-                                                            <i class="fa fa-search"></i>
-                                                        </button>
+
+                                                    @if (isset($nama_berkas[$value->id]))
+                                                    @if ($nama_berkas[$value->id])
+                                                    <td>
+                                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                                                     </td>
+
+                                                    @endif
+                                                    @endif
+
                                                 </tr>
 
                                             </tbody>
@@ -347,7 +354,7 @@
                         <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                         @endif
                         @if ($step == 3)
-                        <button class="btn btn-primary sw-btn-next" type="button">Simpan</button>
+                        <button type="submit"  class="btn btn-primary sw-btn-next" type="button">Simpan</button>
 
                         @endif
                     </form>

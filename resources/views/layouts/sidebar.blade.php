@@ -8,7 +8,7 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
+            <li ><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>
                 <span class="nav-text">User Management</span>
             </a>
@@ -39,12 +39,12 @@
                 </a>
             </li>
 
-            <li><a href="{{ route('list-pengajuan') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('pemohon/pengajuan') || request()->is('pemohon/show-draft/*') ? ' mm-active' : '' }}"><a href="{{ route('list-pengajuan') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
                 <span class="nav-text">Ajukan Pengajuan</span>
             </a>
             </li>
-            <li><a href="{{ route('riwayat-pemohon') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('pemohon/show-riwayat/*') || request()->is('pemohon/show-revisi/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-pemohon') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-list-1"></i>
                 <span class="nav-text">Riwayat Pengajuan</span>
             </a>
@@ -57,9 +57,9 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ route('pengajuan-berkas') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('berkas/show-list/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-berkas') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
-                <span class="nav-text">Pengajuan</span>
+                <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
 

@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Berkas;
 
-use App\Models\Pengajuan;
-use App\Models\Tipe;
 use Livewire\Component;
+use App\Models\Pengajuan;
 use Livewire\WithPagination;
 
-class Riwayat extends Component
+class ListPengajuan extends Component
 {
-
     use WithPagination;
 
 
@@ -19,8 +17,8 @@ class Riwayat extends Component
 
     public function render()
     {
-        return view('livewire.admin.riwayat',[
-            'pengajuan' => Pengajuan::where('status_pengajuan', '<>', 'draft')
+        return view('livewire.berkas.list-pengajuan',[
+            'pengajuan' => Pengajuan::whereIn('status_pengajuan', ['Verifikasi Berkas', 'Revisi Berkas'])
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
@@ -37,8 +35,5 @@ class Riwayat extends Component
     {
         $this->resetPage();
     }
-
-
-
 
 }

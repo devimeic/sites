@@ -17,6 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Form Pengajuan {{ $pengajuan->nama_pro }}</h4>
+                     {{-- @json($psu) --}}
                 </div>
                 <div class="card-body">
                     <div wire:ignore.self  class="form-wizard order-create">
@@ -175,49 +176,50 @@
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran }}" readonly>
+                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman }}" readonly>
+                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">RTH</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth }}" readonly>
+                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah }}" readonly>
+                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga }}" readonly>
+                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan }}" readonly>
+                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan ?? " " }}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Lain-Lain</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain }}" readonly>
+                                                <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain ?? " " }}" readonly>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             @elseif ($step == 3)
+                            {{-- <form wire:submit.prevent=""> --}}
                             <div wire:ignore.self id="upload-berkas" class="tab-pane" role="tabpanel">
                                 <div class="card-body">
                                     <div class="basic-form">
@@ -228,24 +230,41 @@
                                                         <th>No</th>
                                                         <th>Persyaratan</th>
                                                         <th>Lihat</th>
+
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php
                                                         $no = 1;
+                                                        $index = 0;
                                                     @endphp
 
                                                     @foreach ($berkas as $brks => $value)
-                                                    <input type="hidden" wire:model="berkas_id.{{ $value->id }}">
+                                                    {{-- {{ $value }} --}}
+
+
+                                                    {{-- <input type="text" wire:model="berkas_id.{{ $index++ }}"  > --}}
                                                     <tr>
                                                         <th>{{ $no++ }}</th>
                                                         <td>{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                         <td >
-                                                            <a href="{{ route('show-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                                            <a href="#" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                                             data-placement="top" title="Lihat Berkas"><i
                                                                 class="fa fa-eye color-muted"></i> </a>
                                                         </td>
+                                                        <td colspan="3">
+                                                            <div class="form-group mb-0">
+                                                                {{-- {{ $status_brks[$index++] }} --}}
+
+                                                                <label class="radio-inline mr-3"><input type="radio"  wire:change="simpan({{$value->id}},0)" wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}"  value="setuju"> Setuju</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" wire:change="simpan({{$value->id }},1)"  wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}" value="tolak"> Tidak Setuju</label>
+                                                            </div>
+                                                        </td>
+
+
+
                                                     </tr>
 
                                                 </tbody>
@@ -256,14 +275,6 @@
 
                                 </div>
 
-                            </div>
-                            @elseif ($step == 4)
-                            <div wire:ignore.self id="rekomendasi" class="tab-pane" role="tabpanel">
-                                <div class="card-body">
-                                    <div class="basic-form">
-                                        <strong class="text-black"> Nomor Surat Rekomendasi : </strong>
-                                    </div>
-                                </div>
                             </div>
                             @endif
 
@@ -276,15 +287,17 @@
                             @if ($step > 0)
                             <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
                             @endif
-                            @if ($step < 4)
+                            @if ($step < 3)
                             <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                             @endif
-                            @if ($step == 4)
-                            <a href="{{ route('riwayat-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
-
+                            @if ($step == 3)
+                            <button  wire:click="revisi()" class="btn btn-danger sw-btn-next" >Revisi</button>
+                            <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
                             @endif
 
+
                         </div>
+                    {{-- </form> --}}
                     </div>
                 </div>
             </div>
@@ -311,5 +324,4 @@
             });
         </script>
     @endpush
-
-    </div>
+</div>

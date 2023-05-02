@@ -30,7 +30,7 @@
                         <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Tipe Bangunan</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Upload Berkas</span>
                         </a></li>
                     </ul>
@@ -243,44 +243,65 @@
                                     <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
                                     <div class="form-group row mt-3">
                                         <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="jln_saluran" class="form-control text-black" placeholder="Masukkan Jalan & Saluran">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Taman</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="taman" class="form-control text-black" placeholder="Masukkan Luas Taman">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">RTH</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="rth" class="form-control text-black" placeholder="Masukkan Luas RTH">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="ibadah" class="form-control text-black" placeholder="Masukkan Sarana Peribadatan">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="olahraga" class="form-control text-black" placeholder="Masukkan Sarana Olahraga">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="kesehatan" class="form-control text-black" placeholder="Masukkan Sarana Kesehatan">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-5">
                                             <input type="number" wire:model="lain" class="form-control text-black" placeholder="Masukkan Lain-lain">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="text-black">/m<sup>2</sup></label>
                                         </div>
                                     </div>
                                 </div>
@@ -298,9 +319,9 @@
                                                     <th>Persyaratan</th>
                                                     <th>Unggah</th>
                                                 </tr>
-                                                {{ $pengajuan_id }}
+                                                {{-- {{ $pengajuan_id }}
                                                 @json($berkas_id)
-                                                @json($nama_berkas)
+                                                @json($nama_berkas) --}}
                                             </thead>
                                             <tbody>
                                                 @php
@@ -312,7 +333,7 @@
                                                 <input type="hidden" wire:model="berkas_id.{{ $value->id }}" value="{{ $value->id }}">
                                                 <tr>
                                                     <th>{{ $no++ }}</th>
-                                                    <td>{!! nl2br(e($value->nama_berkas))!!}</td>
+                                                    <td class="text-black">{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                     <td class="input-group mt-4">
                                                         <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
@@ -333,6 +354,14 @@
                                             </tbody>
                                             @endforeach
                                         </table>
+                                        <div class="col-lg-8 alert alert-primary notification mt-4">
+                                            <Strong>Note</Strong>
+                                            <ul>
+                                                <li>- Beberapa Berkas Harus Di Upload Di Beri Tanda <strong>*</strong></li>
+                                                <li>- Beberapa Berkas Tidak Wajib Di Upload</li>
+                                            </ul>
+                                            
+                                        </div>
                                     </div>
                                 </div>
 

@@ -12,6 +12,10 @@ use App\Models\Upload;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class AddPengajuan extends Component
 {
@@ -226,8 +230,16 @@ class AddPengajuan extends Component
 
         if ($this->nama_berkas) {
 
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+
+            if (!Storage::exists($directori)) {
+                Storage::makeDirectory($directori, 0777, true, true);
+            }
+
+
             foreach($this->nama_berkas as $key => $value ){
-                $imagePath = $value->store('public/images');
+
+                $imagePath = $value->store('public/berkas/'.$directori);
                 Upload::create([
                 'berkas_id' => $key,
                 'lokasi_berkas' => $imagePath,

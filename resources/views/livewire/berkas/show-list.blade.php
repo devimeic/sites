@@ -1,9 +1,4 @@
 <div>
-    @push('css')
-        <!-- Form step -->
-        <link href="/disk/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet">
-    @endpush
-
     {{-- @section('isi') --}}
     <div class="page-titles">
         <ol class="breadcrumb">
@@ -31,7 +26,7 @@
                             <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
                                 <span class="w-100 px-2">Tipe Bangunan</span>
                             </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
                                 <span class="w-100 px-2">Upload Berkas</span>
                             </a></li>
                             @if ($pengajuan->status_pengajuan == 'Selesai')
@@ -175,44 +170,65 @@
                                         <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">RTH</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain ?? " " }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                     </div>
@@ -230,6 +246,9 @@
                                                         <th>No</th>
                                                         <th>Persyaratan</th>
                                                         <th>Lihat</th>
+                                                        <th>Setuju</th>
+                                                        <th>Di Tolak</th>
+                                                        <th>Catatan</th>
 
 
                                                     </tr>
@@ -247,19 +266,32 @@
                                                     {{-- <input type="text" wire:model="berkas_id.{{ $index++ }}"  > --}}
                                                     <tr>
                                                         <th>{{ $no++ }}</th>
-                                                        <td>{!! nl2br(e($value->nama_berkas))!!}</td>
+                                                        <td class="text-black">{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                         <td >
-                                                            <a href="#" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                                            data-placement="top" title="Lihat Berkas"><i
-                                                                class="fa fa-eye color-muted"></i> </a>
+                                                            <button type="button" data-toggle="modal" wire:click.prevent="showBerkas({{ $value->id }})" data-target="#modal-berkas" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                                data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                                <i class="fa fa-eye color-muted"></i>
+                                                            </button>
                                                         </td>
-                                                        <td colspan="3">
-                                                            <div class="form-group mb-0">
-                                                                {{-- {{ $status_brks[$index++] }} --}}
+                                                        <td style="width: 12%">
+                                                                <label class="radio-inline"><input type="radio"  wire:change="simpan({{$value->id}},0)" wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}"  value="setuju">
+                                                                    <i class="flaticon-381-success-2 btn btn-success shadow btn-xs sharp mx-2"></i>
+                                                                </label>
 
-                                                                <label class="radio-inline mr-3"><input type="radio"  wire:change="simpan({{$value->id}},0)" wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}"  value="setuju"> Setuju</label>
-                                                                <label class="radio-inline mr-3"><input type="radio" wire:change="simpan({{$value->id }},1)"  wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}" value="tolak"> Tidak Setuju</label>
+                                                        </td>
+                                                        <td style="width: 12%">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" wire:change="simpan({{$value->id }},1)"  wire:model="status_brks.{{ $value->id }}" name="optradio{{ $value->id }}" value="tolak" >
+                                                                    <i class="flaticon-381-error btn btn-danger shadow btn-xs sharp mx-2"></i>
+                                                                </label>
+                                                        </td>
+                                                        <td style="width: 20%">
+                                                            <div class="input-group input-primary pt-4">
+                                                                {{-- <div class="input-group-prepend">
+                                                                    <span class="input-group-text">Catatan </span>
+                                                                </div> --}}
+                                                                <textarea rows="3" class="form-control text-black" wire:change="catatansimpan({{$value->id}})" wire:model="catatan.{{$value->id }}"></textarea>
                                                             </div>
                                                         </td>
 
@@ -268,8 +300,11 @@
                                                     </tr>
 
                                                 </tbody>
+
                                                 @endforeach
                                             </table>
+
+
                                         </div>
                                     </div>
 
@@ -279,7 +314,7 @@
                             @endif
 
                         </div>
-                        <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
+                        <div class="toolbar" role="toolbar" style="text-align: right;">
                             @if ($step == 0)
                             <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
@@ -291,8 +326,10 @@
                             <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                             @endif
                             @if ($step == 3)
-                            <button  wire:click="revisi()" class="btn btn-danger sw-btn-next" >Revisi</button>
-                            <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
+                            <div class="mt-3">
+                                <button  wire:click="revisi()" class="btn btn-danger sw-btn-next" >Revisi</button>
+                                <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
+                            </div>
                             @endif
 
 
@@ -301,6 +338,7 @@
                     </div>
                 </div>
             </div>
+            @include('livewire.pemohon.modal-berkas')
         </div>
     </div>
     <!--**********************************
@@ -309,19 +347,4 @@
 
     {{-- @endsection --}}
 
-    @push('js')
-        <script src="/disk/vendor/jquery-steps/build/jquery.steps.min.js"></script>
-        <script src="/disk/vendor/jquery-validation/jquery.validate.min.js"></script>
-        <!-- Form validate init -->
-        <script src="/disk/js/plugins-init/jquery.validate-init.js"></script>
-        <!-- Form Steps -->
-        <script src="/disk/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
-
-        <script>
-            $(document).ready(function(){
-                // SmartWizard initialize
-                $('#smartwizard').smartWizard();
-            });
-        </script>
-    @endpush
 </div>

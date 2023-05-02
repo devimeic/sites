@@ -9,6 +9,7 @@ use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class ShowList extends Component
@@ -16,8 +17,10 @@ class ShowList extends Component
 
 
     use LivewireAlert;
+    use WithFileUploads;
 
     public $pengajuan;
+    public $catatan=[];
     public $berkas_id = [];
     public $status_brks = [];
 
@@ -38,9 +41,27 @@ class ShowList extends Component
     {
         $this->pengajuan = Pengajuan::where('id', $id)->first();
         $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
+        $this->catatan[0]= null;
+        $this->berkas_id[0]= null;
+        $this->status_brks[0]= null;
         foreach( $berks as $key){
+
+        array_push($this->catatan,$key->catatan);
+        array_push($this->status_brks,$key->status_berkas);
         array_push($this->berkas_id,$key->id);
         };
+    }
+
+    public function catatansimpan($id)
+    {
+        $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->where('berkas_id',$id)->first();
+        if(!array_key_exists($id,$this->catatan)){
+            $this->catatan[$id] = null;
+        }
+    if ($smp) {
+        $smp->update([
+            'catatan' => $this->catatan[$id]
+    ]);}
     }
 public function simpan($id ,$st)
 {
@@ -51,8 +72,12 @@ public function simpan($id ,$st)
 
     };
     $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->where('berkas_id',$id)->first();
+    $this->catatansimpan($id);
     if ($smp) {
-        $smp->update(['status_berkas'=> $sta]);
+        $smp->update([
+            'status_berkas'=> $sta,
+            // 'catatan' => $this->catatan[$id]
+    ]);
         $this->alert('success', 'Berhasil', [
             'position' => 'top-right',
             'timer' => 3000,
@@ -71,7 +96,7 @@ public function simpan($id ,$st)
     public function revisi()
     {
     $this->pengajuan->update([
-        'status_pengajuan' => 'Revisi Berkas'
+        'status_pengajuan' => 'Revisi Berkas',
     ]);
     $this->alert('success', 'Berkas dalam status Revisi', [
         'position' => 'top-right',
@@ -80,9 +105,20 @@ public function simpan($id ,$st)
     ]);
     return redirect()->route('pengajuan-berkas');
     }
-    
+
     public function setuju()
     {
+
+        $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
+foreach ($smp as $key ) {
+    $key->update([
+        'status_berkas'=> null,
+
+    ]);
+}
+
+
+
     $this->pengajuan->update([
         'status_pengajuan' => 'Verifikasi Lapangan'
     ]);
@@ -93,6 +129,8 @@ public function simpan($id ,$st)
     ]);
     return redirect()->route('pengajuan-berkas');
     }
+
+    
     public $step;
     public function plus()
     {
@@ -106,5 +144,22 @@ public function simpan($id ,$st)
     {
         $this->step = $to;
     }
+
+    public $files ;
+
+    public function showBerkas($id)
+        {
+
+            $file = Upload::where('berkas_id',$id)->where('pengajuan_id',$this->pengajuan->id)->first();
+            // @dd($file);
+            if(!is_null($file))
+            {
+                $this->files = $file->lokasi_berkas;
+
+            }else{
+            $this->files = null;
+            }
+
+        }
 
 }

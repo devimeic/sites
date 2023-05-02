@@ -44,7 +44,7 @@
                 <span class="nav-text">Ajukan Pengajuan</span>
             </a>
             </li>
-            <li class="{{ request()->is('pemohon/show-riwayat/*') || request()->is('pemohon/show-revisi/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-pemohon') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('pemohon/show-riwayat/*') || request()->is('pemohon/revisi-berkas/*') || request()->is('pemohon/revisi-lapangan/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-pemohon') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-list-1"></i>
                 <span class="nav-text">Riwayat Pengajuan</span>
             </a>
@@ -76,7 +76,7 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ route('pengajuan-lapangan') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('lapangan/show-berkas/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-lapangan') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
                 <span class="nav-text">Pengajuan</span>
             </a>

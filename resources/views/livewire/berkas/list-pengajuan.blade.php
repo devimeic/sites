@@ -60,7 +60,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('show-berkas', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                      data-placement="top" title="Lihat Rincian Pengajuan"><i
+                                      data-placement="top" title="Lihat Rincian"><i
                                         class="fa fa-eye color-muted"></i> </a>
                                 </td>
 

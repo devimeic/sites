@@ -1,6 +1,4 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
-
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -61,20 +59,9 @@
                                     @endif</td>
                                 </td>
                                 <td>
-                                    @if ($key->status_pengajuan == 'Revisi Berkas')
-                                    <a href="{{ route('revisi-berkas', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Revisi Berkas"><i
-                                          class="fa fa-eye color-muted"></i> </a>
-                                    @elseif ($key->status_pengajuan == 'Revisi Lapangan')
-                                    <a href="{{ route('revisi-lapangan', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Revisi Lapangan"><i
-                                          class="fa fa-eye color-muted"></i> </a>
-                                    @else
-                                    <a href="{{ route('show-pemohon', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Lihat Rincian Pengajuan"><i
-                                          class="fa fa-eye color-muted"></i> </a>
-                                    @endif
-
+                                    <a href="{{ route('show-lapangan', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                      data-placement="top" title="Lihat Rincian Pengajuan"><i
+                                        class="fa fa-eye color-muted"></i> </a>
                                 </td>
 
                             </tr>
@@ -83,29 +70,11 @@
                     </table>
                 </div>
             </div>
-
-
             <div class="card-footer">
                 <ul class="pagination pagination-gutter pagination-primary no-bg">
                     {{ $pengajuan->links() }}
                 </ul>
             </div>
         </div>
-            <div class="alert alert-light solid">
-                    <span class="badge light badge-info mt-3">Verifikasi Berkas</span>
-                    <strong>=> Pengajuan sedang dilakukan verifikasi pada berkas</strong><br>
-                    <span class="badge badge-info mt-3">Revisi Berkas</span>
-                    <strong>=> Pengajuan perlu adanya perbaikan atau revisi pada berkas</strong><br>
-                    <span class="badge light badge-secondary mt-3">Verifikasi Lapangan</span>
-                    <strong>=> Pengajuan sedang dilakukan verifikasi pada lapangan</strong><br>
-                    <span class="badge badge-secondary mt-3">Revisi Lapangan</span>
-                    <strong>=> Pengajuan perlu adanya perbaikan atau revisi pada lapangan</strong><br>
-                    <span class="badge badge-primary mt-3">Rekomendasi</span>
-                    <strong>=> Pengajuan sedang diajukan rekomendasi</strong><br>
-                    <span class="badge badge-danger mt-3">Dikembalikan</span>
-                    <strong>=> Pengajuan di tolak</strong><br>
-                    <span class="badge badge-success mt-3">Selesai</span>
-                    <strong>=> Pengajuan selesai dan telah mendapatkan surat rekomendasi</strong>
-            </div>
     </div>
 </div>

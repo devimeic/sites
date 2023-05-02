@@ -9,13 +9,14 @@ use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithFileUploads;
 
-class ShowDraft extends Component
+class ShowRevisi extends Component
 {
+
     use LivewireAlert;
     use WithFileUploads;
 
@@ -37,6 +38,8 @@ class ShowDraft extends Component
     public $kategori = [];
     public $tipe = [];
     public $juml_unit = [];
+    public $catatan = [];
+    public $status_brks = [];
     public $jln_saluran;
     public $taman;
     public $rth;
@@ -48,8 +51,6 @@ class ShowDraft extends Component
 
     public function render()
     {
-
-
         if ($this->pengajuan->status_pengajuan == 'Revisi Berkas') {
             $berkas = Berkas::with(['upload' => function ($query) {
                 $query->where('pengajuan_id', $this->pengajuan->id);
@@ -57,16 +58,13 @@ class ShowDraft extends Component
         }else{
         $berkas = Berkas::all();
         }
-
-        return view('livewire.pemohon.show-draft',[
+        return view('livewire.pemohon.show-revisi',[
             'berkas'  => $berkas,
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Draft',
+            'tittle' => 'Revisi',
         ])->section('isi');
     }
-
-
 
     public function mount($id)
     {
@@ -85,7 +83,7 @@ class ShowDraft extends Component
         $this->pemohon2  = $this->pengajuan->pemohon2;
         $this->tel_pemohon2  = $this->pengajuan->tel_pemohon2;
         $this->total  = $this->pengajuan->total;
-
+        $this->catatan[0]= null;
 
         $tipes =  Tipe::where('pengajuan_id',$this->pengajuan->id)->get();
         $j = 1;
@@ -100,6 +98,16 @@ class ShowDraft extends Component
             // $this->kategori[$j++]  = $key->kategori ;
             // $this->juml_unit[$j++]  = $key->juml_unit;
         }
+        $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
+        $this->catatan[0]= null;
+        $this->berkas_id[0]= null;
+        $this->status_brks[0]= null;
+        foreach( $berks as $key){
+
+        array_push($this->catatan,$key->catatan);
+        array_push($this->status_brks,$key->status_berkas);
+        array_push($this->berkas_id,$key->id);
+        };
 
 
         $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
@@ -137,6 +145,7 @@ class ShowDraft extends Component
         'store',
         'submit5',
     ];
+
 
     public function submit()
     {
@@ -183,7 +192,7 @@ class ShowDraft extends Component
                     'no_hp' => Auth::user()->no_hp,
                     'alamat_dev' => $this->alamat_dev,
                     'pengaju' => Auth::user()->id,
-                    'status_pengajuan' => 'Draft',
+                    // 'status_pengajuan' => 'Draft',
                     'tanggal' => Carbon::now(),
                     'asosiasi' => $this->asosiasi,
                     'no_anggota' => $this->no_anggota,
@@ -403,8 +412,9 @@ class ShowDraft extends Component
                 $this->files = $file->lokasi_berkas;
 
             }else{
-    $this->files = null;
+            $this->files = null;
             }
 
         }
+
 }

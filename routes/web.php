@@ -15,11 +15,15 @@ use App\Http\Livewire\Berkas\InputBerkas;
 use App\Http\Livewire\Berkas\ListPengajuan;
 use App\Http\Livewire\Berkas\Pengajuan as BerkasPengajuan;
 use App\Http\Livewire\Berkas\ShowList as BerkasShowList;
+use App\Http\Livewire\Lapangan\ListPengajuan as LapanganListPengajuan;
+use App\Http\Livewire\Lapangan\ShowBerkas;
 use App\Http\Livewire\Pemohon\AddPengajuan;
 use App\Http\Livewire\Pemohon\Pengajuan;
+use App\Http\Livewire\Pemohon\RevisiLapangan;
 use App\Http\Livewire\Pemohon\Riwayat as PemohonRiwayat;
 use App\Http\Livewire\Pemohon\ShowDraft;
 use App\Http\Livewire\Pemohon\ShowList;
+use App\Http\Livewire\Pemohon\ShowRevisi;
 use App\Http\Livewire\Pemohon\ShowRiwayat as PemohonShowRiwayat;
 
 /*
@@ -57,7 +61,8 @@ Route::group(['prefix'=>'pemohon', 'middleware'=>['auth', 'cekRole:pemohon']], f
     // Route::get('/riwayat', [PemohonController::class, 'riwayat'])->name('riwayat-pemohon');
     Route::get('/riwayat', PemohonRiwayat::class)->name('riwayat-pemohon');
     Route::get('/show-riwayat/{id}', PemohonShowRiwayat::class)->name('show-pemohon');
-    Route::get('/show-revisi/{id}', ShowDraft::class)->name('show-revisi');
+    Route::get('/revisi-berkas/{id}', ShowRevisi::class)->name('revisi-berkas');
+    Route::get('/revisi-lapangan/{id}', RevisiLapangan::class)->name('revisi-lapangan');
 });
 
 Route::group(['prefix'=>'berkas', 'middleware'=>['auth', 'cekRole:verifikator berkas']], function(){
@@ -70,7 +75,8 @@ Route::group(['prefix'=>'berkas', 'middleware'=>['auth', 'cekRole:verifikator be
 });
 Route::group(['prefix'=>'lapangan', 'middleware'=>['auth', 'cekRole:verifikator lapangan']], function(){
     Route::get('/index', [LapanganController::class, 'index'])->name('lapangan');
-    Route::get('/pengajuan', [LapanganController::class, 'pengajuan'])->name('pengajuan-lapangan');
+    Route::get('/pengajuan', LapanganListPengajuan::class)->name('pengajuan-lapangan');
+    Route::get('/show-berkas/{id}', ShowBerkas::class)->name('show-lapangan');
 });
 Route::group(['prefix'=>'rekomendasi', 'middleware'=>['auth', 'cekRole:pemberi rekomendasi']], function(){
     Route::get('/index', [RekomendasiController::class, 'index'])->name('rekomendasi');

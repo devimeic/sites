@@ -59,7 +59,7 @@ public $files ;
                 $this->files = $file->lokasi_berkas;
 
             }else{
-$this->files = null;
+    $this->files = null;
             }
 
         }

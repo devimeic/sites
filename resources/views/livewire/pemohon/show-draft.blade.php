@@ -23,16 +23,16 @@
                 <div class="card-body">
                     <div wire:ignore.self  class="form-wizard order-create">
                         <ul class="nav nav-wizard"  >
-                            <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(0)">
+                            <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                 <span class="w-100 px-2">Developer</span>
                             </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(1)">
+                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                 <span class="w-100 px-2">Pengajuan</span>
                             </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(2)">
+                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                 <span class="w-100 px-2">Tipe Bangunan</span>
                             </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(3)">
+                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                 <span class="w-100 px-2">Upload Berkas</span>
                             </a></li>
                         </ul>
@@ -299,9 +299,6 @@
                                                             <th>No</th>
                                                             <th>Persyaratan</th>
                                                             <th>Unggah</th>
-                                                            @if ($pengajuan->status_pengajuan =='Revisi Berkas')
-                                                            <th>Status</th>
-                                                            @endif
                                                         </tr>
                                                         {{-- @json($berkas) --}}
                                                         {{ $pengajuan_id }}
@@ -318,7 +315,6 @@
                                                         <tr>
                                                             <th>{{ $no++ }}</th>
                                                             <td>{!! nl2br(e($value->nama_berkas))!!}</td>
-
                                                             <td class="input-group mt-4">
                                                                 <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
                                                                 <label class="custom-file-label">Pilih file</label>
@@ -333,23 +329,11 @@
                                                             @endif
                                                             @endif
 
-                                                            @if ($pengajuan->status_pengajuan == 'Revisi Berkas')
-                                                            @forelse ($value->upload as $item)
-                                                            <td>
-                                                                  {{ $item->status_berkas  }}
-                                                            </td>
-                                                                    @empty
-                                                                    <td>
-                                                                        Kosong
-                                                                    </td>
-                                                            {{-- <td>{{ $item->status_berkas == 'setuju' ? 'Setuju' : ( $item->status_berkas == 'tolak' ? 'Di Tolak' : 'Kosong' )  }}</td> --}}
-                                                            @endforelse
-
-                                                            @endif
                                                         </tr>
 
                                                     </tbody>
                                                     @endforeach
+                                                    @include('livewire.pemohon.modal-berkas')
                                                 </table>
                                             </div>
                                         </div>
@@ -372,7 +356,7 @@
                                 <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                                 @endif
                                 @if ($step == 3)
-                                <button type="submit"  class="btn btn-primary sw-btn-next" type="button">Simpan</button>
+                                <button type="submit"  class="btn btn-primary sw-btn-next" >Simpan</button>
 
                                 @endif
                             </form>

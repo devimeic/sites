@@ -1,39 +1,31 @@
 <?php
 
-namespace App\Http\Livewire\Berkas;
+namespace App\Http\Livewire\Pemohon;
 
 use Livewire\Component;
 use App\Models\Pengajuan;
 use Livewire\WithPagination;
 
-class ListPengajuan extends Component
+class Laporan extends Component
 {
     use WithPagination;
-
-
 
     protected $paginationTheme = 'bootstrap';
     public $search = '';
 
     public function render()
     {
-        return view('livewire.berkas.list-pengajuan',[
-            'pengajuan' => Pengajuan::whereIn('status_pengajuan', ['Verifikasi Berkas', 'Revisi Berkas'])
+        return view('livewire.pemohon.laporan',[
+            'pengajuan' => Pengajuan::where('status_pengajuan', 'Dikembalikan','Selesai')
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
                           ->orWhere('status_pengajuan', 'like', '%'.$this->search.'%');
                 })
-                ->orderBy('status_pengajuan', 'asc')
+                ->orderBy('created_at', 'desc')
                 ->paginate(10),
           ])->extends('layouts.main',[
-              'tittle' => 'Riwayat Pengajuan',
+              'tittle' => 'Laporan',
           ])->section('isi');
     }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
 }

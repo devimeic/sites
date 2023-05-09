@@ -32,7 +32,7 @@
                                                     </span>
                                                     <div class="media-body">
                                                         <span class="fs-14 mb-2 text-black">Pengajuan Di Terima</span><br>
-                                                        <span class="title text-black font-w600">42km</span>
+                                                        <span class="title text-black font-w600">{{ $selesai }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="progress" style="height:5px;">
@@ -61,8 +61,8 @@
                                                     </span>
                                                     <div class="media-body">
                                                         <span class="fs-14 mb-2 text-black">Pengajuan Di Tolak</span><br>
-                                                        
-                                                        <span class="title text-black font-w600">230 Km</span>
+
+                                                        <span class="title text-black font-w600">{{ $kembali }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="progress" style="height:5px;">

@@ -360,7 +360,7 @@
                                                 <li>- Beberapa Berkas Harus Di Upload Di Beri Tanda <strong>*</strong></li>
                                                 <li>- Beberapa Berkas Tidak Wajib Di Upload</li>
                                             </ul>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -372,20 +372,22 @@
 
                     </div>
                     <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
-                        @if ($step == 0)
-                        <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
+                        <div class="d-flex justify-content-between">
+                            @if ($step == 0)
+                            <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
-                        @endif
-                        @if ($step > 0)
-                        <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
-                        @endif
-                        @if ($step <3)
-                        <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
-                        @endif
-                        @if ($step == 3)
-                        <button type="submit"  class="btn btn-primary sw-btn-next" type="button">Simpan</button>
+                            @endif
+                            @if ($step > 0)
+                            <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                            @endif
+                            @if ($step <3)
+                            <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                            @endif
+                            @if ($step == 3)
+                            <button type="submit"  class="btn btn-primary sw-btn-next" type="button">Simpan</button>
 
-                        @endif
+                            @endif
+                        </div>
                     </form>
 
                     </div>

@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Berkas;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PemohonController extends Controller
 {
     public function index()
     {
         $tittle = 'Dashboard';
-        return view('pemohon.dashboard', compact('tittle'));
+        $selesai = Pengajuan::where('status_pengajuan','Selesai')->count();
+        $kembali = Pengajuan::where('status_pengajuan','Dikembalikan')->count();
+        return view('pemohon.dashboard', compact(['tittle','selesai','kembali']));
     }
 
     public function pengajuan()

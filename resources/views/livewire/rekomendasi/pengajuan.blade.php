@@ -1,4 +1,5 @@
 <div>
+
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -59,16 +60,9 @@
                                     @endif</td>
                                 </td>
                                 <td>
-                                        @if ($key->status_pengajuan == 'Verifikasi Berkas')
-                                        <a href="{{ route('show-berkas', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                            data-placement="top" title="Lihat Rincian"><i
-                                              class="fa fa-eye color-muted"></i> </a>
-                                        @else
-                                        @endif
-                                    {{-- @empty
-                                    <a href="{{ route('show-berkas', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                      data-placement="top" title="Lihat Rincian"><i
-                                        class="fa fa-eye color-muted"></i> </a> --}}
+                                    <a href="{{ route('upload', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                        data-placement="top" title="Lihat Rincian Pengajuan"><i
+                                          class="fa fa-eye color-muted"></i> </a>
                                 </td>
 
                             </tr>
@@ -84,4 +78,5 @@
             </div>
         </div>
     </div>
+
 </div>

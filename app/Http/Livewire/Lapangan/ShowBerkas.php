@@ -6,6 +6,11 @@ use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use App\Models\Rapat;
+use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
+use Exception;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class ShowBerkas extends Component
@@ -20,25 +25,30 @@ class ShowBerkas extends Component
 
     public function render()
     {
+        $this->emit('setDate', '2023-05-04 12:00:00');
         return view('livewire.lapangan.show-berkas',[
             'berkas'=> Berkas::all(),
             'upload' => Upload::where('pengajuan_id', $this->pengajuan->id)->first(),
+            'setDate' => function($date) { $this->setDate($date); },
         ])
         ->extends('layouts.main',[
             'tittle' => 'Riwayat',
         ])->section('isi');
     }
+    public $selectedDate ;
+
+
 
     public function mount($id)
     {
         $this->pengajuan = Pengajuan::where('id', $id)->first();
         $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
-        $this->catatan[0]= null;
+        // $this->catatan[0]= null;
         $this->berkas_id[0]= null;
         $this->status_brks[0]= null;
         foreach( $berks as $key){
 
-        array_push($this->catatan,$key->catatan);
+        // array_push($this->catatan,$key->catatan);
         array_push($this->status_brks,$key->status_berkas);
         array_push($this->berkas_id,$key->id);
         };
@@ -75,17 +85,17 @@ class ShowBerkas extends Component
                     'status_berkas'=> $sta,
                     // 'catatan' => $this->catatan[$id]
             ]);
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'top-right',
-                    'timer' => 3000,
-                    'toast' => true,
-                ]);
-            }else {
-                $this->alert('error', 'berkas kosong', [
-                    'position' => 'top-right',
-                    'timer' => 3000,
-                    'toast' => true,
-                ]);
+                // $this->alert('success', 'Berhasil', [
+                //     'position' => 'top-right',
+                //     'timer' => 3000,
+                //     'toast' => true,
+                // ]);
+            // }else {
+            //     $this->alert('error', 'berkas kosong', [
+            //         'position' => 'top-right',
+            //         'timer' => 3000,
+            //         'toast' => true,
+            //     ]);
             }
 
         }
@@ -108,15 +118,74 @@ class ShowBerkas extends Component
             'status_pengajuan' => 'Revisi Lapangan',
         ]);
         $this->alert('success', 'Berkas dalam status Revisi Lapangan', [
-            'position' => 'top-right',
+            'position' => 'center',
             'timer' => 3000,
             'toast' => true,
         ]);
-        return redirect()->route('pengajuan-berkas');
+        return redirect()->route('pengajuan-lapangan');
         }
+
+        public $agenda;
+        public $jadwal;
+
+        protected $rules=
+    [
+        'agenda' => 'required',
+        'jadwal' => 'required',
+];
+
+    protected $messages = [
+        'agenda.required' => 'agenda tidak boleh kosong',
+        'jadwal.required' => 'Jadwal tidak boleh kosong',
+
+    ];
 
         public function setuju()
         {
+
+            $this->validate([
+                'selectedDate' => 'required',
+                'agenda' => 'required'
+            ]);
+
+
+
+
+            $dateString = $this->selectedDate;
+
+
+            $translations = [
+                'Senin' => 'Monday',
+                'Selasa' => 'Tuesday',
+                'Rabu' => 'Wednesday',
+                'Kamis' => 'Thursday',
+                'Jumat' => 'Friday',
+                'Sabtu' => 'Saturday',
+                'Minggu' => 'Sunday',
+                'Januari' => 'January',
+                'Februari' => 'February',
+                'Maret' => 'March',
+                'April' => 'April',
+                'Mei' => 'May',
+                'Juni' => 'June',
+                'Juli' => 'July',
+                'Agustus' => 'August',
+                'September' => 'September',
+                'Oktober' => 'October',
+                'November' => 'November',
+                'Desember' => 'December',
+            ];
+
+            [$day, $dayNum, $month, $year, $time] = explode(' ', $dateString);
+            $day = $translations[$day];
+            $month = $translations[$month];
+
+
+            $englishDateString = "$day $dayNum $month $year $time";
+
+            $this->jadwal = Carbon::parse($englishDateString)->format('Y-m-d H:i:s');
+
+
 
         $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
         foreach ($smp as $key ) {
@@ -124,15 +193,20 @@ class ShowBerkas extends Component
             'status_berkas'=> null,
 
         ]);
-    }
+        Rapat::updateOrCreate([
+            'agenda'=>$this->agenda,
+            'jadwal'=>$this->jadwal,
+            'rapat_id'=> $this->pengajuan->id,
+        ]);
+            }
         $this->pengajuan->update([
             'status_pengajuan' => 'Rekomendasi'
         ]);
         $this->alert('success', 'Berkas diajukkan untuk proses rekomendasi', [
-            'position' => 'top-right',
+            'position' => 'center',
             'timer' => 3000,
             'toast' => true,
         ]);
-        return redirect()->route('pengajuan-berkas');
+        return redirect()->route('pengajuan-lapangan');
         }
     }

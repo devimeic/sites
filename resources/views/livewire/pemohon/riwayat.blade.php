@@ -16,7 +16,7 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table id="example3" class="table table-responsive-md">
+                    <table id="example3" class="table table-responsive-md text-black">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -62,13 +62,13 @@
                                 </td>
                                 <td>
                                     @if ($key->status_pengajuan == 'Revisi Berkas')
-                                    <a href="{{ route('revisi-berkas', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                    <a href="{{ route('revisi-berkas', $key->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Revisi Berkas"><i
-                                          class="fa fa-eye color-muted"></i> </a>
+                                          class="fa fa-pencil color-muted"></i> </a>
                                     @elseif ($key->status_pengajuan == 'Revisi Lapangan')
-                                    <a href="{{ route('revisi-lapangan', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                    <a href="{{ route('revisi-lapangan', $key->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Revisi Lapangan"><i
-                                          class="fa fa-eye color-muted"></i> </a>
+                                          class="fa fa-pencil color-muted"></i> </a>
                                     @else
                                     <a href="{{ route('show-pemohon', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Lihat Rincian Pengajuan"><i
@@ -91,21 +91,35 @@
                 </ul>
             </div>
         </div>
-            <div class="alert alert-light solid">
-                    <span class="badge light badge-info mt-3">Verifikasi Berkas</span>
-                    <strong>=> Pengajuan sedang dilakukan verifikasi pada berkas</strong><br>
-                    <span class="badge badge-info mt-3">Revisi Berkas</span>
-                    <strong>=> Pengajuan perlu adanya perbaikan atau revisi pada berkas</strong><br>
-                    <span class="badge light badge-secondary mt-3">Verifikasi Lapangan</span>
-                    <strong>=> Pengajuan sedang dilakukan verifikasi pada lapangan</strong><br>
-                    <span class="badge badge-secondary mt-3">Revisi Lapangan</span>
-                    <strong>=> Pengajuan perlu adanya perbaikan atau revisi pada lapangan</strong><br>
-                    <span class="badge badge-primary mt-3">Rekomendasi</span>
-                    <strong>=> Pengajuan sedang diajukan rekomendasi</strong><br>
-                    <span class="badge badge-danger mt-3">Dikembalikan</span>
-                    <strong>=> Pengajuan di tolak</strong><br>
-                    <span class="badge badge-success mt-3">Selesai</span>
-                    <strong>=> Pengajuan selesai dan telah mendapatkan surat rekomendasi</strong>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Keterangan</h4>
+                </div>
+                <div class="card-body">
+                    <a>
+                        <span class="badge light badge-info mt-3">Verifikasi Berkas</span>
+                        => Pengajuan sedang dilakukan verifikasi pada berkas
+                    </a><br>
+                    <a>
+                        <span class="badge badge-info mt-3">Revisi Berkas</span>
+                        => Pengajuan perlu adanya perbaikan atau revisi pada berkas
+                    </a><br>
+                    <a>
+                        <span class="badge light badge-secondary mt-3">Verifikasi Lapangan</span>
+                        => Pengajuan sedang dilakukan verifikasi pada lapangan</a><br>
+                    <a>
+                        <span class="badge badge-secondary mt-3">Revisi Lapangan</span>
+                        => Pengajuan perlu adanya perbaikan atau revisi pada lapangan</a><br>
+                    <a>
+                        <span class="badge badge-primary mt-3">Rekomendasi</span>
+                        => Pengajuan sedang diajukan rekomendasi</a><br>
+                    <a>
+                        <span class="badge badge-danger mt-3">Dikembalikan</span>
+                        => Pengajuan di tolak</a><br>
+                    <a>
+                        <span class="badge badge-success mt-3">Selesai</span>
+                        => Pengajuan selesai dan telah mendapatkan surat rekomendasi</a>
+                </div>
             </div>
     </div>
 </div>

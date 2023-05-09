@@ -14,7 +14,11 @@ class AdminController extends Controller
     public function index()
     {
         $tittle = 'Dashboard';
-        return view('admin.dashboard', compact('tittle'));
+        $jumlahUser = User::where('role','pemohon')->count();
+        $berkas = User::where('role','verifikator berkas')->count();
+        $lapangan = User::where('role','verifikator lapangan')->count();
+        $rekomendasi = User::where('role','pemberi rekomendasi')->count();
+        return view('admin.dashboard', compact(['tittle','jumlahUser','berkas','lapangan','rekomendasi']));
     }
 
     public function user()

@@ -49,6 +49,11 @@
                 <span class="nav-text">Riwayat Pengajuan</span>
             </a>
             </li>
+            <li><a href="{{ route('laporan-pemohon') }}" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-list-1"></i>
+                <span class="nav-text">Laporan</span>
+            </a>
+            </li>
 
             @elseif (Auth::user()->role == 'verifikator berkas')
             <li>
@@ -65,7 +70,7 @@
 
             <li><a href="{{ route('input-berkas') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
-                <span class="nav-text">Input Berkas</span>
+                <span class="nav-text">Nama Berkas</span>
             </a>
             </li>
 
@@ -78,7 +83,7 @@
             </li>
             <li class="{{ request()->is('lapangan/show-berkas/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-lapangan') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
-                <span class="nav-text">Pengajuan</span>
+                <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
 
@@ -89,9 +94,9 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li><a href="{{ route('pengajuan-rekomendasi') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('rekomendasi/upload-surat/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-rekomendasi') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-plus"></i>
-                <span class="nav-text">Pengajuan</span>
+                <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
             @endif

@@ -37,7 +37,7 @@
                                                             </span>
                                                             <div class="media-body">
                                                                 <p class="fs-14 mb-2 text-black ">Pemohon</p>
-                                                                <span class="title text-black font-w600">42%</span>
+                                                                <span class="title text-black font-w600">{{ $jumlahUser }} Orang</span>
                                                             </div>
                                                         </div>
                                                         <div class="progress" style="height:5px;">
@@ -63,7 +63,7 @@
                                                             </span>
                                                             <div class="media-body">
                                                                 <p class="fs-14 mb-2 text-black">Verifikator Berkas</p>
-                                                                <span class="title text-black font-w600">42km</span>
+                                                                <span class="title text-black font-w600">{{ $berkas }} Orang</span>
                                                             </div>
                                                         </div>
                                                         <div class="progress" style="height:5px;">
@@ -92,7 +92,7 @@
                                                             </span>
                                                             <div class="media-body">
                                                                 <p class="fs-14 mb-2 text-black">Verifikator Lapangan</p>
-                                                                <span class="title text-black font-w600">230 Km</span>
+                                                                <span class="title text-black font-w600">{{ $lapangan }} Orang</span>
                                                             </div>
                                                         </div>
                                                         <div class="progress" style="height:5px;">
@@ -119,7 +119,7 @@
                                                             </span>
                                                             <div class="media-body">
                                                                 <p class="fs-14 mb-2 text-black">Pemberi Rekomendasi</p>
-                                                                <span class="title text-black font-w600">18:34:21”</span>
+                                                                <span class="title text-black font-w600">{{ $rekomendasi }} Orang</span>
                                                             </div>
                                                         </div>
                                                         <div class="progress" style="height:5px;">
@@ -135,29 +135,7 @@
                                         </div>
 									</div>
 							</div>
-							<div class="col-xl-12">
-								<div class="card">
-									<div class="card-header d-sm-flex d-block pb-0 border-0">
-										<div class="mr-auto pr-3">
-											<h4 class="text-black fs-20 font-w600">Calories Chart</h4>
-											<p class="fs-13 mb-0 text-black">Lorem ipsum dolor sit amet, consectetur</p>
-										</div>
-										<div class="dropdown mt-sm-0 mt-3">
-											<button type="button" class="btn rounded btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												Weekly
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="javascript:void(0);">Link 1</a>
-												<a class="dropdown-item" href="javascript:void(0);">Link 2</a>
-												<a class="dropdown-item" href="javascript:void(0);">Link 3</a>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div id="chartTimeline"></div>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-4">

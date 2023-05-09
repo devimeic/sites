@@ -146,13 +146,13 @@ class AddPengajuan extends Component
                     'no_anggota' => $this->no_anggota,
 
                 ]);
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'center',
-                    'timer' => 3000,
-                    'toast' => false,
-                    'text' => 'Mengubah Pengajuan',
-                    'timerProgressBar' => true,
-                ]);
+                // $this->alert('success', 'Berhasil', [
+                //     'position' => 'center',
+                //     'timer' => 3000,
+                //     'toast' => false,
+                //     'text' => 'Mengubah Pengajuan',
+                //     'timerProgressBar' => true,
+                // ]);
             } else {
                 $this->pengajuans = Pengajuan::create(
                     [
@@ -171,11 +171,11 @@ class AddPengajuan extends Component
 
                     ]
                 );
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'top-right',
-                    'timer' => 3000,
-                    'toast' => true,
-                ]);
+                // $this->alert('success', 'Berhasil', [
+                //     'position' => 'top-right',
+                //     'timer' => 3000,
+                //     'toast' => true,
+                // ]);
             }
             $this->pengajuan_id = $this->pengajuans->id;
             $this->step++;
@@ -202,11 +202,11 @@ class AddPengajuan extends Component
             'total' => $this->total,
 
         ]);
-        $this->alert('success', 'Data Berhasil Diupdate', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+        // $this->alert('success', 'Data Berhasil Diupdate', [
+        //     'position' => 'top-right',
+        //     'timer' => 3000,
+        //     'toast' => true,
+        // ]);
         $this->pengajuan_id = $this->pengajuans->id;
         $this->step++;
     }
@@ -252,7 +252,11 @@ class AddPengajuan extends Component
             $peng->update(['status_pengajuan' => 'Verifikasi Berkas',]);
         }
 
-
+        $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
         return redirect()->route('riwayat-pemohon');
 
         // $this->step++;
@@ -342,11 +346,11 @@ class AddPengajuan extends Component
 
 
         $this->step++;
-        $this->alert('success', 'Data Berhasil Diupdate', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+        // $this->alert('success', 'Data Berhasil Diupdate', [
+        //     'position' => 'top-right',
+        //     'timer' => 3000,
+        //     'toast' => true,
+        // ]);
 
     }
 

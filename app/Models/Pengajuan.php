@@ -16,6 +16,10 @@ class Pengajuan extends Model
     {
         return  $this->belongsTo(User::class, 'pengaju');
     }
+    public function rapat()
+    {
+        return $this->hasOne(Rapat::class,'rapat_id');
+    }
 
     public function bangunan()
     {

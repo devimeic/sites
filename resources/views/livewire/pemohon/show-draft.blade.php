@@ -245,44 +245,65 @@
                                             <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
                                             <div class="form-group row mt-3">
                                                 <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="jln_saluran" class="form-control text-black" placeholder="Masukkan Jalan & Saluran">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Taman</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="taman" class="form-control text-black" placeholder="Masukkan Luas Taman">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">RTH</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="rth" class="form-control text-black" placeholder="Masukkan Luas RTH">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="ibadah" class="form-control text-black" placeholder="Masukkan Sarana Peribadatan">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="olahraga" class="form-control text-black" placeholder="Masukkan Sarana Olahraga">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="kesehatan" class="form-control text-black" placeholder="Masukkan Sarana Kesehatan">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="number" wire:model="lain" class="form-control text-black" placeholder="Masukkan Lain-lain">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="text-black">/m<sup>2</sup></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -293,7 +314,7 @@
                                     <div class="card-body">
                                         <div class="basic-form">
                                             <div class="table-responsive">
-                                                <table class="table table-responsive-sm">
+                                                <table class="table table-responsive-sm text-black">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -301,9 +322,9 @@
                                                             <th>Unggah</th>
                                                         </tr>
                                                         {{-- @json($berkas) --}}
-                                                        {{ $pengajuan_id }}
+                                                        {{-- {{ $pengajuan_id }}
                                                         @json($berkas_id)
-                                                        @json($nama_berkas)
+                                                        @json($nama_berkas) --}}
                                                     </thead>
                                                     <tbody>
                                                         @php
@@ -313,7 +334,7 @@
                                                         @foreach ($berkas as $brks => $value)
                                                         <input type="hidden" wire:model="berkas_id.{{ $value->id }}" value="{{ $value->id }}">
                                                         <tr>
-                                                            <th>{{ $no++ }}</th>
+                                                            <td><strong>{{ $no++ }}</strong></td>
                                                             <td>{!! nl2br(e($value->nama_berkas))!!}</td>
                                                             <td class="input-group mt-4">
                                                                 <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
@@ -345,20 +366,22 @@
 
                             </div>
                             <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
-                                @if ($step == 0)
-                                <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
+                                <div class="d-flex justify-content-between">
+                                    @if ($step == 0)
+                                    <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
-                                @endif
-                                @if ($step > 0)
-                                <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
-                                @endif
-                                @if ($step <3)
-                                <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
-                                @endif
-                                @if ($step == 3)
-                                <button type="submit"  class="btn btn-primary sw-btn-next" >Simpan</button>
+                                    @endif
+                                    @if ($step > 0)
+                                    <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                    @endif
+                                    @if ($step <3)
+                                    <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                    @endif
+                                    @if ($step == 3)
+                                    <button type="submit"  class="btn btn-primary sw-btn-next" >Simpan</button>
 
-                                @endif
+                                    @endif
+                                </div>
                             </form>
 
                         </div>

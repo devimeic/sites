@@ -20,7 +20,7 @@
         <div class="card-body">
 
             <div class="table">
-                <table id="example3" class="table table-responsive-sm">
+                <table id="example3" class="table table-responsive-sm text-black">
                     <thead>
                         <tr>
                             <th>No</th>

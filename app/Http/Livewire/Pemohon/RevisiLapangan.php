@@ -31,11 +31,23 @@ class RevisiLapangan extends Component
 
     public $files ;
     public $pengajuan ;
+    public $catatan ;
+    public $status_brks ;
 
     public function mount($id)
     {
 
         $this->pengajuan = Pengajuan::where('id',$id)->first();
+        $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
+        $this->catatan[0]= null;
+        $this->berkas_id[0]= null;
+        $this->status_brks[0]= null;
+        foreach( $berks as $key){
+
+        array_push($this->catatan,$key->catatan);
+        array_push($this->status_brks,$key->status_berkas);
+        array_push($this->berkas_id,$key->id);
+        };
     }
 
     public function showBerkas($id)
@@ -90,7 +102,11 @@ class RevisiLapangan extends Component
             $peng = Pengajuan::where('id',$this->pengajuan->id)->first();
             $peng->update(['status_pengajuan' => 'Verifikasi Lapangan',]);
         }
-
+        $this->alert('success', 'Berkas dalam status Verifikasi Lapangan', [
+            'position' => 'top-right',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
 
         return redirect()->route('riwayat-pemohon');
 

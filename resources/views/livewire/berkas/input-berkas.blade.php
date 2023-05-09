@@ -27,7 +27,7 @@
                             @foreach ($data as $brks)
                             <tr>
                                 <th>{{ $no++ }}</th>
-                                <td>{!! nl2br(e($brks->nama_berkas))!!}</td>
+                                <td class="text-black">{!! nl2br(e($brks->nama_berkas))!!}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button type="button" data-toggle="modal" wire:click.prevent="edit({{ $brks->id }})" data-target="#editModal" class="btn btn-primary shadow btn-xs sharp mr-1">

@@ -78,17 +78,17 @@ public function simpan($id ,$st)
             'status_berkas'=> $sta,
             // 'catatan' => $this->catatan[$id]
     ]);
-        $this->alert('success', 'Berhasil', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
-    }else {
-        $this->alert('error', 'berkas kosong', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+    //     $this->alert('success', 'Berhasil', [
+    //         'position' => 'top-right',
+    //         'timer' => 3000,
+    //         'toast' => true,
+    //     ]);
+    // }else {
+    //     $this->alert('error', 'berkas kosong', [
+    //         'position' => 'top-right',
+    //         'timer' => 3000,
+    //         'toast' => true,
+    //     ]);
     }
 
 }
@@ -99,7 +99,7 @@ public function simpan($id ,$st)
         'status_pengajuan' => 'Revisi Berkas',
     ]);
     $this->alert('success', 'Berkas dalam status Revisi', [
-        'position' => 'top-right',
+        'position' => 'center',
         'timer' => 3000,
         'toast' => true,
     ]);
@@ -122,15 +122,15 @@ foreach ($smp as $key ) {
     $this->pengajuan->update([
         'status_pengajuan' => 'Verifikasi Lapangan'
     ]);
-    $this->alert('success', 'Berkas dalam status Verifikasi Lapangan', [
-        'position' => 'top-right',
+    $this->alert('success', 'Berkas diajukkan untuk Verifikasi Lapangan', [
+        'position' => 'center',
         'timer' => 3000,
         'toast' => true,
     ]);
     return redirect()->route('pengajuan-berkas');
     }
 
-    
+
     public $step;
     public function plus()
     {

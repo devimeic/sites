@@ -103,13 +103,17 @@ class ShowDraft extends Component
 
 
         $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
-        $this->jln_saluran  = $psus->jln_saluran;
-        $this->taman  = $psus->taman;
-        $this->rth  = $psus->rth;
-        $this->ibadah  = $psus->ibadah;
-        $this->olahraga  = $psus->olahraga;
-        $this->kesehatan  = $psus->kesehatan;
-        $this->lain  = $psus->lain;
+        if ($psus) {
+            $this->jln_saluran  = $psus->jln_saluran;
+            $this->taman  = $psus->taman;
+            $this->rth  = $psus->rth;
+            $this->ibadah  = $psus->ibadah;
+            $this->olahraga  = $psus->olahraga;
+            $this->kesehatan  = $psus->kesehatan;
+            $this->lain  = $psus->lain;
+        } else {
+            $this->step = 0;
+        }
 
         $this->step = 0;
     }
@@ -189,19 +193,19 @@ class ShowDraft extends Component
                     'no_anggota' => $this->no_anggota,
 
                 ]);
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'center',
-                    'timer' => 3000,
-                    'toast' => false,
-                    'text' => 'Mengubah Pengajuan',
-                    'timerProgressBar' => true,
-                ]);
+                // $this->alert('success', 'Berhasil', [
+                //     'position' => 'center',
+                //     'timer' => 3000,
+                //     'toast' => false,
+                //     'text' => 'Mengubah Pengajuan',
+                //     'timerProgressBar' => true,
+                // ]);
 
-            $this->alert('success', 'Berhasil', [
-                'position' => 'top-right',
-                'timer' => 3000,
-                'toast' => true,
-            ]);
+            // $this->alert('success', 'Berhasil', [
+            //     'position' => 'top-right',
+            //     'timer' => 3000,
+            //     'toast' => true,
+            // ]);
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -227,11 +231,11 @@ class ShowDraft extends Component
                 'total' => $this->total,
 
             ]);
-            $this->alert('success', 'Data Berhasil Diupdate', [
-                'position' => 'top-right',
-                'timer' => 3000,
-                'toast' => true,
-            ]);
+            // $this->alert('success', 'Data Berhasil Diupdate', [
+            //     'position' => 'top-right',
+            //     'timer' => 3000,
+            //     'toast' => true,
+            // ]);
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -281,7 +285,11 @@ class ShowDraft extends Component
             $peng->update(['status_pengajuan' => 'Verifikasi Berkas',]);
         }
 
-
+        $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
         return redirect()->route('riwayat-pemohon');
 
         // $this->step++;
@@ -369,11 +377,11 @@ class ShowDraft extends Component
 
 
         $this->step++;
-        $this->alert('success', 'Data Berhasil Diupdate', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+        // $this->alert('success', 'Data Berhasil Diupdate', [
+        //     'position' => 'top-right',
+        //     'timer' => 3000,
+        //     'toast' => true,
+        // ]);
 
     }
 

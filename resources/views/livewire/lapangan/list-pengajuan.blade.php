@@ -14,7 +14,7 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table id="example3" class="table table-responsive-md">
+                    <table id="example3" class="table table-responsive-md text-black">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -59,9 +59,13 @@
                                     @endif</td>
                                 </td>
                                 <td>
+                                    @if ($key->status_pengajuan == 'Verifikasi Lapangan')
                                     <a href="{{ route('show-lapangan', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                      data-placement="top" title="Lihat Rincian Pengajuan"><i
-                                        class="fa fa-eye color-muted"></i> </a>
+                                        data-placement="top" title="Lihat Rincian Pengajuan"><i
+                                          class="fa fa-eye color-muted"></i> </a>
+                                    @else
+                                    @endif
+
                                 </td>
 
                             </tr>

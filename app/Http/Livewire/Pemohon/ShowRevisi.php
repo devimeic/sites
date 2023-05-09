@@ -193,24 +193,24 @@ class ShowRevisi extends Component
                     'alamat_dev' => $this->alamat_dev,
                     'pengaju' => Auth::user()->id,
                     // 'status_pengajuan' => 'Draft',
-                    'tanggal' => Carbon::now(),
+                    // 'tanggal' => Carbon::now(),
                     'asosiasi' => $this->asosiasi,
                     'no_anggota' => $this->no_anggota,
 
                 ]);
-                $this->alert('success', 'Berhasil', [
-                    'position' => 'center',
-                    'timer' => 3000,
-                    'toast' => false,
-                    'text' => 'Mengubah Pengajuan',
-                    'timerProgressBar' => true,
-                ]);
+                // $this->alert('success', 'Berhasil', [
+                //     'position' => 'center',
+                //     'timer' => 3000,
+                //     'toast' => false,
+                //     'text' => 'Mengubah Pengajuan',
+                //     'timerProgressBar' => true,
+                // ]);
 
-            $this->alert('success', 'Berhasil', [
-                'position' => 'top-right',
-                'timer' => 3000,
-                'toast' => true,
-            ]);
+            // $this->alert('success', 'Berhasil', [
+            //     'position' => 'top-right',
+            //     'timer' => 3000,
+            //     'toast' => true,
+            // ]);
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -236,11 +236,11 @@ class ShowRevisi extends Component
                 'total' => $this->total,
 
             ]);
-            $this->alert('success', 'Data Berhasil Diupdate', [
-                'position' => 'top-right',
-                'timer' => 3000,
-                'toast' => true,
-            ]);
+            // $this->alert('success', 'Data Berhasil Diupdate', [
+            //     'position' => 'top-right',
+            //     'timer' => 3000,
+            //     'toast' => true,
+            // ]);
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -378,11 +378,11 @@ class ShowRevisi extends Component
 
 
         $this->step++;
-        $this->alert('success', 'Data Berhasil Diupdate', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+        // $this->alert('success', 'Data Berhasil Diupdate', [
+        //     'position' => 'top-right',
+        //     'timer' => 3000,
+        //     'toast' => true,
+        // ]);
 
     }
 

@@ -7,6 +7,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <div class="card">
+
             <div class="card-body" >
                 <div class="row" style="height: 400px;">
 
@@ -20,11 +22,14 @@
                         @endif
                         {{-- <embed style="width:100%; border:none; z-index:999999;" type="application/pdf" src="{{ asset(str_replace('public', 'storage', $files)) }}" frameborder="0" > --}}
 
-                            </div>
+                            {{-- </div> --}}
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <div class="modal-footer" wire:ignore>
+                <button  wire:ignore.self type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
+
+        </div>
     </div>
+</div>
 </div>

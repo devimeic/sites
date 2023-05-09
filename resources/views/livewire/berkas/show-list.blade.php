@@ -315,23 +315,24 @@
 
                         </div>
                         <div class="toolbar" role="toolbar" style="text-align: right;">
-                            @if ($step == 0)
-                            <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
+                            <div class="d-flex justify-content-between">
+                                @if ($step == 0)
+                                <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
-                            @endif
-                            @if ($step > 0)
-                            <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
-                            @endif
-                            @if ($step < 3)
-                            <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
-                            @endif
-                            @if ($step == 3)
-                            <div class="mt-3">
-                                <button  wire:click="revisi()" class="btn btn-danger sw-btn-next" >Revisi</button>
-                                <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
+                                @endif
+                                @if ($step > 0)
+                                <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                @endif
+                                @if ($step < 3)
+                                <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                @endif
+                                @if ($step == 3)
+                                <div class="mt-3">
+                                    <button  wire:click="revisi()" class="btn btn-danger sw-btn-next" >Revisi</button>
+                                    <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
+                                </div>
+                                @endif
                             </div>
-                            @endif
-
 
                         </div>
                     {{-- </form> --}}

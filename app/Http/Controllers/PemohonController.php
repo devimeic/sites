@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rapat;
 use App\Models\Berkas;
 use App\Models\Pengajuan;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class PemohonController extends Controller
         $tittle = 'Dashboard';
         $selesai = Pengajuan::where('status_pengajuan','Selesai')->count();
         $kembali = Pengajuan::where('status_pengajuan','Dikembalikan')->count();
-        return view('pemohon.dashboard', compact(['tittle','selesai','kembali']));
+        $datas = Rapat::where('jadwal', '>=',now()->format('Y-m-d'))->get();
+        return view('pemohon.dashboard', compact(['tittle','selesai','kembali','datas']));
     }
 
     public function pengajuan()

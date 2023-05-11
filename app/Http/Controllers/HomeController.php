@@ -104,14 +104,13 @@ class HomeController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()]);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json(['errors' => $validator->errors()]);
+        // }
 
         $user = User::where('id', auth()->id())->first();
-        $user->update([
-            'password' => bcrypt($request->password),
-        ]);
+        $user->password = Hash::make($request->password);
+        $user->save();
 
         if (Auth::user()->role == 'admin') {
             return redirect()->route('edit-password-admin')->with('success', 'Data berhasil di ubah');

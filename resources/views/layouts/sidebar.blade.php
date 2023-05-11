@@ -86,7 +86,12 @@
                 <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
-
+            <li>
+                <a href="{{ route('rapat') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-television"></i>
+                    <span class="nav-text">Daftar Rapat</span>
+                </a>
+            </li>
             @elseif (Auth::user()->role == 'pemberi rekomendasi')
             <li>
                 <a href="{{ route('rekomendasi') }}" class="ai-icon" aria-expanded="false">

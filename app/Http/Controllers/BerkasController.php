@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengajuan;
+use App\Models\Rapat;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 
 class BerkasController extends Controller
@@ -9,7 +13,10 @@ class BerkasController extends Controller
     public function index()
     {
         $tittle = 'Dashboard';
-        return view('berkas.dashboard', compact('tittle'));
+        $verifikasi = Pengajuan::where('status_pengajuan','Verifkasi Berkas')->count();
+        $revisi = Pengajuan::where('status_pengajuan','Revisi Berkas')->count();
+        $datas = Rapat::where('jadwal', '>=',now()->format('Y-m-d'))->get();
+        return view('berkas.dashboard', compact(['tittle','verifikasi','revisi','datas']));
     }
 
     public function pengajuan()

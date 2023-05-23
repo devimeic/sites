@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_hp')->nullable();
             $table->enum('role', ['admin', 'pemohon', 'verifikator berkas', 'verifikator lapangan', 'pemberi rekomendasi'])->default('pemohon');
-            $table->enum('status_users', ['aktif', 'tidak aktif'])->default('aktif');
+            $table->enum('status_users', ['aktif', 'tidak aktif'])->default('tidak aktif');
             $table->rememberToken();
             $table->timestamps();
         });

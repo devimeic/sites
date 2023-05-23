@@ -21,7 +21,7 @@ class Riwayat extends Component
     public function render()
     {
         return view('livewire.pemohon.riwayat',[
-            'pengajuan' => Pengajuan::where('status_pengajuan', '<>', 'draft')
+            'pengajuan' => Pengajuan::whereNotIn('status_pengajuan', ['Draft', 'Dikembalikan', 'Selesai'])
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')

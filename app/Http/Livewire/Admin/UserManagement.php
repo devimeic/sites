@@ -178,7 +178,7 @@ class UserManagement extends Component
 
             $Users = User::where('id',$id)->first();
             $this->ids  = $Users->id;
-            $this->password = $Users->password;
+            // $this->password = $Users->password;
         }
 
 

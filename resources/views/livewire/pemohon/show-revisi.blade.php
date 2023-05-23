@@ -23,13 +23,13 @@
                     <div class="card-body">
                         <div wire:ignore.self  class="form-wizard order-create">
                             <ul class="nav nav-wizard"  >
-                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(0)">
+                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
                                     <span class="w-100 px-2">Developer</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(1)">
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                     <span class="w-100 px-2">Pengajuan</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" wire:click.prevent="jump(2)">
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                     <span class="w-100 px-2">Tipe Bangunan</span>
                                 </a></li>
                                 <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
@@ -374,6 +374,8 @@
                                                                         @else
                                                                         @endif
                                                                     @empty
+                                                                    <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                                            <label class="custom-file-label">Pilih file</label>
                                                                     @endforelse
                                                                 </td>
 

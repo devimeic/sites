@@ -2,15 +2,18 @@
 
 namespace App\Http\Livewire\Berkas;
 
+use Carbon\Carbon;
 use App\Models\Psu;
 use App\Models\Tipe;
+use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithFileUploads;
+use App\Models\Notifikasi;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class ShowList extends Component
 {
@@ -98,6 +101,21 @@ public function simpan($id ,$st)
     $this->pengajuan->update([
         'status_pengajuan' => 'Revisi Berkas',
     ]);
+    Notifikasi::create([
+        'user_id' => $this->pengajuan->pengaju,
+        'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Revisi Berkas',
+        'status' => 'berkas',
+        'jadwal' => Carbon::now()
+    ]);
+    $v = User::where('role','Verifikator Berkas')->get();
+        foreach ($v as $key) {
+            Notifikasi::create([
+                'user_id' => $key->id,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Revisi Pemohon',
+                'status' => 'berkas',
+                'jadwal' => Carbon::now()
+        ]);
+    }
     $this->alert('success', 'Berkas dalam status Revisi', [
         'position' => 'center',
         'timer' => 3000,
@@ -110,12 +128,26 @@ public function simpan($id ,$st)
     {
 
         $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
-foreach ($smp as $key ) {
-    $key->update([
-        'status_berkas'=> null,
-
-    ]);
-}
+        foreach ($smp as $key ) {
+        $key->update([
+            'status_berkas'=> null,
+        ]);
+        Notifikasi::create([
+            'user_id' => $this->pengajuan->pengaju,
+            'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Proses Verifikasi Lapangan',
+            'status' => 'lapangan',
+            'jadwal' => Carbon::now()
+        ]);
+        $v = User::where('role','Verifikator Lapangan')->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Verifikasi Lapangan',
+                    'status' => 'lapangan',
+                    'jadwal' => Carbon::now()
+            ]);
+        }
+    }
 
 
 
@@ -127,8 +159,15 @@ foreach ($smp as $key ) {
         'timer' => 3000,
         'toast' => true,
     ]);
+    Notifikasi::create([
+        'user_id' => $this->pengajuan->pengaju,
+        'keterangan' => 'Proses Verifikasi Berkas',
+        'status' => 'berkas',
+        'jadwal' => Carbon::now()
+    ]);
     return redirect()->route('pengajuan-berkas');
     }
+
 
 
     public $step;

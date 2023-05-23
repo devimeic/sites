@@ -23,8 +23,8 @@
                 </div>
 
 
-                <div class="table-responsive" >
-                    <table  class="table table-responsive-md">
+                <div class="table-responsive " >
+                    <table  class="table table-responsive-md text-black">
                         <thead>
                             <tr>
                                 <th>No</th>

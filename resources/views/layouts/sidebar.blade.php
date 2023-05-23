@@ -8,12 +8,17 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}" ><a href="{{ route('wa') }}" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-smartphone-4"></i>
+                <span class="nav-text">Whatshap Gateway</span>
+            </a>
+            </li>
             <li ><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>
                 <span class="nav-text">User Management</span>
             </a>
             </li>
-            <li><a href="{{ route('riwayat-admin') }}" class="ai-icon" aria-expanded="false">
+            <li class="{{ request()->is('admin/show-riwayat/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-admin') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-list-1"></i>
                 <span class="nav-text">Riwayat Pengajuan</span>
                 </a>
@@ -49,8 +54,8 @@
                 <span class="nav-text">Riwayat Pengajuan</span>
             </a>
             </li>
-            <li><a href="{{ route('laporan-pemohon') }}" class="ai-icon" aria-expanded="false">
-                <i class="flaticon-381-list-1"></i>
+            <li class="{{ request()->is('pemohon/show-laporan/*') ? ' mm-active' : '' }}"><a href="{{ route('laporan-pemohon') }}" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-notepad-2"></i>
                 <span class="nav-text">Laporan</span>
             </a>
             </li>
@@ -63,13 +68,13 @@
                 </a>
             </li>
             <li class="{{ request()->is('berkas/show-list/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-berkas') }}" class="ai-icon" aria-expanded="false">
-                <i class="flaticon-381-plus"></i>
+                <i class="flaticon-381-list"></i>
                 <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
 
             <li><a href="{{ route('input-berkas') }}" class="ai-icon" aria-expanded="false">
-                <i class="flaticon-381-plus"></i>
+                <i class="flaticon-381-file-1"></i>
                 <span class="nav-text">Nama Berkas</span>
             </a>
             </li>
@@ -82,13 +87,13 @@
                 </a>
             </li>
             <li class="{{ request()->is('lapangan/show-berkas/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-lapangan') }}" class="ai-icon" aria-expanded="false">
-                <i class="flaticon-381-plus"></i>
+                <i class="flaticon-381-list"></i>
                 <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>
-            <li>
+            <li class="{{ request()->is('lapangan/list-rapat') ? ' mm-active' : '' }}">
                 <a href="{{ route('rapat') }}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-381-television"></i>
+                    <i class="flaticon-381-calendar-7"></i>
                     <span class="nav-text">Daftar Rapat</span>
                 </a>
             </li>
@@ -100,7 +105,7 @@
                 </a>
             </li>
             <li class="{{ request()->is('rekomendasi/upload-surat/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-rekomendasi') }}" class="ai-icon" aria-expanded="false">
-                <i class="flaticon-381-plus"></i>
+                <i class="flaticon-381-list"></i>
                 <span class="nav-text">Daftar Pengajuan</span>
             </a>
             </li>

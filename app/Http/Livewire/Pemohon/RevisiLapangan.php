@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire\Pemohon;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Notifikasi;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class RevisiLapangan extends Component
 {
-
+    use LivewireAlert;
     use WithFileUploads;
 
     public function render()
@@ -101,9 +105,25 @@ class RevisiLapangan extends Component
 
             $peng = Pengajuan::where('id',$this->pengajuan->id)->first();
             $peng->update(['status_pengajuan' => 'Verifikasi Lapangan',]);
+            Notifikasi::create([
+                'user_id' => $peng->pengaju,
+                'keterangan' => 'Proyek '.$peng->nama_pro. ' Sedang Di Proses Verifikasi Lapangan',
+                'status' => 'lapangan',
+                'jadwal' => Carbon::now()
+            ]);
+
+            $v = User::where('role','Verifikator Lapangan')->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Proyek '.$peng->nama_pro. ' Perlu Dilakukan Verifikasi Lapangan',
+                    'status' => 'lapangan',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
         }
         $this->alert('success', 'Berkas dalam status Verifikasi Lapangan', [
-            'position' => 'top-right',
+            'position' => 'center',
             'timer' => 3000,
             'toast' => true,
         ]);

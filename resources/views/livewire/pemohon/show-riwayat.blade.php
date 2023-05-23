@@ -302,6 +302,39 @@
                                     <div class="basic-form">
                                         <strong class="text-black"> Nomor Surat Rekomendasi : </strong>
                                     </div>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nama Developer</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nama_dev" class="form-control text-black @error('nama_dev') is invalid @enderror" placeholder="Masukkan Nama Developer" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nama Proyek</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nama_pro" class="form-control text-black @error('nama_pro') is invalid @enderror" placeholder="Masukkan Nama Proyek" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nomor Surat Rekomendasi</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nomor_rekomendasi" class="form-control text-black @error('nomor_rekomendasi') is invalid @enderror" placeholder="Masukkan Nomor Rekomendasi" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">File Surat Rekomendasi</label>
+
+                                            <div class="col-sm-5">
+                                                <div class="input-group mb-3">
+                                                    <button type="button" data-toggle="modal" wire:click.prevent="showRekom()" data-target="#modal-rekom" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                        data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                        <i class="fa fa-eye color-muted"></i>
+                                                    </button>
+                                                    @include('livewire.pemohon.modal-rekom')
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             @endif
@@ -317,12 +350,24 @@
                                 @if ($step > 0)
                                 <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
                                 @endif
-                                @if ($step < 3)
-                                <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
-                                @endif
-                                @if ($step == 3)
-                                <a href="{{ route('riwayat-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
 
+                                @if ($pengajuan->status_pengajuan == 'Selesai')
+
+                                    @if ($step < 4)
+                                    <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                    @endif
+                                    @if ($step == 4)
+                                    <a href="{{ route('riwayat-pemohon') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+
+                                    @endif
+                                @else
+                                    @if ($step < 3)
+                                    <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                    @endif
+                                    @if ($step == 3)
+                                    <a href="{{ route('riwayat-pemohon') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+
+                                    @endif
                                 @endif
                             </div>
 

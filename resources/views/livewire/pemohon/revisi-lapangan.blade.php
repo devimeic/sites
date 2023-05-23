@@ -59,8 +59,16 @@
                                 </td>
 
                                 <td class="input-group mt-5">
+                                    @forelse ($value->upload as $item)
+                                        @if ($item->status_berkas == 'tolak')
+                                            <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                            <label class="custom-file-label">Pilih file</label>
+                                        @else
+                                        @endif
+                                    @empty
                                     <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
-                                    <label class="custom-file-label">Pilih file</label>
+                                            <label class="custom-file-label">Pilih file</label>
+                                    @endforelse
                                 </td>
 
                                 @if (isset($nama_berkas[$value->id]))
@@ -82,7 +90,7 @@
                 <div  class="toolbar toolbar-bottom mt-4" role="toolbar" style="text-align: right;">
                     <button type="submit"  class="btn btn-primary sw-btn-next " >Simpan</button>
                 </div>
-                
+
             </form>
             </div>
             @include('livewire.pemohon.modal-berkas')

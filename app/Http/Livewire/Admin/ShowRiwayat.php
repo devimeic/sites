@@ -44,4 +44,21 @@ class ShowRiwayat extends Component
     {
         $this->step = $to;
     }
+
+    public $files ;
+
+    public function showBerkas($id)
+        {
+
+            $file = Upload::where('berkas_id',$id)->where('pengajuan_id',$this->pengajuan->id)->first();
+            // @dd($file);
+            if(!is_null($file))
+            {
+                $this->files = $file->lokasi_berkas;
+
+            }else{
+                $this->files = null;
+            }
+
+        }
 }

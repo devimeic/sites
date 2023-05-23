@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Pemohon;
 
 use Carbon\Carbon;
 use App\Models\Berkas;
+use App\Models\Notifikasi;
 use Livewire\Component;
 use App\Models\Pengajuan;
 use App\Models\Psu;
 use App\Models\Tipe;
 use App\Models\Upload;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
@@ -250,6 +252,26 @@ class AddPengajuan extends Component
 
             $peng = Pengajuan::where('id',$this->pengajuan_id)->first();
             $peng->update(['status_pengajuan' => 'Verifikasi Berkas',]);
+
+
+
+            Notifikasi::create([
+                'user_id' => $peng->pengaju,
+                'keterangan' => 'Proyek '.$peng->nama_pro. ' Sedang Di proses Verifikasi Berkas',
+                'status' => 'berkas',
+                'jadwal' => Carbon::now()
+            ]);
+
+            $v = User::where('role','Verifikator Berkas')->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Proyek '.$peng->nama_pro. ' Perlu Dilakukan Verifikasi Berkas',
+                    'status' => 'berkas',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
+
         }
 
         $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [

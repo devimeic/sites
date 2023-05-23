@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LapanganController;
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Livewire\Admin\Riwayat;
@@ -51,9 +54,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/profil', Profil::class)->middleware('auth')->name('profil');
+Route::get('/otp/{id}', [RegisterController::class, 'indexotp'])->name('otp');
+Route::any('/otpkirim', [RegisterController::class, 'kirimotp'])->name('kirim-otp');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], function(){
     Route::get('/index', [AdminController::class, 'index'])->name('admin');
+    Route::get('/wa-gateway', [AdminController::class, 'wa'])->name('wa');
     Route::get('/user-management', UserManagement::class)->name('user-management');
     Route::get('/riwayat', Riwayat::class)->name('riwayat-admin');
     Route::get('/show-riwayat/{id}', ShowRiwayat::class)->name('show-admin');
@@ -71,6 +77,7 @@ Route::group(['prefix'=>'pemohon', 'middleware'=>['auth', 'cekRole:pemohon']], f
     Route::get('/riwayat', PemohonRiwayat::class)->name('riwayat-pemohon');
     Route::get('/laporan', Laporan::class)->name('laporan-pemohon');
     Route::get('/show-riwayat/{id}', PemohonShowRiwayat::class)->name('show-pemohon');
+    Route::get('/show-laporan/{id}', PemohonShowRiwayat::class)->name('show-laporan');
     Route::get('/revisi-berkas/{id}', ShowRevisi::class)->name('revisi-berkas');
     Route::get('/revisi-lapangan/{id}', RevisiLapangan::class)->name('revisi-lapangan');
     // Route::get('/profil', [App\Http\Controllers\HomeController::class, 'profil'])->name('profil-pemohon');
@@ -114,3 +121,6 @@ Route::group(['prefix'=>'rekomendasi', 'middleware'=>['auth', 'cekRole:pemberi r
 
 
 });
+
+Route::any('/deletenotif/{id}',[HomeController::class,'deleteNotif'])->middleware('auth')->name('deleteNotif');
+Route::any('/alldeletenotif',[HomeController::class,'alldelete'])->middleware('auth')->name('alldelete');

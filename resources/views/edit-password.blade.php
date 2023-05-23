@@ -13,14 +13,14 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password" name="password" class="form-control text-black @error('password') is-invalid @enderror" wire:model="password" >
+                                <input type="password" id="password" name="password" class="form-control text-black @error('password') is-invalid @enderror" wire:model="password" placeholder="Masukkan Password Baru">
                                 @error("password") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label">Konfirmasi Password</label>
                             <div class="col-sm-9">
-                                <input id="password-confirm" type="password" class="form-control text-black" wire:model="password_confirmation" autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control text-black" wire:model="password_confirmation" autocomplete="new-password" placeholder="Konfirmasi Password Baru">
                                 @error("password_confirmation") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>

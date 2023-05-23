@@ -13,10 +13,12 @@ class PemohonController extends Controller
     public function index()
     {
         $tittle = 'Dashboard';
-        $selesai = Pengajuan::where('status_pengajuan','Selesai')->count();
-        $kembali = Pengajuan::where('status_pengajuan','Dikembalikan')->count();
-        $datas = Rapat::where('jadwal', '>=',now()->format('Y-m-d'))->get();
-        return view('pemohon.dashboard', compact(['tittle','selesai','kembali','datas']));
+        $selesai = Pengajuan::where('status_pengajuan','Selesai')->where('pengaju',Auth::user()->id)->count();
+        $kembali = Pengajuan::where('status_pengajuan','Dikembalikan')->where('pengaju',Auth::user()->id)->count();
+        $berkas = Pengajuan::where('status_pengajuan','Revisi Berkas')->where('pengaju',Auth::user()->id)->count();
+        $lapangan = Pengajuan::where('status_pengajuan','Revisi Lapangan')->where('pengaju',Auth::user()->id)->count();
+        // $datas = Rapat::where('jadwal', '>=',now()->format('Y-m-d'))->get();
+        return view('pemohon.dashboard', compact(['tittle','selesai','kembali','berkas','lapangan']));
     }
 
     public function pengajuan()

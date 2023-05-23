@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Riwayat Pengajuan</h4>
+                <h4 class="card-title">Laporan Pengajuan</h4>
             </div>
 
             <div class="input-group search-area m-3">
@@ -31,7 +31,6 @@
                             @endphp
 
                         @foreach ($pengajuan as $key )
-
                             <tr>
                                 <td><strong>{{ $no++ }}</strong></td>
                                 <td>{{ date('Y', strtotime($key->tanggal)) }}</td>
@@ -50,19 +49,9 @@
                                     @endif</td>
                                 </td>
                                 <td>
-                                    @if ($key->status_pengajuan == 'Revisi Berkas')
-                                    <a href="{{ route('revisi-berkas', $key->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Revisi Berkas"><i
-                                          class="fa fa-pencil color-muted"></i> </a>
-                                    @elseif ($key->status_pengajuan == 'Revisi Lapangan')
-                                    <a href="{{ route('revisi-lapangan', $key->id) }}" class="btn btn-danger shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                        data-placement="top" title="Revisi Lapangan"><i
-                                          class="fa fa-pencil color-muted"></i> </a>
-                                    @else
-                                    <a href="{{ route('show-pemohon', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                    <a href="{{ route('show-laporan', $key->id) }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                         data-placement="top" title="Lihat Rincian Pengajuan"><i
                                           class="fa fa-eye color-muted"></i> </a>
-                                    @endif
 
                                 </td>
 

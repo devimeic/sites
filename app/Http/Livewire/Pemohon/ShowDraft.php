@@ -5,14 +5,16 @@ namespace App\Http\Livewire\Pemohon;
 use Carbon\Carbon;
 use App\Models\Psu;
 use App\Models\Tipe;
+use App\Models\User;
 use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use App\Models\Notifikasi;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\WithFileUploads;
 
 class ShowDraft extends Component
 {
@@ -252,37 +254,105 @@ class ShowDraft extends Component
         public $berkas_id = [];
         public $nama_berkas = [];
 
-        public function submit5()
+    //     public function submit5()
+    // {
+
+    //     if ($this->nama_berkas) {
+
+    //         foreach($this->nama_berkas as $key => $value ){
+
+
+    //             $cek = Upload::where('berkas_id',$key)->where('pengajuan_id',$this->pengajuan_id)->first();
+    //             if ($cek) {
+    //                 if (Storage::exists($cek->lokasi_berkas)) {
+    //                     Storage::delete($cek->lokasi_berkas);
+    //                 }
+    //                 $imagePath = $value->store('public/images');
+    //                 $cek->update([
+    //                 'lokasi_berkas' => $imagePath,
+    //                ]);
+    //             }else{
+
+    //                 $imagePath = $value->store('public/images');
+    //                 Upload::create([
+    //                 'berkas_id' => $key,
+    //                 'lokasi_berkas' => $imagePath,
+    //                 'pengajuan_id' =>$this->pengajuan_id,
+    //                ]);
+    //             }
+
+    //         }
+
+    //         $peng = Pengajuan::where('id',$this->pengajuan_id)->first();
+    //         $peng->update(['status_pengajuan' => 'Verifikasi Berkas',]);
+    //     }
+
+    //     $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
+    //         'position' => 'center',
+    //         'timer' => 3000,
+    //         'toast' => true,
+    //     ]);
+    //     return redirect()->route('riwayat-pemohon');
+
+        // $this->step++;
+    // }
+    public function submit5()
     {
 
         if ($this->nama_berkas) {
 
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+
+            if (!Storage::exists($directori)) {
+                Storage::makeDirectory($directori, 0777, true, true);
+            }
+
+
             foreach($this->nama_berkas as $key => $value ){
-
-
                 $cek = Upload::where('berkas_id',$key)->where('pengajuan_id',$this->pengajuan_id)->first();
                 if ($cek) {
+
+
                     if (Storage::exists($cek->lokasi_berkas)) {
                         Storage::delete($cek->lokasi_berkas);
                     }
-                    $imagePath = $value->store('public/images');
+                    $imagePath = $value->store('public/berkas/'.$directori);
                     $cek->update([
                     'lokasi_berkas' => $imagePath,
                    ]);
                 }else{
 
-                    $imagePath = $value->store('public/images');
+                    $imagePath = $value->store('public/berkas/'.$directori);
                     Upload::create([
                     'berkas_id' => $key,
                     'lokasi_berkas' => $imagePath,
                     'pengajuan_id' =>$this->pengajuan_id,
+
                    ]);
+
                 }
+
 
             }
 
             $peng = Pengajuan::where('id',$this->pengajuan_id)->first();
             $peng->update(['status_pengajuan' => 'Verifikasi Berkas',]);
+            Notifikasi::create([
+                'user_id' => $peng->pengaju,
+                'keterangan' => 'Proyek '.$peng->nama_pro. ' Sedang Di proses Verifikasi Berkas',
+                'status' => 'berkas',
+                'jadwal' => Carbon::now()
+            ]);
+
+            $v = User::where('role','Verifikator Berkas')->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Proyek '.$peng->nama_pro. ' Perlu Dilakukan Verifikasi Berkas',
+                    'status' => 'berkas',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
         }
 
         $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
@@ -291,8 +361,6 @@ class ShowDraft extends Component
             'toast' => true,
         ]);
         return redirect()->route('riwayat-pemohon');
-
-        // $this->step++;
     }
 
         public function store()

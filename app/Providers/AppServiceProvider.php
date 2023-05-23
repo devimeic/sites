@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Notifikasi;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +38,11 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return $this;
+        });
+
+        View::composer('layouts.main', function ($view) {
+            $notif = Notifikasi::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->get();
+            $view->with('notif', $notif);
         });
     }
 }

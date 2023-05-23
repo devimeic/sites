@@ -79,6 +79,7 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
+    // setlocale(LC_ALL, 'IND');
 
     'locale' => 'id',
 

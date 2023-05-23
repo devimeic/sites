@@ -4,15 +4,19 @@ namespace App\Http\Livewire\Lapangan;
 
 use App\Models\Pengajuan;
 use App\Models\Rapat;
+use Illuminate\Support\Carbon;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class ListRapat extends Component
 {
     use WithPagination;
+    use LivewireAlert;
     protected $paginationTheme = 'bootstrap';
     public $search = '';
-    public $rapat;
+    public $rapats;
+    public $selectedDate;
     public $agenda;
     public $jadwal;
 
@@ -31,10 +35,81 @@ class ListRapat extends Component
           ])->section('isi');
     }
 
-    public function mount($id)
+
+
+    public function edit($id)
     {
-        $this->rapat = Rapat::where('id',$id)->first();
-        $this->agenda  = $this->rapat->agenda;
-        $this->jadwal  = $this->rapat->jadwal;
-    }
+        $this->rapats = Rapat::where('id',$id)->first();
+        $this->agenda  = $this->rapats->agenda;
+
+        $this->selectedDate  = $this->rapats->jadwal;
+        }
+
+        public function setuju()
+        {
+            // $this->validate([
+            //     'selectedDate' => 'required',
+            //     'agenda' => 'required'
+            // ]);
+
+
+
+            if ($this->rapats->jadwal == $this->selectedDate) {
+                $this->rapats->update([
+                    'agenda'=> $this->agenda,
+                    'jadwal'=> $this->selectedDate,
+                ]);
+
+            }else{
+
+
+            $dateString = $this->selectedDate;
+
+
+            $translations = [
+                'Senin' => 'Monday',
+                'Selasa' => 'Tuesday',
+                'Rabu' => 'Wednesday',
+                'Kamis' => 'Thursday',
+                'Jumat' => 'Friday',
+                'Sabtu' => 'Saturday',
+                'Minggu' => 'Sunday',
+                'Januari' => 'January',
+                'Februari' => 'February',
+                'Maret' => 'March',
+                'April' => 'April',
+                'Mei' => 'May',
+                'Juni' => 'June',
+                'Juli' => 'July',
+                'Agustus' => 'August',
+                'September' => 'September',
+                'Oktober' => 'October',
+                'November' => 'November',
+                'Desember' => 'December',
+            ];
+
+            [$day, $dayNum, $month, $year, $time] = explode(' ', $dateString);
+            $day = $translations[$day];
+            $month = $translations[$month];
+
+
+            $englishDateString = "$day $dayNum $month $year $time";
+
+            $this->jadwal = Carbon::parse($englishDateString)->format('Y-m-d H:i:s');
+
+            $this->rapats->update([
+                'agenda'=> $this->agenda,
+                'jadwal'=> $this->jadwal,
+            ]);
+            }
+
+            $this->alert('success', 'Jadwal berhasil di ubah', [
+                'position' => 'center',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
+            return redirect()->route('rapat');
+            }
+
+
 }

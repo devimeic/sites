@@ -2,15 +2,17 @@
 
 namespace App\Http\Livewire\Lapangan;
 
+use DateTime;
+use Exception;
+use DateTimeZone;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Rapat;
 use App\Models\Berkas;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
-use App\Models\Rapat;
-use Carbon\Carbon;
-use DateTime;
-use DateTimeZone;
-use Exception;
+use App\Models\Notifikasi;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class ShowBerkas extends Component
@@ -117,6 +119,21 @@ class ShowBerkas extends Component
         $this->pengajuan->update([
             'status_pengajuan' => 'Revisi Lapangan',
         ]);
+        Notifikasi::create([
+            'user_id' => $this->pengajuan->pengaju,
+            'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Revisi Lapangan',
+            'status' => 'lapangan',
+            'jadwal' => Carbon::now()
+        ]);
+        $v = User::where('role','Verifikator Berkas')->get();
+        foreach ($v as $key) {
+            Notifikasi::create([
+                'user_id' => $key->id,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Revisi Lapangan',
+                'status' => 'lapangan',
+                'jadwal' => Carbon::now()
+            ]);
+        }
         $this->alert('success', 'Berkas dalam status Revisi Lapangan', [
             'position' => 'center',
             'timer' => 3000,
@@ -202,6 +219,21 @@ class ShowBerkas extends Component
         $this->pengajuan->update([
             'status_pengajuan' => 'Rekomendasi'
         ]);
+        Notifikasi::create([
+            'user_id' => $this->pengajuan->pengaju,
+            'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Proses Rekomendasi',
+            'status' => 'lapangan',
+            'jadwal' => Carbon::now()
+        ]);
+        $v = User::where('role','Pemberi Rekomendasi')->get();
+            foreach ($v as $key) {
+            Notifikasi::create([
+                'user_id' => $key->id,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Rekomendasi',
+                'status' => 'lapangan',
+                'jadwal' => Carbon::now()
+         ]);
+        }
         $this->alert('success', 'Berkas diajukkan untuk proses rekomendasi', [
             'position' => 'center',
             'timer' => 3000,

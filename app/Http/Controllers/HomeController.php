@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,5 +132,22 @@ class HomeController extends Controller
         }
 
 
+    }
+    public function deleteNotif($id)
+    {
+        $not = Notifikasi::where('id',$id)->first();
+        $not->delete();
+
+        return redirect()->back();
+    }
+    public function alldelete()
+    {
+        $not = Notifikasi::where('user_id', auth()->id())->get();
+        foreach ($not as $key) {
+            $key->delete();
+            # code...
+        }
+
+        return redirect()->back();
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Rekomendasi;
 
+use Carbon\Carbon;
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use App\Models\Notifikasi;
 use App\Models\Rekomendasi;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -45,8 +48,8 @@ class UploadSurat extends Component
     public function setuju()
     {
         $this->validate([
-'files'=> 'required',
-'nomor_rekomendasi'=> 'required'
+        'files'=> 'required',
+        'nomor_rekomendasi'=> 'required'
         ]);
         // if ($this->files) {
 
@@ -73,6 +76,21 @@ class UploadSurat extends Component
 
             $peng = Pengajuan::where('id',$this->pengajuan_id)->first();
             $peng->update(['status_pengajuan' => 'Selesai',]);
+            Notifikasi::create([
+                'user_id' => $peng->pengaju,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ', Pengajuan Telah Di Setujui',
+                'status' => 'rekomendasi',
+                'jadwal' => Carbon::now()
+            ]);
+            $v = User::where('role','Pemberi Rekomendasi')->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ', Telah Di Rekomendasi',
+                    'status' => 'rekomendasi',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
         // }
 
         $this->alert('success', 'Surat Rekomendasi Telah Diserahkan', [
@@ -90,6 +108,21 @@ class UploadSurat extends Component
         $this->pengajuan->update([
             'status_pengajuan' => 'Dikembalikan',
         ]);
+        Notifikasi::create([
+            'user_id' => $this->pengajuan->pengaju,
+            'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ', Pengajuan Telah Di Tolak',
+            'status' => 'rekomendasi',
+            'jadwal' => Carbon::now()
+        ]);
+        $v = User::where('role','Pemberi Rekomendasi')->get();
+        foreach ($v as $key) {
+            Notifikasi::create([
+                'user_id' => $key->id,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ', Telah Di Rekomendasi',
+                'status' => 'rekomendasi',
+                'jadwal' => Carbon::now()
+            ]);
+        }
         $this->alert('success', 'Pengajuan Telah Dikembalikan', [
             'position' => 'center',
             'timer' => 3000,

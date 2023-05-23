@@ -105,63 +105,20 @@
 @push('js')
 
 
-<!-- Daterangepicker -->
-    <!-- momment js is must -->
     <script src="/disk/vendor/moment/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="/disk/vendor/bootstrap-daterangepicker/daterangepicker.js"></script> --}}
-    <!-- clockpicker -->
-    {{-- <script src="/disk/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
-    <!-- asColorPicker -->
-    <script src="/disk/vendor/jquery-asColor/jquery-asColor.min.js"></script>
-    <script src="/disk/vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
-    <script src="/disk/vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script> --}}
-    <!-- Material color picker -->
-    {{-- <script src="/disk/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script> --}}
-    <!-- pickdate -->
-    {{-- <script src="/disk/vendor/pickadate/picker.js"></script>
-    <script src="/disk/vendor/pickadate/picker.time.js"></script>
-    <script src="/disk/vendor/pickadate/picker.date.js"></script> --}}
     <script src="/disk/pikaday.js"></script>
     <script src="/disk/id.js"></script>
-
     <script>
-        moment.locale('id');
-        // console.log(moment().format('LLLL')); // Output: Selasa, 4 Mei 2023 09.00
-
-        // $('#date-format').bootstrapMaterialDatePicker({
-        //     format: 'dddd DD MMMM YYYY - HH:mm'
-        // }).on('change', function(e, selectedDate) {
-        //     window.livewire.emit('setDate', selectedDate);
-        // });
-
-        // var picker = new Pikaday({ field: document.getElementById('selectedDate') });
-
+        // moment.locale('id');
 new Pikaday({
     field: document.getElementById('selectedDate'),
-    format: 'dddd d MMMM YYYY',
-    // format: 'Y-m-d',
+    format: 'dddd D MMM YYYY',
+    // format: 'D MMM YYYY',
     showTime       : true,
     position       : 'top right'
 })
-
-
-        // function dateSelected(selectedDate) {
-        //     window.livewire.emit('setDate', selectedDate);
-        // }
-
     </script>
 
-
-    <!-- Daterangepicker -->
-    {{-- <script src="/disk/js/plugins-init/bs-daterange-picker-init.js"></script> --}}
-    <!-- Clockpicker init -->
-    {{-- <script src="/disk/js/plugins-init/clock-picker-init.js"></script> --}}
-    <!-- asColorPicker init -->
-    {{-- <script src="/disk/js/plugins-init/jquery-asColorPicker.init.js"></script> --}}
-    <!-- Material color picker init -->
-    {{-- <script src="/disk/js/plugins-init/material-date-picker-init.js"></script> --}}
-    {{-- <!-- Pickdate -->
-    <script src="/disk/js/plugins-init/pickadate-init.js"></script> --}}
 @endpush
 </div>

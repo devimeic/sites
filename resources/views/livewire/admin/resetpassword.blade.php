@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password" name="password" wire:model="password" class="form-control text-black" placeholder="Masukan Password">
+                                <input type="password" id="password" name="password" wire:model="password" class="form-control text-black" placeholder="Masukan Password Baru">
                                 @error("password") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
 
@@ -25,7 +25,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Konfirmasi Password</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password_confirmation" name="password_confirmation" wire:model="password_confirmation" class="form-control text-black" placeholder="Masukkan Konfirmasi Password">
+                                <input type="password" id="password_confirmation" name="password_confirmation" wire:model="password_confirmation" class="form-control text-black" placeholder="Konfirmasi Password Baru">
                                 @error("password_confirmation") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>

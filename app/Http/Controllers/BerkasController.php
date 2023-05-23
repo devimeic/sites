@@ -13,9 +13,10 @@ class BerkasController extends Controller
     public function index()
     {
         $tittle = 'Dashboard';
-        $verifikasi = Pengajuan::where('status_pengajuan','Verifkasi Berkas')->count();
+        $verifikasi = Pengajuan::where('status_pengajuan','Verifikasi Berkas')->count();
         $revisi = Pengajuan::where('status_pengajuan','Revisi Berkas')->count();
         $datas = Rapat::where('jadwal', '>=',now()->format('Y-m-d'))->get();
+        // $datas = Rapat::all();
         return view('berkas.dashboard', compact(['tittle','verifikasi','revisi','datas']));
     }
 

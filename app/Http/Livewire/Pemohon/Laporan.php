@@ -16,7 +16,7 @@ class Laporan extends Component
     public function render()
     {
         return view('livewire.pemohon.laporan',[
-            'pengajuan' => Pengajuan::where('status_pengajuan', 'Dikembalikan','Selesai')
+            'pengajuan' => Pengajuan::where('status_pengajuan', 'Dikembalikan')->orWhere('status_pengajuan', 'Selesai')
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')

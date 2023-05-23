@@ -174,44 +174,65 @@
                                         <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">RTH</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-5">
                                                 <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain }}" readonly>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                     </div>
@@ -222,7 +243,7 @@
                                 <div class="card-body">
                                     <div class="basic-form">
                                         <div class="table-responsive">
-                                            <table class="table table-responsive-sm">
+                                            <table class="table table-responsive-sm text-black">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -242,9 +263,10 @@
                                                         <td>{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                         <td >
-                                                            <a href="{{ route('show-pemohon') }}" class="btn btn-info shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                                            data-placement="top" title="Lihat Berkas"><i
-                                                                class="fa fa-eye color-muted"></i> </a>
+                                                            <button type="button" data-toggle="modal" wire:click.prevent="showBerkas({{ $value->id }})" data-target="#modal-berkas" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                                data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                                <i class="fa fa-eye color-muted"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
 
@@ -293,7 +315,7 @@
     <!--**********************************
     Content body end
     ***********************************-->
-
+    @include('livewire.pemohon.modal-berkas')
     {{-- @endsection --}}
 
     @push('js')

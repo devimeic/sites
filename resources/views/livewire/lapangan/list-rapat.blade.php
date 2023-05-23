@@ -37,10 +37,9 @@
                                 <td> {{ $key->agenda }} </td>
                                 <td>{{ $key->jadwal }}</td>
                                 <td>
-                                    <button class="btn btn-info shadow btn-xs sharp mr-1" data-target="#modal-jadwal" data-toggle="modal"
+                                    <button class="btn btn-info shadow btn-xs sharp mr-1" wire:click="edit({{ $key->id }})" data-target="#modal-jadwal" data-toggle="modal"
                                     data-placement="top" title="Edit Rapat"><i
                                     class="fa fa-pencil color-muted"></i> </button>
-                                    @include('livewire.lapangan.modal-jadwal')
                                 </td>
 
                             </tr>
@@ -56,4 +55,24 @@
             </div>
         </div>
     </div>
+    @include('livewire.lapangan.modal-jadwal')
+
+
+    @push('js')
+    
+    <script src="/disk/vendor/moment/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/disk/pikaday.js"></script>
+    <script src="/disk/id.js"></script>
+    <script>
+        moment.locale('id');
+new Pikaday({
+    field: document.getElementById('selectedDate'),
+    format: 'dddd d MMMM YYYY',
+    // format: 'Y-m-d',
+    showTime       : true,
+    position       : 'top right'
+})
+    </script>
+    @endpush
 </div>

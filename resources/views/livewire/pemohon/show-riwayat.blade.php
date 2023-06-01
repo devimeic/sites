@@ -190,7 +190,7 @@
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran }}" readonly>
+                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $jln_saluran[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -199,16 +199,16 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman }}" readonly>
+                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $taman[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">RTH</label>
+                                            <label class="col-sm-3 col-form-label">RTH </label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth }}" readonly>
+                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $rth[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -217,7 +217,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah }}" readonly>
+                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $ibadah[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -226,7 +226,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga }}" readonly>
+                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $olahraga[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -235,21 +235,29 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan }}" readonly>
+                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $kesehatan[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                            <div class="col-sm-5">
-                                                <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain }}" readonly>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <label class="text-black">/m<sup>2</sup></label>
+
+                                        @foreach($lain as $key )
+                                        <div class="add-input2">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Lain-lain</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="{{ $key->keterangan }}"  class="form-control text-black" placeholder="Masukkan Lain-lain" readonly>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" value="{{ $key->luas }}"  class="form-control text-black" placeholder="Luas" readonly>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="text-black">/m<sup>2</sup></label>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -327,10 +335,9 @@
                                             <div class="col-sm-5">
                                                 <div class="input-group mb-3">
                                                     <button type="button" data-toggle="modal" wire:click.prevent="showRekom()" data-target="#modal-rekom" class="btn btn-info shadow btn-xs sharp mr-1"
-                                                        data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                        data-toggle="tooltip" data-placement="top" title="Lihat Surat Rekomendasi">
                                                         <i class="fa fa-eye color-muted"></i>
                                                     </button>
-                                                    @include('livewire.pemohon.modal-rekom')
                                                 </div>
                                             </div>
                                         </div>
@@ -384,5 +391,6 @@
     {{-- @endsection --}}
 
     @include('livewire.pemohon.modal-berkas')
+    @include('livewire.pemohon.modal-rekom')
 
 </div>

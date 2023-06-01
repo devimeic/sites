@@ -19,6 +19,7 @@ class CreateRekomendasisTable extends Migration
             $table->string('files');
             $table->unsignedBigInteger('pengajuan_id')->constrained()
                 ->onUpdate('cascade');
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->onUpdate('cascade');
             $table->timestamps();
         });
     }

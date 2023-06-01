@@ -24,9 +24,9 @@
 
                             {{-- </div> --}}
             </div>
-            <div class="modal-footer" wire:ignore>
-                <button  wire:ignore.self type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+        </div>
+        <div class="modal-footer" wire:ignore>
+            <button  wire:ignore.self type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
 
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pemohon;
 use App\Models\Upload;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 
 class Riwayat extends Component
@@ -26,7 +27,7 @@ class Riwayat extends Component
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
                           ->orWhere('status_pengajuan', 'like', '%'.$this->search.'%');
-                })
+                })->where('pengaju',Auth::user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10),
           ])->extends('layouts.main',[

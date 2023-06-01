@@ -17,8 +17,9 @@ class CreateRapatsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('rapat_id')->constrained()
                 ->onUpdate('cascade');
-            $table->string('agenda');
+            $table->string('agenda',40);
             $table->dateTime('jadwal')->nullable();
+            $table->foreign('rapat_id')->references('id')->on('pengajuans')->onUpdate('cascade');
             $table->timestamps();
         });
     }

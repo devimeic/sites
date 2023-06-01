@@ -17,9 +17,10 @@ class CreateTipesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pengajuan_id')->constrained()
                 ->onUpdate('cascade');
-            $table->string('kategori');
+            $table->enum('kategori',['Perumahan','Ruko']);
             $table->string('tipe');
             $table->integer('juml_unit');
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->onUpdate('cascade');
             $table->timestamps();
         });
     }

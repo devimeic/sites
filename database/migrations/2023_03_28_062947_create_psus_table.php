@@ -17,13 +17,10 @@ class CreatePsusTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pengajuan_id')->constrained()
                 ->onUpdate('cascade');
-            $table->integer('jln_saluran');
-            $table->integer('taman');
-            $table->integer('rth');
-            $table->integer('ibadah');
-            $table->integer('olahraga');
-            $table->integer('kesehatan');
-            $table->integer('lain');
+            $table->enum('psu',['jln_saluran','taman','rth','ibadah','olahraga','kesehatan','lain']);
+            $table->string('keterangan')->nullable();
+            $table->integer('luas')->nullable();
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->onUpdate('cascade');
             $table->timestamps();
         });
     }

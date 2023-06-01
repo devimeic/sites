@@ -47,6 +47,10 @@ class ShowDraft extends Component
     public $kesehatan;
     public $lain;
     public $step;
+    public $keterangan_lain = [];
+    public $luas_lain = [];
+    public $inputs_lain =[];
+    public $l = 1;
 
     public function render()
     {
@@ -104,22 +108,50 @@ class ShowDraft extends Component
         }
 
 
+        // public $keterangan = [];
+        // public $luas = [];
+
         $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
-        if ($psus) {
-            $this->jln_saluran  = $psus->jln_saluran;
-            $this->taman  = $psus->taman;
-            $this->rth  = $psus->rth;
-            $this->ibadah  = $psus->ibadah;
-            $this->olahraga  = $psus->olahraga;
-            $this->kesehatan  = $psus->kesehatan;
-            $this->lain  = $psus->lain;
-        } else {
-            $this->step = 0;
-        }
+        // if ($psus) {
+            $this->jln_saluran  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','jln_saluran')->pluck('luas');
+            $this->taman  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','taman')->pluck('luas');
+            $this->rth  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','rth')->pluck('luas');
+            $this->ibadah  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','ibadah')->pluck('luas');
+            $this->olahraga  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','olahraga')->pluck('luas');
+            $this->kesehatan  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','kesehatan')->pluck('luas');
+            $lain  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','lain')->get();
+            $l = 1;
+            foreach ( $lain as $key => $value  ) {
+// dd($key);
+                // [$key]  = $key->tipe;
+                array_push($this->keterangan_lain ,$value->keterangan);
+                array_push($this->luas_lain ,$value->luas);
+                array_push($this->inputs_lain ,$l++);
+
+
+                // $this->kategori[$j++]  = $key->kategori ;
+                // $this->juml_unit[$j++]  = $key->juml_unit;
+            }
+            // dd($this->inputs_lain);
+
+        // } else {
+        //     $this->step = 0;
+        // }
 
         $this->step = 0;
     }
 
+    public function add_lain($l)
+    {
+        $l = $l + 1;
+        $this->l = $l;
+        array_push($this->inputs_lain ,$l);
+    }
+
+    public function remove_lain($l)
+    {
+        unset($this->inputs_lain[$l]);
+    }
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -376,13 +408,13 @@ class ShowDraft extends Component
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
                 'kategori.*' => 'required',
-                'jln_saluran' => 'required',
-                'taman' => 'required',
-                'rth' => 'required',
-                'ibadah' => 'required',
-                'olahraga' => 'required',
-                'kesehatan' => 'required',
-                'lain' => 'required',
+                // 'jln_saluran' => 'required',
+                // 'taman' => 'required',
+                // 'rth' => 'required',
+                // 'ibadah' => 'required',
+                // 'olahraga' => 'required',
+                // 'kesehatan' => 'required',
+                // 'lain' => 'required',
                 // 'pengajuan_id.*' => 'required',
             ],
             [
@@ -400,17 +432,66 @@ class ShowDraft extends Component
 
         if ($this->tipe) {
             Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+            Psu::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
 
-            Psu::updateOrCreate([
+            if ($this->jln_saluran) {
+                # code...
+                Psu::create([
+                    'pengajuan_id' => $this->pengajuan_id,
+                    'psu'=>'jln_saluran',
+                    'luas'=> $this->jln_saluran[0],
+                ]);
+            }
+            if ($this->taman) {
+            Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
-                'jln_saluran' => $this->jln_saluran,
-                'taman' => $this->taman,
-                'rth' => $this->rth,
-                'ibadah' => $this->ibadah,
-                'olahraga' => $this->olahraga,
-                'kesehatan' => $this->kesehatan,
-                'lain' => $this->lain,
-             ]);
+                'psu'=>'taman',
+                'luas'=> $this->taman[0],
+            ]);
+        }
+
+        if ($this->rth) {
+            Psu::create([
+                'pengajuan_id' => $this->pengajuan_id,
+                'psu'=>'rth',
+                'luas'=> $this->rth[0],
+            ]);
+        }
+        if ($this->ibadah) {
+            Psu::create([
+                'pengajuan_id' => $this->pengajuan_id,
+                'psu'=>'ibadah',
+                'luas'=> $this->ibadah[0],
+            ]);
+        }
+        if ($this->olahraga) {
+            Psu::create([
+                'pengajuan_id' => $this->pengajuan_id,
+                'psu'=>'olahraga',
+                'luas'=> $this->olahraga[0],
+            ]);
+        }
+        if ($this->kesehatan) {
+            Psu::create([
+                'pengajuan_id' => $this->pengajuan_id,
+                'psu'=>'kesehatan',
+                'luas'=> $this->kesehatan[0],
+            ]);
+        }
+
+            foreach ($this->keterangan_lain as $key => $value) {
+                # code...
+                if ($this->keterangan_lain[$key]) {
+                Psu::create([
+                    'pengajuan_id' => $this->pengajuan_id,
+                    'psu'=>'lain',
+                    'keterangan'=> $this->keterangan_lain[$key],
+                    'luas'=> $this->luas_lain[$key],
+                ]);}
+            }
+
+
+
             foreach ($this->tipe as $key => $value) {
                 $this->bangun = Tipe::updateOrCreate([
                     'pengajuan_id' => $this->pengajuan_id,

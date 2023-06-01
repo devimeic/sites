@@ -23,6 +23,8 @@ class CreateUploadsTable extends Migration
             $table->enum('status_berkas', ['setuju', 'tolak', 'belum diverifikasi'])->nullable();
             $table->enum('status_lapangan', ['setuju', 'tolak', 'belum diverifikasi'])->nullable();
             $table->string('catatan')->nullable();
+            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->onUpdate('cascade');
+            $table->foreign('berkas_id')->references('id')->on('berkas')->onUpdate('cascade');
             $table->timestamps();
         });
     }

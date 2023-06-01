@@ -297,13 +297,42 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                        <div class="col-sm-5">
-                                            <input type="number" wire:model="lain" class="form-control text-black" placeholder="Masukkan Lain-lain">
-                                        </div>
                                         <div class="col-sm-3">
+                                            <input type="text" wire:model="keterangan_lain.0" class="form-control text-black" placeholder="Masukkan Lain-lain">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" wire:model="luas_lain.0" class="form-control text-black" placeholder="Luas">
+                                        </div>
+                                        <div class="col-sm-2">
                                             <label class="text-black">/m<sup>2</sup></label>
                                         </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-primary" wire:click.prevent="add_lain({{ $l }})">
+                                                <i class="fa fa-plus color-primary"></i>
+                                            </button>
+                                        </div>
                                     </div>
+                                    @foreach($inputs_lain as $key => $value)
+                                    <div class="add-input2">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label"></label>
+                                            <div class="col-sm-3">
+                                                <input type="text" wire:model="keterangan_lain.{{ $value }}" class="form-control text-black" placeholder="Masukkan Lain-lain">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="number" wire:model="luas_lain.{{ $value }}" class="form-control text-black" placeholder="Luas">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label class="text-black">/m<sup>2</sup></label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button type="button" class="btn btn-danger" wire:click.prevent="remove_lain({{ $key }})">
+                                                    <i class="fa fa-minus color-danger"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

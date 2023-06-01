@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Pemohon;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Pengajuan;
@@ -16,13 +16,13 @@ class Laporan extends Component
 
     public function render()
     {
-        return view('livewire.pemohon.laporan',[
-            'pengajuan' => Pengajuan::where('status_pengajuan', 'Dikembalikan')->orWhere('status_pengajuan', 'Selesai')
+        return view('livewire.admin.laporan',[
+            'pengajuan' => Pengajuan::whereIn('status_pengajuan', ['Dikembalikan', 'Selesai'])
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
                           ->orWhere('status_pengajuan', 'like', '%'.$this->search.'%');
-                })->where('pengaju',Auth::user()->id)
+                })
                 ->orderBy('created_at', 'desc')
                 ->paginate(10),
           ])->extends('layouts.main',[

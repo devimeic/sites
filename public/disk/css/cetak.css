@@ -1,0 +1,120 @@
+
+        /* CSS styling for the card */
+       @media print {
+            @page {
+                margin: 25px 30px;
+            }
+
+            body {
+                /* margin: 1.27cm; */
+                padding-bottom: 10cm; /* Menambahkan batas bawah kertas */
+            }
+
+            .card {
+                page-break-inside: avoid;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+        .card {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            /* border: 1px solid #ccc;
+            border-radius: 5px; */
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .card-title {
+            margin: 0;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .col-3 {
+            flex-basis: 25%;
+        }
+
+        .col-1 {
+            flex-basis: 8.33%;
+        }
+
+        .col-7 {
+            flex-basis: 58.33%;
+        }
+
+
+        /* Additional styling */
+        body {
+            font-family: Arial, sans-serif;
+            padding-bottom: 2cm;
+        }
+
+        p {
+            margin: 0;
+            margin-top: 10px;
+        }
+
+        strong {
+            margin-top: 40px;
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            padding: 5px;
+        }
+
+        th.width80 {
+            width: 80px;
+        }
+
+        .print-button {
+        background-color: #0B2A97;
+        border-radius: 8px;
+        border-style: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 20px;
+        list-style: none;
+        margin: 0;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        float: right;
+        }
+
+        .print-button:hover,
+        .print-button:focus {
+        background-color: #2d4494;
+        }

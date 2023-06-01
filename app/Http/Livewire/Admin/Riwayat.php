@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Pengajuan;
 use App\Models\Tipe;
 use Livewire\Component;
+use App\Models\Pengajuan;
+use App\Models\Rekomendasi;
 use Livewire\WithPagination;
 
 class Riwayat extends Component
@@ -16,11 +17,12 @@ class Riwayat extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $search = '';
+    public $rekom;
 
     public function render()
     {
         return view('livewire.admin.riwayat',[
-            'pengajuan' => Pengajuan::where('status_pengajuan', '<>', 'draft')
+            'pengajuan' => Pengajuan::whereNotIn('status_pengajuan', ['Draft', 'Dikembalikan', 'Selesai'])
                 ->where(function($query) {
                     $query->where('nama_pro', 'like', '%'.$this->search.'%')
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
@@ -37,6 +39,7 @@ class Riwayat extends Component
     {
         $this->resetPage();
     }
+    
 
 
 

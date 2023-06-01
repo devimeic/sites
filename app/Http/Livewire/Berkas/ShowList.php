@@ -26,6 +26,17 @@ class ShowList extends Component
     public $catatan=[];
     public $berkas_id = [];
     public $status_brks = [];
+    public $jln_saluran;
+    public $taman;
+    public $rth;
+    public $ibadah;
+    public $olahraga;
+    public $kesehatan;
+    public $lain;
+    public $luas_lain = [];
+    public $inputs_lain =[];
+    public $l = 1;
+
 
     public function render()
     {
@@ -53,6 +64,17 @@ class ShowList extends Component
         array_push($this->status_brks,$key->status_berkas);
         array_push($this->berkas_id,$key->id);
         };
+
+        $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
+        // if ($psus) {
+            $this->jln_saluran  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','jln_saluran')->pluck('luas');
+            $this->taman  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','taman')->pluck('luas');
+            $this->rth  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','rth')->pluck('luas');
+            $this->ibadah  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','ibadah')->pluck('luas');
+            $this->olahraga  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','olahraga')->pluck('luas');
+            $this->kesehatan  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','kesehatan')->pluck('luas');
+            $this->lain  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','lain')->get();
+            $l = 1;
     }
 
     public function catatansimpan($id)
@@ -98,6 +120,7 @@ public function simpan($id ,$st)
 
     public function revisi()
     {
+        // dd($this->pengajuan->pengaju);
     $this->pengajuan->update([
         'status_pengajuan' => 'Revisi Berkas',
     ]);
@@ -132,40 +155,40 @@ public function simpan($id ,$st)
         $key->update([
             'status_berkas'=> null,
         ]);
-        Notifikasi::create([
-            'user_id' => $this->pengajuan->pengaju,
-            'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Proses Verifikasi Lapangan',
-            'status' => 'lapangan',
-            'jadwal' => Carbon::now()
-        ]);
-        $v = User::where('role','Verifikator Lapangan')->get();
-            foreach ($v as $key) {
-                Notifikasi::create([
-                    'user_id' => $key->id,
-                    'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Verifikasi Lapangan',
-                    'status' => 'lapangan',
-                    'jadwal' => Carbon::now()
+            Notifikasi::create([
+                'user_id' => $this->pengajuan->pengaju,
+                'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Sedang Di Proses Verifikasi Lapangan',
+                'status' => 'lapangan',
+                'jadwal' => Carbon::now()
             ]);
+            $v = User::where('role','Verifikator Lapangan')->get();
+                foreach ($v as $key) {
+                    Notifikasi::create([
+                        'user_id' => $key->id,
+                        'keterangan' => 'Proyek '.$this->pengajuan->nama_pro. ' Perlu Dilakukan Verifikasi Lapangan',
+                        'status' => 'lapangan',
+                        'jadwal' => Carbon::now()
+                ]);
+            }
         }
-    }
 
 
 
-    $this->pengajuan->update([
-        'status_pengajuan' => 'Verifikasi Lapangan'
-    ]);
-    $this->alert('success', 'Berkas diajukkan untuk Verifikasi Lapangan', [
-        'position' => 'center',
-        'timer' => 3000,
-        'toast' => true,
-    ]);
-    Notifikasi::create([
-        'user_id' => $this->pengajuan->pengaju,
-        'keterangan' => 'Proses Verifikasi Berkas',
-        'status' => 'berkas',
-        'jadwal' => Carbon::now()
-    ]);
-    return redirect()->route('pengajuan-berkas');
+        $this->pengajuan->update([
+            'status_pengajuan' => 'Verifikasi Lapangan'
+        ]);
+        $this->alert('success', 'Berkas diajukkan untuk Verifikasi Lapangan', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
+        // Notifikasi::create([
+        //     'user_id' => $this->pengajuan->pengaju,
+        //     'keterangan' => 'Proses Verifikasi Berkas',
+        //     'status' => 'berkas',
+        //     'jadwal' => Carbon::now()
+        // ]);
+        return redirect()->route('pengajuan-berkas');
     }
 
 

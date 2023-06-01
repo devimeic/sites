@@ -27,16 +27,16 @@
 									</div>
                                     <h4 class="text-center mb-4 text-white">OTP Nomor Hp</h4>
                                     @if (session()->has('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-@endif
+                                        <div class="alert alert-success">
+                                            {{ session('message') }}
+                                        </div>
+                                    @endif
                                     <form action="{{ route('kirim-otp') }}">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $user->id }}">
                                         <div class="form-group">
                                             <label class="text-white"><strong>Nomor OTP</strong></label>
-                                            <input type="number" class="form-control text-black" name="otp">
+                                            <input type="number" class="form-control text-black" name="otp" placeholder="Masukkan OTP yang dikirim Ke Whatshap Anda">
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn bg-white text-primary btn-block mt-3">Kirim OTP</button>

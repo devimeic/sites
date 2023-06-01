@@ -125,7 +125,7 @@ class ShowBerkas extends Component
             'status' => 'lapangan',
             'jadwal' => Carbon::now()
         ]);
-        $v = User::where('role','Verifikator Berkas')->get();
+        $v = User::where('role','Verifikator Lapangan')->get();
         foreach ($v as $key) {
             Notifikasi::create([
                 'user_id' => $key->id,
@@ -164,8 +164,6 @@ class ShowBerkas extends Component
                 'selectedDate' => 'required',
                 'agenda' => 'required'
             ]);
-
-
 
 
             $dateString = $this->selectedDate;

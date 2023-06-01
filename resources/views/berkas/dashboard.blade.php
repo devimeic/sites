@@ -82,7 +82,7 @@
                                         <span class="fs-14 text-black">{{ Carbon::createFromFormat('Y-m-d H:i:s', $item->jadwal)->isoFormat('Y') }}</span>
                                     </div>
                                     <div class="info mb-3">
-                                        <h4 class="fs-20 "><a href="workout-statistic.html" class="text-black">Agenda {{ $item->agenda }}</a></h4>
+                                        <h4 class="fs-20 "><a class="text-black">Agenda {{ $item->agenda }}</a></h4>
                                         <span class="text-primary font-w600">Nama Proyek {{ $item->rapat->nama_pro }}</span>
                                     </div>
                                 </div>

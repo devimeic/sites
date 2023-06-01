@@ -1,43 +1,58 @@
 <div>
-    @push('css')
-        <!-- Form step -->
-        <link href="/disk/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet">
-    @endpush
 
-    {{-- @section('isi') --}}
-    <div class="page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('list-pengajuan') }}">list pengajuan</a></li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Form Pengajuan</a></li>
-        </ol>
-    </div>
+
     <!-- row -->
     <div class="row">
         <div class="col-xl-12 col-xxl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Form Pengajuan {{ $pengajuan->nama_pro }}</h4>
+
+                    <h4 class="card-title">Form Pengajuan
+                        {{ $pengajuan->nama_pro }}
+
+                </h4>
+
                 </div>
                 <div class="card-body">
+
+                    {{-- @foreach ($pengajuan as $key) --}}
                     <div wire:ignore.self  class="form-wizard order-create">
-                        <ul class="nav nav-wizard  d-flex justify-content-between"  >
-                            <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
-                                <span class="w-100 px-2">Developer</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
-                                <span class="w-100 px-2">Pengajuan</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
-                                <span class="w-100 px-2">Tipe Bangunan</span>
-                            </a></li>
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
-                                <span class="w-100 px-2">Upload Berkas</span>
-                            </a></li>
+                        <ul class="nav nav-wizard d-flex justify-content-between"  >
+                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
+                                    <span class="w-100 px-2">Developer</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
+                                    <span class="w-100 px-2">Pengajuan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
+                                    <span class="w-100 px-2">Tipe Bangunan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                                    <span class="w-100 px-2">Upload Berkas</span>
+                                </a></li>
                             @if ($pengajuan->status_pengajuan == 'Selesai')
                             <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 4 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 4 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(4)">
                                 <span class="w-100 px-2">Rekomendasi</span>
                             </a></li>
                         @endif
+
+                            {{-- @elseif ($key->status_pengajuan == 'Selesai') --}}
+                                {{-- <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
+                                    <span class="w-100 px-2">Developer</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
+                                    <span class="w-100 px-2">Pengajuan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
+                                    <span class="w-100 px-2">Tipe Bangunan</span>
+                                </a></li>
+                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 5 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 5 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                                    <span class="w-100 px-2">Upload Berkas</span>
+                                </a></li>
+
+                        @endforeach --}}
+
+
                         </ul>
                         <div class="">
                             @if ($step == 0)
@@ -175,7 +190,7 @@
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $psu->jln_saluran }}" readonly>
+                                                <input type="number" id="jln_saluran" name="jln_saluran" class="form-control text-black"  value="{{ $jln_saluran[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -184,7 +199,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $psu->taman }}" readonly>
+                                                <input type="number" id="taman" name="taman" class="form-control text-black"  value="{{ $taman[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -193,7 +208,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">RTH</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $psu->rth }}" readonly>
+                                                <input type="number" id="rth" name="rth" class="form-control text-black"  value="{{ $rth[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -202,7 +217,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $psu->ibadah }}" readonly>
+                                                <input type="number" id="ibadah" name="ibadah" class="form-control text-black"  value="{{ $ibadah[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -211,7 +226,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $psu->olahraga }}" readonly>
+                                                <input type="number" id="olahraga" name="olahraga" class="form-control text-black"  value="{{ $olahraga[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
@@ -220,21 +235,28 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                             <div class="col-sm-5">
-                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $psu->kesehatan }}" readonly>
+                                                <input type="number" id="kesehatan" name="kesehatan" class="form-control text-black"  value="{{ $kesehatan[0] }}" readonly>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                            <div class="col-sm-5">
-                                                <input type="number" id="lain" name="lain" class="form-control text-black"  value="{{ $psu->lain }}" readonly>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <label class="text-black">/m<sup>2</sup></label>
+                                        @foreach($lain as $key )
+                                        <div class="add-input2">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Lain-lain</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="{{ $key->keterangan }}"  class="form-control text-black" placeholder="Masukkan Lain-lain" readonly>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="number" value="{{ $key->luas }}"  class="form-control text-black" placeholder="Luas" readonly>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="text-black">/m<sup>2</sup></label>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -249,6 +271,9 @@
                                                         <th>No</th>
                                                         <th>Persyaratan</th>
                                                         <th>Lihat</th>
+                                                        @if ($pengajuan->status_pengajuan == 'Revisi Berkas' ||  $pengajuan->status_pengajuan == 'Revisi Lapangan')
+                                                        <th>Status</th>
+                                                        @endif
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -259,15 +284,35 @@
                                                     @foreach ($berkas as $brks => $value)
                                                     <input type="hidden" wire:model="berkas_id.{{ $value->id }}">
                                                     <tr>
-                                                        <th>{{ $no++ }}</th>
+                                                        <td><strong>{{ $no++ }}</strong></td>
                                                         <td>{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                         <td >
-                                                            <button type="button" data-toggle="modal" wire:click.prevent="showBerkas({{ $value->id }})" data-target="#modal-berkas" class="btn btn-info shadow btn-xs sharp mr-1"
-                                                                data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
-                                                                <i class="fa fa-eye color-muted"></i>
-                                                            </button>
+
+                                                                <button type="button" data-toggle="modal" wire:click.prevent="showBerkas({{ $value->id }})" data-target="#modal-berkas" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                                    data-toggle="tooltip" data-placement="top" title="Lihat Berkas">
+                                                                    <i class="fa fa-eye color-muted"></i>
+                                                                </button>
                                                         </td>
+                                                        <td>
+                                                            @if ($pengajuan->status_pengajuan == 'Revisi Berkas')
+                                                            @if (isset($st_berkas[$value->id]))
+
+                                                            {{ $st_berkas[$value->id] }}
+                                                            @else
+                                                            kosong
+                                                            @endif
+
+                                                            @elseif ($pengajuan->status_pengajuan == 'Revisi Lapangan')
+                                                            @if (isset($st_lapangan[$value->id]))
+
+                                                            {{ $st_lapangan[$value->id] }}
+                                                            @else
+                                                            kosong
+                                                            @endif
+                                                            @endif
+                                                        </td>
+
                                                     </tr>
 
                                                 </tbody>
@@ -279,32 +324,81 @@
                                 </div>
 
                             </div>
-                            @elseif ($step == 4)
-                            <div wire:ignore.self id="rekomendasi" class="tab-pane" role="tabpanel">
+                            @endif
+                            @if ($step  > 3)
+                            <div wire:ignore.self >
                                 <div class="card-body">
                                     <div class="basic-form">
                                         <strong class="text-black"> Nomor Surat Rekomendasi : </strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nama Developer</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nama_dev" class="form-control text-black @error('nama_dev') is invalid @enderror" placeholder="Masukkan Nama Developer" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nama Proyek</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nama_pro" class="form-control text-black @error('nama_pro') is invalid @enderror" placeholder="Masukkan Nama Proyek" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Nomor Surat Rekomendasi</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" wire:model="nomor_rekomendasi" class="form-control text-black @error('nomor_rekomendasi') is invalid @enderror" placeholder="Masukkan Nomor Rekomendasi" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">File Surat Rekomendasi</label>
+
+                                            <div class="col-sm-5">
+                                                <div class="input-group mb-3">
+                                                    <button type="button" data-toggle="modal" wire:click.prevent="showRekom()" data-target="#modal-rekom" class="btn btn-info shadow btn-xs sharp mr-1"
+                                                        data-toggle="tooltip" data-placement="top" title="Lihat Surat Rekomendasi">
+                                                        <i class="fa fa-eye color-muted"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             @endif
 
+
                         </div>
-                        <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
-                            @if ($step == 0)
-                            <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
+                        <div  wire:ignore.self class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
+                            <div class="d-flex justify-content-between">
+                                @if ($step == 0)
+                                <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
-                            @endif
-                            @if ($step > 0)
-                            <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
-                            @endif
-                            @if ($step < 4)
-                            <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
-                            @endif
-                            @if ($step == 4)
-                            <a href="{{ route('riwayat-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+                                @endif
+                                @if ($step > 0)
+                                <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                @endif
 
-                            @endif
+                                @if ($pengajuan->status_pengajuan == 'Selesai')
+
+                                    @if ($step < 4)
+                                    <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                    @endif
+                                    @if ($step == 4)
+                                    <a href="{{ route('laporan-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+
+                                    @endif
+                                @else
+                                    @if ($step < 3)
+                                    <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                    @endif
+                                    @if ($step == 3)
+                                    <a href="{{ route('riwayat-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+                                    {{-- <a href="{{ route('print-berkas') }}"class="btn btn-primary sw-btn-next" type="button">Cetak</a> --}}
+
+                                    @endif
+                                @endif
+                            </div>
 
                         </div>
                     </div>
@@ -315,23 +409,11 @@
     <!--**********************************
     Content body end
     ***********************************-->
-    @include('livewire.pemohon.modal-berkas')
+
     {{-- @endsection --}}
 
-    @push('js')
-        <script src="/disk/vendor/jquery-steps/build/jquery.steps.min.js"></script>
-        <script src="/disk/vendor/jquery-validation/jquery.validate.min.js"></script>
-        <!-- Form validate init -->
-        <script src="/disk/js/plugins-init/jquery.validate-init.js"></script>
-        <!-- Form Steps -->
-        <script src="/disk/vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
+    @include('livewire.pemohon.modal-berkas')
+    @include('livewire.pemohon.modal-rekom')
 
-        <script>
-            $(document).ready(function(){
-                // SmartWizard initialize
-                $('#smartwizard').smartWizard();
-            });
-        </script>
-    @endpush
 
-    </div>
+</div>

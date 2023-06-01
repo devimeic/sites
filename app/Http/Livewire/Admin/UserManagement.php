@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Pengajuan;
+use App\Models\Notifikasi;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class UserManagement extends Component
@@ -92,6 +95,15 @@ class UserManagement extends Component
                 'role' => $this->role,
                 'status_users' => $this->status_users
             ]);
+            $v = User::where('id',Auth::user()->id)->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Berhasil menambah user baru',
+                    'status' => 'admin',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
            $this->dispatchBrowserEvent('simpan');
            $this->alert('success', 'Berhasil',[
             'position' => 'center',
@@ -101,7 +113,7 @@ class UserManagement extends Component
             'timerProgressBar' => true,
         ]);
             $this->resetInput();
-            // return redirect()->route('user-management');
+            return redirect()->route('user-management');
 
             // $user = User::find($this->id);
             // $user->update([
@@ -158,6 +170,7 @@ class UserManagement extends Component
                 'role' => $this->role,
                 'status_users' => $this->status_users
             ]);
+
             $this->dispatchBrowserEvent('update2');
             $this->alert('success', 'Berhasil',[
                 'position' => 'center',
@@ -166,8 +179,17 @@ class UserManagement extends Component
                 'text' => 'Mengubah User',
                 'timerProgressBar' => true,
             ]);
+            $v = User::where('id',Auth::user()->id)->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Berhasil mengubah user baru',
+                    'status' => 'admin',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
             $this->resetInput();
-            // return redirect()->route('user-management');
+            return redirect()->route('user-management');
 
         }
 
@@ -202,8 +224,17 @@ class UserManagement extends Component
                 'text' => 'Mengubah User',
                 'timerProgressBar' => true,
             ]);
+            $v = User::where('id',Auth::user()->id)->get();
+            foreach ($v as $key) {
+                Notifikasi::create([
+                    'user_id' => $key->id,
+                    'keterangan' => 'Berhasil mengubah password user',
+                    'status' => 'admin',
+                    'jadwal' => Carbon::now()
+                ]);
+            }
             $this->resetInput();
-            // return redirect()->route('user-management');
+            return redirect()->route('user-management');
 
         }
 

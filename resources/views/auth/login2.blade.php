@@ -36,7 +36,7 @@
                                         @endif
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Username</strong></label>
-                                            <input id="username" type="username" class="form-control text-black  @error('username') is-invalid @enderror" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                            <input id="username" type="username" class="form-control text-black  @error('username') is-invalid @enderror" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" autocomplete="username" autofocus>
                                             @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input id="password" type="password" class="form-control text-black @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password" required autocomplete="current-password">
+                                            <input id="password" type="password" class="form-control text-black @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password" autocomplete="current-password">
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -55,12 +55,9 @@
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                             </div>
-                                            <div class="form-group">
-                                                <a class="text-white" href="page-forgot-password.html">Lupa Password?</a>
-                                            </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-light text-primary btn-block">Sign Me In</button>
+                                            <button type="submit" class="btn btn-light text-primary btn-block">Masuk</button>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">

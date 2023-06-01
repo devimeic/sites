@@ -13,13 +13,10 @@ class Psu extends Model
     protected $primayKey = 'id';
     protected $fillable = [
         'pengajuan_id',
-    'jln_saluran',
-    'taman',
-    'rth',
-    'ibadah',
-    'olahraga',
-    'kesehatan',
-    'lain'
+    'psu',
+    'luas',
+    'keterangan',
+
 ];
 protected $table = 'psus';
 

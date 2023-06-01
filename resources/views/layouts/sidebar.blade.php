@@ -23,6 +23,11 @@
                 <span class="nav-text">Riwayat Pengajuan</span>
                 </a>
             </li>
+            <li class="{{ request()->is('admin/rincian-laporan/*') ? ' mm-active' : '' }}"><a href="{{ route('laporan-admin') }}" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-notepad-2"></i>
+                <span class="nav-text">Laporan</span>
+            </a>
+            </li>
             {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>
                 <span class="nav-text">User Management</span>
@@ -97,6 +102,12 @@
                     <span class="nav-text">Daftar Rapat</span>
                 </a>
             </li>
+            {{-- <li class="">
+                <a href="#" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-rewind"></i>
+                    <span class="nav-text">Setuju Berkas</span>
+                </a>
+            </li> --}}
             @elseif (Auth::user()->role == 'pemberi rekomendasi')
             <li>
                 <a href="{{ route('rekomendasi') }}" class="ai-icon" aria-expanded="false">

@@ -111,5 +111,19 @@ class ListRapat extends Component
             return redirect()->route('rapat');
             }
 
+            public function delete($id)
+    {
+            Rapat::where('id', $id)->delete();
+
+            $this->alert('success', 'Berhasil',[
+                'position' => 'center',
+                'timer' => 3000,
+                'toast' => false,
+                'text' => 'Menghapus Jadwal Rapat',
+                'timerProgressBar' => true,
+            ]);
+            return redirect()->route('rapat');
+    }
+
 
 }

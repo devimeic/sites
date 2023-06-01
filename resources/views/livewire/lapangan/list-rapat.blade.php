@@ -40,6 +40,9 @@
                                     <button class="btn btn-info shadow btn-xs sharp mr-1" wire:click="edit({{ $key->id }})" data-target="#modal-jadwal" data-toggle="modal"
                                     data-placement="top" title="Edit Rapat"><i
                                     class="fa fa-pencil color-muted"></i> </button>
+                                    <button class="btn btn-danger shadow btn-xs sharp mr-1" wire:click="delete({{ $key->id }})"
+                                    data-placement="top" title="Hapus Rapat"><i
+                                    class="fa fa-trash-o color-muted"></i> </button>
                                 </td>
 
                             </tr>
@@ -59,7 +62,7 @@
 
 
     @push('js')
-    
+
     <script src="/disk/vendor/moment/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/disk/pikaday.js"></script>

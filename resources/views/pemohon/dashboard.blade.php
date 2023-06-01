@@ -10,6 +10,7 @@
                         <h4 class="text-black font-w600 fs-20">Status Pengajuan</h4>
                     </div>
                 </div>
+                
                     <div class="card-body pt-2">
                         <div class="row">
                             <div class="col-sm-6">

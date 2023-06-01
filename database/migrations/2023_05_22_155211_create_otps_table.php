@@ -17,8 +17,9 @@ class CreateOtpsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->constrained()
             ->onUpdate('cascade');
-            $table->string('no_hp')->nullable();
+            $table->string('no_hp',15)->nullable();
             $table->string('otp',4)->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
     }

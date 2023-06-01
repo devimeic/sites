@@ -9,7 +9,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PemohonController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Livewire\Admin\Laporan as AdminLaporan;
 use App\Http\Livewire\Admin\Riwayat;
 use App\Http\Livewire\Admin\ShowRiwayat;
 use App\Http\Livewire\Admin\UserManagement;
@@ -56,6 +58,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::get('/profil', Profil::class)->middleware('auth')->name('profil');
 Route::get('/otp/{id}', [RegisterController::class, 'indexotp'])->name('otp');
 Route::any('/otpkirim', [RegisterController::class, 'kirimotp'])->name('kirim-otp');
+Route::any('/print-berkas/{id}', [PrintController::class, 'index'])->name('print-berkas');
+Route::any('/print-lapangan/{id}', [PrintController::class, 'lapangan'])->name('print-lapangan');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], function(){
     Route::get('/index', [AdminController::class, 'index'])->name('admin');
@@ -63,6 +67,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], funct
     Route::get('/user-management', UserManagement::class)->name('user-management');
     Route::get('/riwayat', Riwayat::class)->name('riwayat-admin');
     Route::get('/show-riwayat/{id}', ShowRiwayat::class)->name('show-admin');
+    Route::get('/rincian-laporan/{id}', ShowRiwayat::class)->name('rincian-admin');
+    Route::get('/show-laporan', AdminLaporan::class)->name('laporan-admin');
     // Route::get('/profil', Profil::class)->name('profil-admin');
     // Route::get('/edit', [App\Http\Controllers\HomeController::class, 'editprofil'])->name('edit-profil-admin');
     // Route::get('/edit-password', [App\Http\Controllers\HomeController::class, 'editpassword'])->name('edit-password-admin');

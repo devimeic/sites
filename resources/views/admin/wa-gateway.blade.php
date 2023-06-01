@@ -6,8 +6,10 @@
     <div class="card-body">
         <h4 class="card-title">Whatsapp API</h4>
         <img class="" src="" alt="QR Code" id="qrcode" style=" display: none; /* Showed when qr code received */
-        width: 30%;
-        margin: 10px 0;
+        width: 35%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
         border: 1px solid #efefef;
         border-radius: 4px;">
         <p class="card-text">Logs:

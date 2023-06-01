@@ -31,6 +31,8 @@
                             @endphp
 
                         @foreach ($pengajuan as $key )
+                        @if ($key->pengaju == Auth::user()->id)
+
                             <tr>
                                 <td><strong>{{ $no++ }}</strong></td>
                                 <td>{{ date('Y', strtotime($key->tanggal)) }}</td>
@@ -56,6 +58,8 @@
                                 </td>
 
                             </tr>
+                        @endif
+
                         @endforeach
                         </tbody>
                     </table>

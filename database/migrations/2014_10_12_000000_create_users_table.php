@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('no_hp')->nullable();
+            $table->string('name',40);
+            $table->string('username',20)->unique();
+            $table->string('password',65);
+            $table->string('no_hp',15)->nullable();
             $table->enum('role', ['admin', 'pemohon', 'verifikator berkas', 'verifikator lapangan', 'pemberi rekomendasi'])->default('pemohon');
             $table->enum('status_users', ['aktif', 'tidak aktif'])->default('tidak aktif');
             $table->rememberToken();

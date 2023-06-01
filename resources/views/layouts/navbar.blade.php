@@ -22,8 +22,8 @@
         ***********************************-->
         <div class="nav-header">
             <a class="brand-logo">
-                <img class="logo-abbr" src="/disk/images/logo-magetan.png" alt="">
-                <img class="logo-compact" src="/disk/images/logo-siteplan.png" alt="">
+                <img class="logo-abbr" src="/disk/images/logo-magetan.png"  alt="">
+                <img class="logo-compact" src="/disk/images/logo-siteplan.png" alt="" >
                 <img class="brand-title" src="/disk/images/logo-siteplan.png" alt="">
             </a>
 
@@ -67,18 +67,19 @@
 										<ul class="timeline">
                                             @forelse ($notif as $item)
                                                 <li>
-                                                    <a href="{{ route('deleteNotif',$item->id) }}">
+
                                                     <div class="timeline-panel">
                                                         <div class="media mr-2">
                                                             <img alt="image" width="35" src="/disk/images/notif.png">
                                                         </div>
-                                                        <div class="media-body">
+                                                        <div class="media-body" >
                                                             <h6 class="mb-1">{{ $item->keterangan }}</h6>
-                                                            <small class="d-block">{{ $item->jadwal }}</small>
+                                                            <small class="d-block d-flex justify-content-between">{{ $item->jadwal }}
+                                                                <a href="{{ route('deleteNotif',$item->id) }}"><i class="flaticon-381-trash-1"></i></a>
+                                                            </small>
 
                                                         </div>
                                                     </div>
-                                                </a>
                                                 </li>
                                             @empty
                                                 <li>
@@ -98,6 +99,7 @@
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
+                                    <img src="/disk/images/profil.png" width="20" alt=""/>
 									<div class="header-info">
 										<span class="text-black"><strong>{{ Auth::user()->name }}</strong></span>
 										<p class="fs-12 mb-0">{{ Auth::user()->role }}</p>

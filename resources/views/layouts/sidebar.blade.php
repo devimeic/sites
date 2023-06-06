@@ -8,10 +8,15 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-            <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}" ><a href="{{ route('wa') }}" class="ai-icon" aria-expanded="false">
+            {{-- <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}"><a href="{{ route('wa') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-smartphone-4"></i>
                 <span class="nav-text">Whatshap Gateway</span>
             </a>
+            </li> --}}
+            <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}"><a href="{{ route('admin-wa') }}" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-smartphone-4"></i>
+                <span class="nav-text">Whatshap Gateway</span>
+                </a>
             </li>
             <li ><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>

@@ -152,6 +152,10 @@ class ShowDraft extends Component
     {
         unset($this->inputs_lain[$l]);
     }
+    public function remove_lainn($l)
+    {
+        unset($this->keterangan_lain[$l]);
+    }
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -165,7 +169,12 @@ class ShowDraft extends Component
 
     public function remove($i)
     {
+        unset($this->tipe[$i]);
+    }
+    public function removee($i)
+    {
         unset($this->inputs[$i]);
+        // unset($this->tipe[$i]);
     }
     public $pengajuans;
     public $pengajuan_id;
@@ -401,9 +410,9 @@ class ShowDraft extends Component
 
         $validatedDate = $this->validate(
             [
-                'tipe.0' => 'required',
-                'juml_unit.0' => 'required',
-                'kategori.0' => 'required',
+                // 'tipe.0' => 'required',
+                // 'juml_unit.0' => 'required',
+                // 'kategori.0' => 'required',
                 // 'pengajuan_id.0' => 'required',
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
@@ -418,10 +427,10 @@ class ShowDraft extends Component
                 // 'pengajuan_id.*' => 'required',
             ],
             [
-                'tipe.0.required' => 'tipe field is required',
-                'juml_unit.0.required' => 'juml_unit field is required',
-                // 'kategori.0.required' => 'kategori field is required',
-                'pengajuan_id.0.required' => 'pengajuan_id field is required',
+                // 'tipe.0.required' => 'tipe field is required',
+                // 'juml_unit.0.required' => 'juml_unit field is required',
+                // // 'kategori.0.required' => 'kategori field is required',
+                // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
                 'tipe.*.required' => 'tipe field is required',
                 'juml_unit.*.required' => 'juml_unit field is required',
                 'kategori.*.required' => 'kategori field is required',

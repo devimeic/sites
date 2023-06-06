@@ -92,7 +92,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Nomor Anggota Asosiasi</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="no_anggota" name="no_anggota" class="form-control text-black"  value="{{ $pengajuan->no_anggota }}" readonly>
+                                                <input type="text" id="no_anggota" name="no_anggota" class="form-control text-black"  value="{{ $pengajuan->no_anggota }}" readonly>
                                             </div>
                                         </div>
                                     </div>

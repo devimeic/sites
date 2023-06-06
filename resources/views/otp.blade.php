@@ -27,7 +27,7 @@
 									</div>
                                     <h4 class="text-center mb-4 text-white">OTP Nomor Hp</h4>
                                     @if (session()->has('message'))
-                                        <div class="alert alert-success">
+                                        <div class="alert alert-danger">
                                             {{ session('message') }}
                                         </div>
                                     @endif

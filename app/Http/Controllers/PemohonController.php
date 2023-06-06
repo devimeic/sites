@@ -31,7 +31,8 @@ class PemohonController extends Controller
     public function list()
     {
         $tittle = 'List Pengajuan';
-        $pengajuan = Pengajuan::where('status_pengajuan','Draft')->get();
+        $pengajuan = Pengajuan::where('status_pengajuan','Draft')
+        ->orderBy('created_at', 'DESC')->get();
         return view('pemohon.list-pengajuan', compact('tittle','pengajuan'));
     }
 

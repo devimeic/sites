@@ -54,5 +54,95 @@ class UserSeeder extends Seeder
             'role' => 'pemberi rekomendasi',
             'status_users' => 'aktif',
         ]);
+
+         User::create([
+            'name' => 'Aulia Wijaya',
+            'username' => 'aulia',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Rizki Maulana',
+            'username' => 'rizki',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Putri Dewi',
+            'username' => 'putri',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Joko Prasetyo',
+            'username' => 'joko',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Maya Sari',
+            'username' => 'maya',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Ahmad Syahputra',
+            'username' => 'ahmad',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Indra Wijaya',
+            'username' => 'indra',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Hana Ayu',
+            'username' => 'hana',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Dian Purnama',
+            'username' => 'dian',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
+
+            User::create([
+            'name' => 'Irfan Rizki',
+            'username' => 'irfan',
+            'password' => bcrypt('12345678'),
+            'no_hp' => '089168790083',
+            'role' => 'pemohon',
+            'status_users' => 'aktif',
+             ]);
     }
 }

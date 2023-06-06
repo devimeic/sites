@@ -63,7 +63,7 @@ Route::any('/print-lapangan/{id}', [PrintController::class, 'lapangan'])->name('
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'cekRole:admin']], function(){
     Route::get('/index', [AdminController::class, 'index'])->name('admin');
-    Route::get('/wa-gateway', [AdminController::class, 'wa'])->name('wa');
+    Route::get('/wa-gateway', [AdminController::class, 'wa'])->name('admin-wa');
     Route::get('/user-management', UserManagement::class)->name('user-management');
     Route::get('/riwayat', Riwayat::class)->name('riwayat-admin');
     Route::get('/show-riwayat/{id}', ShowRiwayat::class)->name('show-admin');

@@ -84,7 +84,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Nomor Anggota Asosiasi</label>
                                                     <div class="col-sm-9">
-                                                        <input type="number" wire:model="no_anggota" class="form-control text-black @error('no_anggota') is invalid @enderror" placeholder="Masukkan Nomor Anggota Asosiasi" readonly>
+                                                        <input type="text" wire:model="no_anggota" class="form-control text-black @error('no_anggota') is invalid @enderror" placeholder="Masukkan Nomor Anggota Asosiasi" readonly>
                                                         @error("no_anggota") <span class="text-danger">{{ $message }}</span>@enderror
                                                     </div>
                                                 </div>
@@ -158,7 +158,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Kategori</label>
-                                                                        <select class="form-control default-select text-black" wire:model="kategori.0">
+                                                                        <select class="form-control default-select text-black" wire:model="kategori.0" @readonly(true)>
                                                                             <option value="">Pilih Kategori</option>
                                                                             <option value="Ruko">1 - Ruko</option>
                                                                             <option value="Perumahan">2 - Perumahan</option>
@@ -170,7 +170,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Type Bangunan</label>
-                                                                        <input type="text" wire:model="tipe.0" class="form-control text-black" placeholder="Masukkan Type Bangunan">
+                                                                        <input type="text" wire:model="tipe.0" class="form-control text-black" placeholder="Masukkan Type Bangunan" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -178,17 +178,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Jumlah unit</label>
-                                                                        <input type="number" wire:model="juml_unit.0" class="form-control text-black" placeholder="Masukkan Jumlah Unit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-1">
-                                                                <div class="mb-4">
-                                                                    <div class="form-group">
-                                                                        <label></label>
-                                                                        <button type="button" class="btn btn-primary" wire:click.prevent="add({{ $i }})">
-                                                                            <i class="fa fa-plus color-primary"></i>
-                                                                        </button>
+                                                                        <input type="number" wire:model="juml_unit.0" class="form-control text-black" placeholder="Masukkan Jumlah Unit" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -196,13 +186,13 @@
                                                     </div>
 
                                                     @foreach($inputs as $key => $value)
-                                                    <div class=" add-input">
+                                                    <div class="add-input">
                                                         <div class="row mt-3">
                                                             <div class="col-xl-3">
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Kategori</label>
-                                                                        <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}">
+                                                                        <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}" @readonly(true)>
                                                                             <option value="">Pilih Kategori</option>
                                                                             <option value="Ruko">1 - Ruko</option>
                                                                             <option value="Perumahan">2 - Perumahan</option>
@@ -214,7 +204,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Type Bangunan</label>
-                                                                        <input type="text" wire:model="tipe.{{ $value }}" class="form-control text-black" placeholder="Masukkan Type Bangunan">
+                                                                        <input type="text" wire:model="tipe.{{ $value }}" class="form-control text-black" placeholder="Masukkan Type Bangunan" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -222,17 +212,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Jumlah unit</label>
-                                                                        <input type="number" wire:model="juml_unit.{{ $value }}" class="form-control text-black" placeholder="Masukkan Jumlah Unit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-1">
-                                                                <div class="mb-4">
-                                                                    <div class="form-group">
-                                                                        <label></label>
-                                                                        <button type="button" class="btn btn-danger" wire:click.prevent="remove({{ $key }})">
-                                                                            <i class="fa fa-minus color-danger"></i>
-                                                                        </button>
+                                                                        <input type="number" wire:model="juml_unit.{{ $value }}" class="form-control text-black" placeholder="Masukkan Jumlah Unit" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -246,7 +226,7 @@
                                                 <div class="form-group row mt-3">
                                                     <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="jln_saluran" class="form-control text-black" placeholder="Masukkan Jalan & Saluran">
+                                                        <input type="number" wire:model="jln_saluran" class="form-control text-black" placeholder="Masukkan Jalan & Saluran" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
@@ -255,7 +235,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Taman</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="taman" class="form-control text-black" placeholder="Masukkan Luas Taman">
+                                                        <input type="number" wire:model="taman" class="form-control text-black" placeholder="Masukkan Luas Taman" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
@@ -264,7 +244,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">RTH</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="rth" class="form-control text-black" placeholder="Masukkan Luas RTH">
+                                                        <input type="number" wire:model="rth" class="form-control text-black" placeholder="Masukkan Luas RTH" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
@@ -273,7 +253,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="ibadah" class="form-control text-black" placeholder="Masukkan Sarana Peribadatan">
+                                                        <input type="number" wire:model="ibadah" class="form-control text-black" placeholder="Masukkan Sarana Peribadatan" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
@@ -282,7 +262,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="olahraga" class="form-control text-black" placeholder="Masukkan Sarana Olahraga">
+                                                        <input type="number" wire:model="olahraga" class="form-control text-black" placeholder="Masukkan Sarana Olahraga" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
@@ -291,21 +271,28 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                                     <div class="col-sm-5">
-                                                        <input type="number" wire:model="kesehatan" class="form-control text-black" placeholder="Masukkan Sarana Kesehatan">
+                                                        <input type="number" wire:model="kesehatan" class="form-control text-black" placeholder="Masukkan Sarana Kesehatan" readonly>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Lain-Lain</label>
-                                                    <div class="col-sm-5">
-                                                        <input type="number" wire:model="lain" class="form-control text-black" placeholder="Masukkan Lain-lain">
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <label class="text-black">/m<sup>2</sup></label>
+                                                @foreach($lain as $key )
+                                                <div class="add-input2">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Lain-lain</label>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" value="{{ $key->keterangan }}"  class="form-control text-black" placeholder="Masukkan Lain-lain" readonly>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <input type="number" value="{{ $key->luas }}"  class="form-control text-black" placeholder="Luas" readonly>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="text-black">/m<sup>2</sup></label>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>

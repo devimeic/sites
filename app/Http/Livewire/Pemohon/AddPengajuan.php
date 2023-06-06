@@ -66,7 +66,13 @@ class AddPengajuan extends Component
 
     public function remove($i)
     {
+        // unset($this->inputs[$i]);
+        unset($this->tipe[$i]);
+    }
+    public function removee($i)
+    {
         unset($this->inputs[$i]);
+        // unset($this->tipe[$i]);
     }
     public function add_lain($l)
     {
@@ -78,6 +84,11 @@ class AddPengajuan extends Component
     public function remove_lain($l)
     {
         unset($this->inputs_lain[$l]);
+    }
+
+    public function remove_lainn($l)
+    {
+        unset($this->keterangan_lain[$l]);
     }
 
 
@@ -316,6 +327,8 @@ class AddPengajuan extends Component
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
                 'kategori.*' => 'required',
+                'keterangan_lain.*' => 'required',
+                'luas_lain.*' => 'required',
                 // 'jln_saluran' => 'required',
                 // 'taman' => 'required',
                 // 'rth' => 'required',
@@ -330,16 +343,29 @@ class AddPengajuan extends Component
                 // 'juml_unit.0.required' => 'juml_unit field is required',
                 // 'kategori.0.required' => 'kategori field is required',
                 // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
-                'tipe.*.required' => 'tipe field is required',
-                'juml_unit.*.required' => 'juml_unit field is required',
-                'kategori.*.required' => 'kategori field is required',
+                'tipe.*.required' => 'tipe tidak boleh kosong',
+                'juml_unit.*.required' => 'jumlah unit tidak boleh kosong',
+                'kategori.*.required' => 'kategori tidak boleh kosong',
+                'keterangan_lain.*.required' => 'tidak boleh kosong',
+                'luas_lain.*.required' => 'tidak boleh kosong',
                 // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
             ]
         );
+        $dell = Tipe::query()->where('pengajuan_id', $this->pengajuan_id)->get();
+        // Psu::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+        $del = Psu::where('pengajuan_id', $this->pengajuan_id )->get();
 
 
         if ($this->tipe) {
-            Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+
+            foreach ($del as $k)
+            {
+                $k->delete();
+                }
+            foreach ($dell as $k)
+            {
+                $k->delete();
+                }
 
             // Psu::updateOrCreate([
             //     'pengajuan_id' => $this->pengajuan_id,
@@ -360,13 +386,13 @@ class AddPengajuan extends Component
                     'luas'=> $this->jln_saluran,
                 ]);
             }
-            if ($this->taman) {
-            Psu::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'psu'=>'taman',
-                'luas'=> $this->taman,
-            ]);
-        }
+                if ($this->taman) {
+                Psu::create([
+                    'pengajuan_id' => $this->pengajuan_id,
+                    'psu'=>'taman',
+                    'luas'=> $this->taman,
+                ]);
+            }
 
         if ($this->rth) {
             Psu::create([

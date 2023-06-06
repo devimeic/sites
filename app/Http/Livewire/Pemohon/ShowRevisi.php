@@ -50,6 +50,7 @@ class ShowRevisi extends Component
     public $kesehatan;
     public $lain;
     public $step;
+    public $l = 1;
 
     public function render()
     {
@@ -113,13 +114,14 @@ class ShowRevisi extends Component
 
 
         $psus = Psu::where('pengajuan_id',$this->pengajuan->id)->first();
-        $this->jln_saluran  = $psus->jln_saluran;
-        $this->taman  = $psus->taman;
-        $this->rth  = $psus->rth;
-        $this->ibadah  = $psus->ibadah;
-        $this->olahraga  = $psus->olahraga;
-        $this->kesehatan  = $psus->kesehatan;
-        $this->lain  = $psus->lain;
+        $this->jln_saluran  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','jln_saluran')->pluck('luas');
+        $this->taman  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','taman')->pluck('luas');
+        $this->rth  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','rth')->pluck('luas');
+        $this->ibadah  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','ibadah')->pluck('luas');
+        $this->olahraga  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','olahraga')->pluck('luas');
+        $this->kesehatan  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','kesehatan')->pluck('luas');
+        $this->lain  = Psu::where('pengajuan_id',$this->pengajuan->id)->where('psu','lain')->get();
+        $l = 1;
 
         $this->step = 0;
     }
@@ -325,81 +327,81 @@ class ShowRevisi extends Component
     {
         $this->pengajuan_id = $this->pengajuan->id;
 
-        $validatedDate = $this->validate(
-            [
-                'tipe.0' => 'required',
-                'juml_unit.0' => 'required',
-                'kategori.0' => 'required',
-                // 'pengajuan_id.0' => 'required',
-                'tipe.*' => 'required',
-                'juml_unit.*' => 'required',
-                'kategori.*' => 'required',
-                'jln_saluran' => 'required',
-                'taman' => 'required',
-                'rth' => 'required',
-                'ibadah' => 'required',
-                'olahraga' => 'required',
-                'kesehatan' => 'required',
-                'lain' => 'required',
-                // 'pengajuan_id.*' => 'required',
-            ],
-            [
-                'tipe.0.required' => 'tipe field is required',
-                'juml_unit.0.required' => 'juml_unit field is required',
-                // 'kategori.0.required' => 'kategori field is required',
-                'pengajuan_id.0.required' => 'pengajuan_id field is required',
-                'tipe.*.required' => 'tipe field is required',
-                'juml_unit.*.required' => 'juml_unit field is required',
-                'kategori.*.required' => 'kategori field is required',
-                // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
-            ]
-        );
+        // $validatedDate = $this->validate(
+        //     [
+        //         // 'tipe.0' => 'required',
+        //         // 'juml_unit.0' => 'required',
+        //         // 'kategori.0' => 'required',
+        //         // 'pengajuan_id.0' => 'required',
+        //         'tipe.*' => 'required',
+        //         'juml_unit.*' => 'required',
+        //         'kategori.*' => 'required',
+        //         'jln_saluran' => 'required',
+        //         'taman' => 'required',
+        //         'rth' => 'required',
+        //         'ibadah' => 'required',
+        //         'olahraga' => 'required',
+        //         'kesehatan' => 'required',
+        //         'lain' => 'required',
+        //         // 'pengajuan_id.*' => 'required',
+        //     ],
+        //     [
+        //         // 'tipe.0.required' => 'tipe field is required',
+        //         // 'juml_unit.0.required' => 'juml_unit field is required',
+        //         // // 'kategori.0.required' => 'kategori field is required',
+        //         // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
+        //         'tipe.*.required' => 'tipe field is required',
+        //         'juml_unit.*.required' => 'juml_unit field is required',
+        //         'kategori.*.required' => 'kategori field is required',
+        //         // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
+        //     ]
+        // );
 
 
-        if ($this->tipe) {
-            Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+        // if ($this->tipe) {
+        //     Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
 
-            Psu::updateOrCreate([
-                'pengajuan_id' => $this->pengajuan_id,
-                'jln_saluran' => $this->jln_saluran,
-                'taman' => $this->taman,
-                'rth' => $this->rth,
-                'ibadah' => $this->ibadah,
-                'olahraga' => $this->olahraga,
-                'kesehatan' => $this->kesehatan,
-                'lain' => $this->lain,
-             ]);
-            foreach ($this->tipe as $key => $value) {
-                $this->bangun = Tipe::updateOrCreate([
-                    'pengajuan_id' => $this->pengajuan_id,
-                    'tipe' => $this->tipe[$key],
-                    'juml_unit' => $this->juml_unit[$key],
-                    'kategori' => $this->kategori[$key],
-                ]);
-            }
+        //     Psu::updateOrCreate([
+        //         'pengajuan_id' => $this->pengajuan_id,
+        //         'jln_saluran' => $this->jln_saluran,
+        //         'taman' => $this->taman,
+        //         'rth' => $this->rth,
+        //         'ibadah' => $this->ibadah,
+        //         'olahraga' => $this->olahraga,
+        //         'kesehatan' => $this->kesehatan,
+        //         'lain' => $this->lain,
+        //      ]);
+        //     foreach ($this->tipe as $key => $value) {
+        //         $this->bangun = Tipe::updateOrCreate([
+        //             'pengajuan_id' => $this->pengajuan_id,
+        //             'tipe' => $this->tipe[$key],
+        //             'juml_unit' => $this->juml_unit[$key],
+        //             'kategori' => $this->kategori[$key],
+        //         ]);
+        //     }
 
 
-        } else {
-            foreach ($this->tipe as $key => $value) {
-                $this->bangun = Tipe::updateOrCreate([
-                    'pengajuan_id' => $this->pengajuan_id,
-                    'tipe' => $this->tipe[$key],
-                    'juml_unit' => $this->juml_unit[$key],
-                    'kategori' => $this->kategori[$key],
-                ]);
-            }
-        Psu::updateOrCreate([
-            'pengajuan_id' => $this->pengajuan_id,
-            'jln_saluran' => $this->jln_saluran,
-            'taman' => $this->taman,
-            'rth' => $this->rth,
-            'ibadah' => $this->ibadah,
-            'olahraga' => $this->olahraga,
-            'kesehatan' => $this->kesehatan,
-            'lain' => $this->lain,
-        ]);
+        // } else {
+        //     foreach ($this->tipe as $key => $value) {
+        //         $this->bangun = Tipe::updateOrCreate([
+        //             'pengajuan_id' => $this->pengajuan_id,
+        //             'tipe' => $this->tipe[$key],
+        //             'juml_unit' => $this->juml_unit[$key],
+        //             'kategori' => $this->kategori[$key],
+        //         ]);
+        //     }
+        // Psu::updateOrCreate([
+        //     'pengajuan_id' => $this->pengajuan_id,
+        //     'jln_saluran' => $this->jln_saluran,
+        //     'taman' => $this->taman,
+        //     'rth' => $this->rth,
+        //     'ibadah' => $this->ibadah,
+        //     'olahraga' => $this->olahraga,
+        //     'kesehatan' => $this->kesehatan,
+        //     'lain' => $this->lain,
+        // ]);
 
-        }
+        // }
 
 
         $this->step++;

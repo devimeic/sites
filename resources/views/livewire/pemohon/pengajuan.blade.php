@@ -82,7 +82,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nomor Anggota Asosiasi</label>
                                         <div class="col-sm-9">
-                                            <input type="number" wire:model="no_anggota" class="form-control text-black @error('no_anggota') is invalid @enderror" placeholder="Masukkan Nomor Anggota Asosiasi">
+                                            <input type="text" wire:model="no_anggota" class="form-control text-black @error('no_anggota') is invalid @enderror" placeholder="Masukkan Nomor Anggota Asosiasi">
                                             @error("no_anggota") <span class="text-danger">{{ $message }}</span>@enderror
                                         </div>
                                     </div>
@@ -192,7 +192,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         @foreach($inputs as $key => $value)
                                         <div class=" add-input">
                                             <div class="row mt-3">
@@ -228,7 +227,7 @@
                                                     <div class="mb-4">
                                                         <div class="form-group">
                                                             <label></label>
-                                                            <button type="button" class="btn btn-danger" wire:click.prevent="remove({{ $key }})">
+                                                            <button type="button" class="btn btn-danger" wire:click='removee({{ $key }})' wire:click.prevent="remove({{ $value }})">
                                                                 <i class="fa fa-minus color-danger"></i>
                                                             </button>
                                                         </div>
@@ -312,6 +311,7 @@
                                             </button>
                                         </div>
                                     </div>
+
                                     @foreach($inputs_lain as $key => $value)
                                     <div class="add-input2">
                                         <div class="form-group row">
@@ -323,10 +323,10 @@
                                                 <input type="number" wire:model="luas_lain.{{ $value }}" class="form-control text-black" placeholder="Luas">
                                             </div>
                                             <div class="col-sm-2">
-                                                <label class="text-black">/m<sup>2</sup></label>
+                                                <label class="text-black">/m<sup>2</sup> </label>
                                             </div>
                                             <div class="col-sm-2">
-                                                <button type="button" class="btn btn-danger" wire:click.prevent="remove_lain({{ $key }})">
+                                                <button type="button" class="btn btn-danger" wire:click.prevent="remove_lain({{ $key }})" wire:click="remove_lainn({{ $value }})">
                                                     <i class="fa fa-minus color-danger"></i>
                                                 </button>
                                             </div>

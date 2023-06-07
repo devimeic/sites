@@ -33,7 +33,7 @@
                                         <button type="button" data-toggle="modal" wire:click.prevent="edit({{ $brks->id }})" data-target="#editModal" class="btn btn-primary shadow btn-xs sharp mr-1">
                                             <i class="fa fa-pencil"></i>
                                         </button>
-                                        <button wire:click.prevent="delete({{ $brks->id }})" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button>
+                                        {{-- <a><button wire:click.prevent="delete({{ $brks->id }})" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button></a> --}}
                                     </div>
                                 </td>
                             </tr>

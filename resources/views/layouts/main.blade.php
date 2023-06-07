@@ -16,6 +16,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900" rel="stylesheet">
     @livewireStyles
 
+    <style>
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang loader */
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #main-loader {
+        visibility: hidden; /* Menyembunyikan konten utama */
+    }
+
+    </style>
 </head>
 
 <body class="h-100">
@@ -70,6 +89,66 @@
     <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
     <x-livewire-alert::flash />
 
+    <!--  loader untuk logout -->
+    <script>
+        function logoutWithLoader() {
+        // Tampilkan loader
+        document.getElementById('preloader').style.display = 'flex';
+
+        // Sembunyikan konten utama
+        document.getElementById('main-wrapper').style.visibility = 'hidden';
+
+        // Proses logout setelah penundaan 1 detik
+        setTimeout(function() {
+            // Lakukan logout
+            document.getElementById('logout-form').submit();
+
+            // Tampilkan kembali konten utama setelah logout selesai
+            document.getElementById('main-loader').style.visibility = 'visible';
+        }, 1000);
+    }
+
+    </script>
+
+    <!--  loader untuk sidebar -->
+    <script>
+        // Menampilkan loader sebelum konten menu dimuat
+        function showLoader() {
+        // Mendapatkan elemen loader
+        var loader = document.getElementById("preloader");
+
+        // Menampilkan loader
+        loader.style.display = "block";
+        }
+
+        // Menghilangkan loader setelah konten menu dimuat
+        function hideLoader() {
+        // Mendapatkan elemen loader
+        var loader = document.getElementById("preloader");
+
+        // Menghilangkan loader
+        loader.style.display = "none";
+        }
+
+        // Memanggil fungsi showLoader saat menu di-klik
+        document.addEventListener("DOMContentLoaded", function() {
+        // Mendapatkan semua elemen menu
+        var menuItems = document.querySelectorAll("a:not([data-toggle='dropdown']):not(#wizard)");
+
+        // Menambahkan event listener untuk setiap elemen menu
+        menuItems.forEach(function(item) {
+            item.addEventListener("click", function() {
+            showLoader();
+            });
+        });
+        });
+
+        // Memanggil fungsi hideLoader saat konten menu selesai dimuat
+        window.addEventListener("load", function() {
+        hideLoader();
+        });
+
+    </script>
 </body>
 
 </html>

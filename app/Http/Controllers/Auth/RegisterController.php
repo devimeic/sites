@@ -55,10 +55,22 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'no_hp' => ['required',  ],
+            'name' => ['required', 'max:255'],
+            'username' => ['required', 'max:255', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'no_hp' => ['required', 'min:11', 'max:15' ],
+        ],[
+            'name.required' => 'Nama tidak boleh kosong.',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
+            'username.required' => 'Username tidak boleh kosong.',
+            'username.max' => 'Username tidak boleh lebih dari :max karakter.',
+            'username.unique' => 'Username sudah digunakan.',
+            'password.required' => 'Password tidak boleh kosong.',
+            'password.min' => 'Password harus minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'no_hp.required' => 'Nomor HP tidak boleh kosong.',
+            'no_hp.min' => 'Nomor HP harus memiliki minimal 11 karakter.',
+            'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
         ]);
     }
 

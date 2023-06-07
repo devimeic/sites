@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <button data-toggle="modal" data-target="#modal-create" class="btn btn-rounded btn-primary mb-4" id="btn-create-post"><span class="btn-icon-left text-primary"><i class="fa fa-plus color-primary"></i>
+                        <button data-toggle="modal" data-target="#modal-create" class="btn btn-rounded btn-primary mb-4" ><span class="btn-icon-left text-primary"><i class="fa fa-plus color-primary"></i>
                         </span>Tambah User</button>
                     </div>
                     <div class="col">

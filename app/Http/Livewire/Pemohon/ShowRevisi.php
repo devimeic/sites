@@ -165,8 +165,8 @@ class ShowRevisi extends Component
         'alamat_dev' => 'required',
         'asosiasi' => 'required',
         'no_anggota' => 'required',
-        'tel_pemohon1' => 'required|min:12',
-        'tel_pemohon2' => 'min:12',
+        'tel_pemohon1' => 'required|min:11|max:15',
+        'tel_pemohon2' => 'min:11|max:15',
 ];
 
     protected $messages = [
@@ -175,8 +175,10 @@ class ShowRevisi extends Component
         'alamat_dev.required' => 'alamat developer tidak boleh kosong',
         'asosiasi.required' => 'asosiasi tidak boleh kosong',
         'no_anggota.required' => 'nomor anggota developer tidak boleh kosong',
-        'tel_pemohon1 min'=> 'nomor hp kurang dari 12 karakter',
-        'tel_pemohon2 min'=> 'nomor hp kurang dari 12 karakter'
+        'tel_pemohon1 min'=> 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon2 min'=> 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon1.max'=> 'nomor hp terlalu panjang',
+        'tel_pemohon2.max'=> 'nomor hp terlalu panjang'
     ];
 
     public function submit2()

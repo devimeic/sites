@@ -348,8 +348,8 @@
                                                     <th>Persyaratan</th>
                                                     <th>Unggah</th>
                                                 </tr>
-                                                {{-- {{ $pengajuan_id }}
-                                                @json($berkas_id)
+                                                {{-- {{ $pengajuan_id }} --}}
+                                                {{-- @json($berkas_id)
                                                 @json($nama_berkas) --}}
                                             </thead>
                                             <tbody>
@@ -368,12 +368,20 @@
                                                         <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
                                                         <label class="custom-file-label">Pilih file</label>
                                                     </td>
+                                                    <td>
+                                                        <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div>
+                                                    </td>
+
+
+
 
                                                     @if (isset($nama_berkas[$value->id]))
                                                     @if ($nama_berkas[$value->id])
+                                                    <td>{{ $nama_berkas[$value->id]->getClientOriginalName() }}</td>
                                                     <td>
                                                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                                                     </td>
+
 
                                                     @endif
                                                     @endif
@@ -413,7 +421,11 @@
                             <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                             @endif
                             @if ($step == 3)
-                            <button type="submit"  class="btn btn-primary sw-btn-next" type="button">Simpan</button>
+                            <button type="submit"  class="btn btn-primary sw-btn-next" type="button" wire:loading.attr="disabled">
+                                Simpan
+                                <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div></button>
 
                             @endif
                         </div>

@@ -16,6 +16,8 @@ class UserManagement extends Component
     use LivewireAlert;
     use WithPagination;
 
+    public $loading = false;
+
     public $name;
     public $username;
     public $password;
@@ -46,7 +48,7 @@ class UserManagement extends Component
         'name' => 'required',
         'username' => 'required',
         'password' => 'required|min:8',
-        'no_hp' => 'required|min:12',
+        'no_hp' => 'required|min:11|max:15',
         'role' => 'required',
         'status_users' => 'required'
 ];
@@ -58,7 +60,8 @@ class UserManagement extends Component
         'password.required' => 'password tidak boleh kosong',
         'password.min' => 'password kurang dari 8 karakter',
         'no_hp.required' => 'nomor hp tidak boleh kosong',
-        'no_hp.min' => 'nomor hp kurang dari 12 karakter',
+        'no_hp.min' => 'nomor hp kurang dari 11 karakter',
+        'no_hp.max' => 'nomor hp terlalu panjang',
         'role.required' => 'role belum dipilih'
 
     ];
@@ -69,7 +72,7 @@ class UserManagement extends Component
         'name' => 'required',
         'username' => 'required',
         'password' => 'required|min:8',
-        'no_hp' => 'required|min:1',
+        'no_hp' => 'required|min:11|max:15',
         'role' => 'required',
         'status_users' => 'required'
         ]);
@@ -82,11 +85,11 @@ class UserManagement extends Component
             'name' => 'required',
             'username' => 'required|unique:users,username',
             'password' => 'required|min:8',
-            'no_hp' => 'required|min:12',
+            'no_hp' => 'required|min:11|max:15',
             'role' => 'required',
             'status_users' => 'required'
         ]);
-
+        $this->loading = true;
             User::create([
                 'name' => $this->name,
                 'username' => $this->username,
@@ -112,8 +115,9 @@ class UserManagement extends Component
             'text' => 'Menambah User',
             'timerProgressBar' => true,
         ]);
+        $this->loading = false;
             $this->resetInput();
-            return redirect()->route('user-management');
+            // return redirect()->route('user-management');
 
             // $user = User::find($this->id);
             // $user->update([

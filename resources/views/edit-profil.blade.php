@@ -40,7 +40,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger light" wire:click.prevent="resetInput()" data-dismiss="modal">Keluar</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">Simpan
+                    <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                </button>
             </div>
 
         </form>

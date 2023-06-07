@@ -33,7 +33,7 @@
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="mb-1 text-white"><strong>Nama</strong></label>
-                                            <input id="name" type="text" class="form-control text-black @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama" required autocomplete="name" autofocus>
+                                            <input id="name" type="text" class="form-control text-black @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama"  autocomplete="name" autofocus>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="mb-1 text-white"><strong>Username</strong></label>
-                                            <input id="username" type="text" class="form-control text-black @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Masukkan Username" required autocomplete="username" autofocus>
+                                            <input id="username" type="text" class="form-control text-black @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" placeholder="Masukkan Username"  autocomplete="username" autofocus>
 
                                             @error('username')
                                                 <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                                     </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Nomor Telepon</strong></label>
-                                            <input id="no_hp" type="text" class="form-control text-black @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" placeholder="Masukkan Nomor Telepon" required autocomplete="no_hp" autofocus>
+                                            <input id="no_hp" type="text" class="form-control text-black @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" placeholder="Masukkan Nomor Telepon"  autocomplete="no_hp" autofocus>
 
                                             @error('no_hp')
                                                 <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Password</strong></label>
-                                            <input id="password" type="password" class="form-control text-black @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password" required autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control text-black @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password"  autocomplete="new-password">
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -74,10 +74,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Ulangi Password</strong></label>
-                                            <input id="password-confirm" type="password" class="form-control text-black " name="password_confirmation" placeholder="Masukkan Ulang Password " required autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control text-black " name="password_confirmation" placeholder="Masukkan Ulang Password "  autocomplete="new-password">
                                         </div>
                                         <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-light text-primary btn-block">Daftar</button>
+                                            <button id="loginButton" type="submit" class="btn btn-light text-primary btn-block">Daftar</button>
+                                        </div>
+                                        <div id="loader" class="text-center" style="display: none;">
+                                            <div class="spinner-border text-light" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -100,6 +105,16 @@
 <script src="disk/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="disk/js/custom.min.js"></script>
 <script src="disk/js/deznav-init.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginButton = document.getElementById('loginButton');
+        var loader = document.getElementById('loader');
 
+        loginButton.addEventListener('click', function() {
+            loginButton.style.display = 'none';
+            loader.style.display = 'block';
+        });
+    });
+</script>
 </body>
 </html>

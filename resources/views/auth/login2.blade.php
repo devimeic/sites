@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="disk/images/logo-magetan.png">
     <link href="disk/css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="h-100">
@@ -27,6 +28,7 @@
 										<a href="index.html"><img src="disk/images/logo-magetan.png" alt="logo" class="w-25"></a>
 									</div>
                                     <h4 class="text-center mb-4 text-white font-weight-bold">Login Akun</h4>
+
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         @if (session('error'))
@@ -57,7 +59,12 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-light text-primary btn-block">Masuk</button>
+                                            <button id="loginButton" type="submit" class="btn btn-light text-primary btn-block" >Masuk</button>
+                                        </div>
+                                        <div id="loader" class="text-center" style="display: none;">
+                                            <div class="spinner-border text-light" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -76,11 +83,24 @@
     <!--**********************************
         Scripts
     ***********************************-->
+
     <!-- Required vendors -->
     <script src="disk/vendor/global/global.min.js"></script>
 	<script src="disk/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="disk/js/custom.min.js"></script>
     <script src="disk/js/deznav-init.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var loginButton = document.getElementById('loginButton');
+            var loader = document.getElementById('loader');
+
+            loginButton.addEventListener('click', function() {
+                loginButton.style.display = 'none';
+                loader.style.display = 'block';
+            });
+        });
+    </script>
 
 </body>
 

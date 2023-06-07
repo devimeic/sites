@@ -18,20 +18,20 @@
                     {{-- @foreach ($pengajuan as $key) --}}
                     <div wire:ignore.self  class="form-wizard order-create">
                         <ul class="nav nav-wizard d-flex justify-content-between"  >
-                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
+                                <li><a id="wizard" class="w-100 h-100 rounded-fullborder border-primary btn mx-4{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(0)">
                                     <span class="w-100 px-2">Developer</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
+                                <li><a id="wizard" class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(1)">
                                     <span class="w-100 px-2">Pengajuan</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
+                                <li><a id="wizard" class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(2)">
                                     <span class="w-100 px-2">Tipe Bangunan</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
+                                <li><a id="wizard" class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(3)">
                                     <span class="w-100 px-2">Upload Berkas</span>
                                 </a></li>
                             @if ($pengajuan->status_pengajuan == 'Selesai')
-                            <li><a class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 4 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 4 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(4)">
+                            <li><a id="wizard" class="w-100 h-100 rounded-full border-primary btn mx-4{{ $step > 4 ? 'btn-primary bg-primary  text-white mx-4' : '' }} {{  $step == 4 ? 'rounded-fullborder bg-primary text-white mx-4' : '' }}" wire:click.prevent="jump(4)">
                                 <span class="w-100 px-2">Rekomendasi</span>
                             </a></li>
                         @endif

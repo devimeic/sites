@@ -45,6 +45,15 @@ class UploadSurat extends Component
     public $nomor_rekomendasi;
     public $pengajuan_id;
 
+    protected $rules = [
+        'files' => 'required',
+        'nomor_rekomendasi' => 'required'
+    ];
+    protected $messages = [
+        'files.required' => 'Berkas harus diisi.',
+        'nomor_rekomendasi.required' => 'Nomor rekomendasi harus diisi.'
+    ];
+
     public function setuju()
     {
         $this->validate([

@@ -39,8 +39,14 @@
                                             <input type="number" class="form-control text-black" name="otp" placeholder="Masukkan OTP yang dikirim Ke Whatshap Anda">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn bg-white text-primary btn-block mt-3">Kirim OTP</button>
+                                            <button id="loginButton" type="submit" class="btn bg-white text-primary btn-block mt-3">Kirim OTP</button>
                                         </div>
+                                        <div id="loader" class="text-center" style="display: none;">
+                                            <div class="spinner-border text-light" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -58,6 +64,18 @@
     <script src="/disk/vendor/deznav/deznav.min.js"></script>
     <script src="/disk/js/custom.min.js"></script>
     <script src="/disk/js/deznav-init.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var loginButton = document.getElementById('loginButton');
+            var loader = document.getElementById('loader');
+
+            loginButton.addEventListener('click', function() {
+                loginButton.style.display = 'none';
+                loader.style.display = 'block';
+            });
+        });
+    </script>
+
 </body>
 
 </html>

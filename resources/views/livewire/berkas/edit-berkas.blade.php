@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Berkas</h5>
                 <button type="button" class="close" wire:click.prevent="resetInput()" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,7 +22,11 @@
                     <div class="modal-footer">
                         <input type="hidden" name="id" wire:model="id">
                         <button type="button" class="btn btn-danger" wire:click.prevent="resetInput()" data-dismiss="modal">TUTUP</button>
-                        <button type="submit" class="btn btn-primary" wire:click.prevent="update" >SIMPAN</button>
+                        <button type="submit" class="btn btn-primary" wire:click.prevent="update"  wire:loading.attr="disabled">SIMPAN
+                            <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </button>
                     </div>
                 </form>
             </div>

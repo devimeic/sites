@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row row">
+                        <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Status User</label>
                             <div class="col-sm-9">
                                 <select class="form-control text-black default-select"  wire:model="status_users">
@@ -75,7 +75,12 @@
                     <div class="modal-footer">
 
                         <button type="button" class="btn btn-danger" wire:click.prevent="resetInput()" data-dismiss="modal">TUTUP</button>
-                        <button type="submit" class="btn btn-primary" wire:click.prevent="update" >SIMPAN</button>
+                        <button type="submit" class="btn btn-primary" wire:click.prevent="update" wire:loading.attr="disabled">
+                            SIMPAN
+                            <div  wire:loading.delay.longest wire:target="update" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div></button>
+
                     </div>
                 </form>
 

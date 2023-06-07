@@ -36,7 +36,7 @@
                                 <td> {{ $key->rapat->nama_pro }} </td>
                                 <td> {{ $key->agenda }} </td>
                                 <td>{{ $key->jadwal }}</td>
-                                <td>
+                                <td class="d-flex">
                                     <button class="btn btn-info shadow btn-xs sharp mr-1" wire:click="edit({{ $key->id }})" data-target="#modal-jadwal" data-toggle="modal"
                                     data-placement="top" title="Edit Rapat"><i
                                     class="fa fa-pencil color-muted"></i> </button>
@@ -69,13 +69,13 @@
     <script src="/disk/id.js"></script>
     <script>
         moment.locale('id');
-new Pikaday({
-    field: document.getElementById('selectedDate'),
-    format: 'dddd d MMMM YYYY',
-    // format: 'Y-m-d',
-    showTime       : true,
-    position       : 'top right'
-})
+        new Pikaday({
+        field: document.getElementById('selectedDate'),
+        format: 'dddd d MMMM YYYY',
+        // format: 'Y-m-d',
+        showTime       : true,
+        position       : 'top right'
+    })
     </script>
     @endpush
 </div>

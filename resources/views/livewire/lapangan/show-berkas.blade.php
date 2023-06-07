@@ -110,14 +110,14 @@
     <script src="/disk/pikaday.js"></script>
     <script src="/disk/id.js"></script>
     <script>
-        // moment.locale('id');
-new Pikaday({
-    field: document.getElementById('selectedDate'),
-    format: 'dddd D MMM YYYY',
-    // format: 'D MMM YYYY',
-    showTime       : true,
-    position       : 'top right'
-})
+        moment.locale('id');
+        new Pikaday({
+        field: document.getElementById('selectedDate'),
+        format: 'dddd D MMMM YYYY',
+        // format: 'D MMM YYYY',
+        showTime       : true,
+        position       : 'top right'
+    })
     </script>
 
 @endpush

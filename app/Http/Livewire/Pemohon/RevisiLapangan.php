@@ -37,6 +37,7 @@ class RevisiLapangan extends Component
     public $pengajuan ;
     public $catatan ;
     public $status_brks ;
+    public $nama_pro;
 
     public function mount($id)
     {
@@ -46,6 +47,7 @@ class RevisiLapangan extends Component
         $this->catatan[0]= null;
         $this->berkas_id[0]= null;
         $this->status_brks[0]= null;
+        $this->nama_pro = $this->pengajuan->nama_pro;
         foreach( $berks as $key){
 
         array_push($this->catatan,$key->catatan);
@@ -77,6 +79,12 @@ class RevisiLapangan extends Component
         {
 
         if ($this->nama_berkas) {
+
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+
+            if (!Storage::exists($directori)) {
+                Storage::makeDirectory($directori, 0777, true, true);
+            }
 
             foreach($this->nama_berkas as $key => $value ){
 
@@ -121,6 +129,8 @@ class RevisiLapangan extends Component
                     'jadwal' => Carbon::now()
                 ]);
             }
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+            Storage::deleteDirectory('public/temp/'.$directori);
         }
         $this->alert('success', 'Berkas dalam status Verifikasi Lapangan', [
             'position' => 'center',
@@ -131,4 +141,14 @@ class RevisiLapangan extends Component
         return redirect()->route('riwayat-pemohon');
 
         }
+
+
+    public $preview;
+
+    public function showPreview($id){
+
+        // dd($id);
+         $this->preview = $id;
+    }
+
 }

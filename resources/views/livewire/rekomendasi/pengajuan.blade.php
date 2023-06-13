@@ -10,7 +10,7 @@
                 <div class="input-group-append">
                     <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
                 </div>
-                <input type="text" wire:model="search" class="form-control" placeholder="Search here...">
+                <input type="text" wire:model="search" class="form-control" placeholder="Cari Disini...">
             </div>
             <div class="card-body">
 

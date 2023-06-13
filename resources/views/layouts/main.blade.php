@@ -133,7 +133,7 @@
         // Memanggil fungsi showLoader saat menu di-klik
         document.addEventListener("DOMContentLoaded", function() {
         // Mendapatkan semua elemen menu
-        var menuItems = document.querySelectorAll("a:not([data-toggle='dropdown']):not(#wizard)");
+        var menuItems = document.querySelectorAll("a:not([data-toggle='dropdown']):not(.wizard):not(.download)");
 
         // Menambahkan event listener untuk setiap elemen menu
         menuItems.forEach(function(item) {

@@ -56,6 +56,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/profil', Profil::class)->middleware('auth')->name('profil');
+Route::get('/download-{id}',[BerkasController::class,'downloadFiles'])->name('download-file');
 Route::get('/otp/{id}', [RegisterController::class, 'indexotp'])->name('otp');
 Route::any('/otpkirim', [RegisterController::class, 'kirimotp'])->name('kirim-otp');
 Route::any('/print-berkas/{id}', [PrintController::class, 'index'])->name('print-berkas');

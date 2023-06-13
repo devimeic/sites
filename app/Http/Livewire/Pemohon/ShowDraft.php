@@ -396,6 +396,8 @@ class ShowDraft extends Component
                     'jadwal' => Carbon::now()
                 ]);
             }
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+            Storage::deleteDirectory('public/temp/'.$directori);
         }
 
         $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
@@ -412,31 +414,18 @@ class ShowDraft extends Component
 
         $validatedDate = $this->validate(
             [
-                // 'tipe.0' => 'required',
-                // 'juml_unit.0' => 'required',
-                // 'kategori.0' => 'required',
-                // 'pengajuan_id.0' => 'required',
+
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
                 'kategori.*' => 'required',
-                // 'jln_saluran' => 'required',
-                // 'taman' => 'required',
-                // 'rth' => 'required',
-                // 'ibadah' => 'required',
-                // 'olahraga' => 'required',
-                // 'kesehatan' => 'required',
-                // 'lain' => 'required',
-                // 'pengajuan_id.*' => 'required',
+
             ],
             [
-                // 'tipe.0.required' => 'tipe field is required',
-                // 'juml_unit.0.required' => 'juml_unit field is required',
-                // // 'kategori.0.required' => 'kategori field is required',
-                // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
+
                 'tipe.*.required' => 'tipe field is required',
                 'juml_unit.*.required' => 'juml_unit field is required',
                 'kategori.*.required' => 'kategori field is required',
-                // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
+
             ]
         );
 
@@ -537,12 +526,16 @@ class ShowDraft extends Component
 
 
         $this->step++;
-        // $this->alert('success', 'Data Berhasil Diupdate', [
-        //     'position' => 'top-right',
-        //     'timer' => 3000,
-        //     'toast' => true,
-        // ]);
 
+
+    }
+
+    public $preview;
+
+    public function showPreview($id){
+
+        // dd($id);
+         $this->preview = $id;
     }
 
 
@@ -571,8 +564,9 @@ class ShowDraft extends Component
                 $this->files = $file->lokasi_berkas;
 
             }else{
-    $this->files = null;
+            $this->files = null;
             }
 
         }
+
 }

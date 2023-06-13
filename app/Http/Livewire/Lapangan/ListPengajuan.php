@@ -22,7 +22,7 @@ class ListPengajuan extends Component
                           ->orWhere('tanggal', 'like', '%'.$this->search.'%')
                           ->orWhere('status_pengajuan', 'like', '%'.$this->search.'%');
                 })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('status_pengajuan', 'asc')
                 ->paginate(10),
           ])->extends('layouts.main',[
               'tittle' => 'Riwayat Pengajuan Lapangan',

@@ -16,7 +16,7 @@
 <body>
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Laporan Revisi Lapangan</h4>
+            <h4 class="card-title">Laporan Revisi Berkas</h4>
         </div>
         <div class="card-body mx-3">
             <div class="row text-black">

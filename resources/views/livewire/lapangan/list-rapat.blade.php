@@ -2,14 +2,14 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Riwayat Pengajuan</h4>
+                <h4 class="card-title">Rapat</h4>
             </div>
 
             <div class="input-group search-area m-3">
                 <div class="input-group-append">
                     <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
                 </div>
-                <input type="text" wire:model="search" class="form-control" placeholder="Search here...">
+                <input type="text" wire:model="search" class="form-control" placeholder="Cari Disini...">
             </div>
             <div class="card-body">
 

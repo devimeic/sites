@@ -23,16 +23,16 @@
                     <div class="card-body">
                         <div wire:ignore.self  class="form-wizard order-create">
                             <ul class="nav nav-wizard"  >
-                                <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
+                                <li><a class="wizard w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
                                     <span class="w-100 px-2">Developer</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                                <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                     <span class="w-100 px-2">Pengajuan</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                                <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                     <span class="w-100 px-2">Tipe Bangunan</span>
                                 </a></li>
-                                <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                                <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                                     <span class="w-100 px-2">Upload Berkas</span>
                                 </a></li>
                             </ul>
@@ -186,38 +186,44 @@
                                                     </div>
 
                                                     @foreach($inputs as $key => $value)
-                                                    <div class="add-input">
-                                                        <div class="row mt-3">
-                                                            <div class="col-xl-3">
-                                                                <div class="mb-4">
-                                                                    <div class="form-group">
-                                                                        <label class="text-black">Kategori</label>
-                                                                        <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}" @readonly(true)>
-                                                                            <option value="">Pilih Kategori</option>
-                                                                            <option value="Ruko">1 - Ruko</option>
-                                                                            <option value="Perumahan">2 - Perumahan</option>
-                                                                        </select>
+
+                                                    @if ($loop->first)
+                                                        {{-- This is the first iteration --}}
+                                                        @else
+
+                                                        <div class="add-input">
+                                                            <div class="row mt-3">
+                                                                <div class="col-xl-3">
+                                                                    <div class="mb-4">
+                                                                        <div class="form-group">
+                                                                            <label class="text-black">Kategori</label>
+                                                                            <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}" @readonly(true)>
+                                                                                <option value="">Pilih Kategori</option>
+                                                                                <option value="Ruko">1 - Ruko</option>
+                                                                                <option value="Perumahan">2 - Perumahan</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-xl-4">
-                                                                <div class="mb-4">
-                                                                    <div class="form-group">
-                                                                        <label class="text-black">Type Bangunan</label>
-                                                                        <input type="text" wire:model="tipe.{{ $value }}" class="form-control text-black" placeholder="Masukkan Type Bangunan" readonly>
+                                                                <div class="col-xl-4">
+                                                                    <div class="mb-4">
+                                                                        <div class="form-group">
+                                                                            <label class="text-black">Type Bangunan</label>
+                                                                            <input type="text" wire:model="tipe.{{ $value }}" class="form-control text-black" placeholder="Masukkan Type Bangunan" readonly>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-xl-4">
-                                                                <div class="mb-4">
-                                                                    <div class="form-group">
-                                                                        <label class="text-black">Jumlah unit</label>
-                                                                        <input type="number" wire:model="juml_unit.{{ $value }}" class="form-control text-black" placeholder="Masukkan Jumlah Unit" readonly>
+                                                                <div class="col-xl-4">
+                                                                    <div class="mb-4">
+                                                                        <div class="form-group">
+                                                                            <label class="text-black">Jumlah unit</label>
+                                                                            <input type="number" wire:model="juml_unit.{{ $value }}" class="form-control text-black" placeholder="Masukkan Jumlah Unit" readonly>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 @endforeach
 
 
@@ -356,9 +362,12 @@
                                                                 <td class="input-group mt-5">
                                                                     @forelse ($value->upload as $item)
                                                                         @if ($item->status_berkas == 'tolak')
+                                                                        {{-- {{ $item->status_berkas }} --}}
                                                                             <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
                                                                             <label class="custom-file-label">Pilih file</label>
                                                                         @else
+                                                                        {{-- {{ $item->status_berkas }} --}}
+
                                                                         @endif
                                                                     @empty
                                                                     <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
@@ -368,6 +377,19 @@
 
                                                                 @if (isset($nama_berkas[$value->id]))
                                                                 @if ($nama_berkas[$value->id])
+                                                                @php
+                                                                $previewUrl =[];
+                                                                $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+                                                                $tempPath = $nama_berkas[$value->id]->store('public/temp/'.$directori);
+                                                                $previewUrl[$value->id] = url('storage/'.$tempPath);
+                                                                // dd($previewUrl);
+                                                                @endphp
+                                                                <td>
+                                                                    <button wire:click.prevent="showPreview('{{ $previewUrl[$value->id] }}')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#previewModal" >
+                                                                        Preview
+                                                                    </button>
+
+                                                                </td>
                                                                 <td>{{ $nama_berkas[$value->id]->getClientOriginalName() }}</td>
                                                                 <td>
                                                                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
@@ -404,7 +426,12 @@
                                         <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                                         @endif
                                         @if ($step == 3)
-                                        <button type="submit"  class="btn btn-primary sw-btn-next" >Simpan</button>
+                                        <button type="submit"  class="btn btn-primary sw-btn-next" wire:loading.attr="disabled">
+                                            Simpan
+                                        <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                        </button>
 
                                         @endif
                                     </div>
@@ -439,6 +466,8 @@
                 });
             </script>
         @endpush
+
+        @include('modal-preview')
 
 
 </div>

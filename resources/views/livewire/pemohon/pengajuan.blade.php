@@ -377,6 +377,19 @@
 
                                                     @if (isset($nama_berkas[$value->id]))
                                                     @if ($nama_berkas[$value->id])
+                                                    @php
+                                                        $previewUrl =[];
+                                                        $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+                                                        $tempPath = $nama_berkas[$value->id]->store('public/temp/'.$directori);
+                                                        $previewUrl[$value->id] = url('storage/'.$tempPath);
+                                                        // dd($previewUrl);
+                                                    @endphp
+                                                    <td>
+                                                        <button wire:click.prevent="showPreview('{{ $previewUrl[$value->id] }}')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#previewModal" >
+                                                            Preview
+                                                        </button>
+
+                                                    </td>
                                                     <td>{{ $nama_berkas[$value->id]->getClientOriginalName() }}</td>
                                                     <td>
                                                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
@@ -458,5 +471,6 @@ Content body end
         });
     </script>
 @endpush
+@include('modal-preview')
 
 </div>

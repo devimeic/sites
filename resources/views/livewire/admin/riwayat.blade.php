@@ -10,7 +10,7 @@
                 <div class="input-group-append">
                     <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
                 </div>
-                <input type="text" wire:model="search" class="form-control" placeholder="Search here...">
+                <input type="text" wire:model="search" class="form-control" placeholder="Cari Disini...">
             </div>
             <div class="card-body">
 
@@ -72,6 +72,10 @@
                                         <a href="{{ route('print-lapangan', $key->id) }}" class="btn btn-success shadow btn-xs sharp mr-1" data-toggle="tooltip"
                                             data-placement="top" title="cetak revisi lapangan"><i
                                               class="fa fa-print color-muted"></i> </a>
+                                        @elseif ($key->status_pengajuan == 'Rekomendasi')
+                                        <a href="{{ route('download-file',$key->id) }} " class="download btn btn-secondary shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                            data-placement="top" title="download"><i
+                                              class="fa fa-download color-muted"></i> </a>
                                         @endif
 
                                 </td>

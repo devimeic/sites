@@ -300,7 +300,8 @@ class AddPengajuan extends Component
                     'jadwal' => Carbon::now()
                 ]);
             }
-
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+            Storage::deleteDirectory('public/temp/'.$directori);
         }
 
         $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
@@ -324,35 +325,22 @@ class AddPengajuan extends Component
 
         $this->validate(
             [
-                // 'tipe.0' => 'required',
-                // 'juml_unit.0' => 'required',
-                // 'kategori.0' => 'required',
-                // 'pengajuan_id.0' => 'required',
+
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
                 'kategori.*' => 'required',
                 'keterangan_lain.*' => 'required',
                 'luas_lain.*' => 'required',
-                // 'jln_saluran' => 'required',
-                // 'taman' => 'required',
-                // 'rth' => 'required',
-                // 'ibadah' => 'required',
-                // 'olahraga' => 'required',
-                // 'kesehatan' => 'required',
-                // 'lain' => 'required',
-                // 'pengajuan_id.*' => 'required',
+
             ],
             [
-                // 'tipe.0.required' => 'tipe field is required',
-                // 'juml_unit.0.required' => 'juml_unit field is required',
-                // 'kategori.0.required' => 'kategori field is required',
-                // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
+
                 'tipe.*.required' => 'tipe tidak boleh kosong',
                 'juml_unit.*.required' => 'jumlah unit tidak boleh kosong',
                 'kategori.*.required' => 'kategori tidak boleh kosong',
                 'keterangan_lain.*.required' => 'tidak boleh kosong',
                 'luas_lain.*.required' => 'tidak boleh kosong',
-                // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
+
             ]
         );
         $dell = Tipe::query()->where('pengajuan_id', $this->pengajuan_id)->get();
@@ -472,12 +460,16 @@ class AddPengajuan extends Component
 
 
         $this->step++;
-        // $this->alert('success', 'Data Berhasil Diupdate', [
-        //     'position' => 'top-right',
-        //     'timer' => 3000,
-        //     'toast' => true,
-        // ]);
 
+
+    }
+
+    public $preview;
+
+    public function showPreview($id){
+
+        // dd($id);
+         $this->preview = $id;
     }
 
  }

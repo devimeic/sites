@@ -443,7 +443,7 @@ class fileSeeder extends Seeder
             'berkas_id' => Berkas::where('nama_berkas','Fotokopi bukti kepemilikan lahan (Sertifikat Tanah, Akta jual beli dan pelepasan hak), dilengkapi dengan fotokopi peta bidang tanah atau gambar hasil ukur ulang dari kantor pertanahan*')->pluck('id')->first(),
             'lokasi_berkas' => 'public/berkas/pengajuan/kepemilikan-lahan.pdf',
             'status_berkas' => 'setuju',
-            'status_lapangan' => 'setuju',
+            'status_lapangan' => 'tolak',
             'catatan' => 'a',
              ]);
 
@@ -452,7 +452,7 @@ class fileSeeder extends Seeder
             'berkas_id' => Berkas::where('nama_berkas','Fotokopi : Akta Pendirian PT (berbadan Hukum) bergerak di bidang perumahan SK Menteri Hukum dan HAM beserta angggota asosiasi perumahan')->pluck('id')->first(),
             'lokasi_berkas' => 'public/berkas/pengajuan/akta-pt.pdf',
             'status_berkas' => 'setuju',
-            'status_lapangan' => 'setuju',
+            'status_lapangan' => 'tolak',
             'catatan' => 'a',
              ]);
 

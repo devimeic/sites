@@ -34,7 +34,7 @@ class ShowBerkas extends Component
             'setDate' => function($date) { $this->setDate($date); },
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Riwayat',
+            'tittle' => 'Verifikasi Lapangan',
         ])->section('isi');
     }
     public $selectedDate ;

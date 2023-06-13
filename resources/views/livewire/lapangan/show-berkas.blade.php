@@ -1,16 +1,6 @@
 <div>
     @push('css')
-        <!-- Daterange picker -->
-        {{-- <link href="/disk/vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-        <!-- Clockpicker -->
-        <link href="/disk/vendor/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
-        <!-- asColorpicker -->
-        <link href="/disk/vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet"> --}}
-        <!-- Material color picker -->
-        {{-- <link href="/disk/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet"> --}}
-        <!-- Pick date -->
-        {{-- <link rel="stylesheet" href="/disk/vendor/pickadate/themes/default.css">
-        <link rel="stylesheet" href="/disk/vendor/pickadate/themes/default.date.css"> --}}
+       
         <link rel="stylesheet" type="text/css" href="/disk/pikaday.css">
     @endpush
     <div class="card">

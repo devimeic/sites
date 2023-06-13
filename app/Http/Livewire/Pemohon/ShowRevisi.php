@@ -89,17 +89,22 @@ class ShowRevisi extends Component
         $this->catatan[0]= null;
 
         $tipes =  Tipe::where('pengajuan_id',$this->pengajuan->id)->get();
-        $j = 1;
+        $j = 0;
         foreach ($tipes as $key ) {
 
-            // [$key]  = $key->tipe;
+
             array_push($this->kategori ,$key->kategori);
             array_push($this->juml_unit ,$key->juml_unit);
             array_push($this->tipe ,$key->tipe);
-            array_push($this->inputs ,$j++);
+            if ($tipes->count() > 1) {
+                array_push($this->inputs ,$j++);
+                // $this->inputs[$j++] =$j++;
 
-            // $this->kategori[$j++]  = $key->kategori ;
-            // $this->juml_unit[$j++]  = $key->juml_unit;
+            }else{
+            $this->inputs=[];
+            }
+
+
         }
         $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
         $this->catatan[0]= null;
@@ -204,19 +209,7 @@ class ShowRevisi extends Component
                     'no_anggota' => $this->no_anggota,
 
                 ]);
-                // $this->alert('success', 'Berhasil', [
-                //     'position' => 'center',
-                //     'timer' => 3000,
-                //     'toast' => false,
-                //     'text' => 'Mengubah Pengajuan',
-                //     'timerProgressBar' => true,
-                // ]);
 
-            // $this->alert('success', 'Berhasil', [
-            //     'position' => 'top-right',
-            //     'timer' => 3000,
-            //     'toast' => true,
-            // ]);
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -242,11 +235,7 @@ class ShowRevisi extends Component
                 'total' => $this->total,
 
             ]);
-            // $this->alert('success', 'Data Berhasil Diupdate', [
-            //     'position' => 'top-right',
-            //     'timer' => 3000,
-            //     'toast' => true,
-            // ]);
+
             $this->pengajuan_id = $this->pengajuan->id;
             $this->step++;
         }
@@ -317,9 +306,15 @@ class ShowRevisi extends Component
                     'jadwal' => Carbon::now()
                 ]);
             }
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+            Storage::deleteDirectory('public/temp/'.$directori);
             }
 
-
+            $this->alert('success', 'Berkas diajukkan untuk diverifikasi', [
+                'position' => 'center',
+                'timer' => 3000,
+                'toast' => true,
+            ]);
             return redirect()->route('riwayat-pemohon');
 
         // $this->step++;
@@ -329,89 +324,9 @@ class ShowRevisi extends Component
     {
         $this->pengajuan_id = $this->pengajuan->id;
 
-        // $validatedDate = $this->validate(
-        //     [
-        //         // 'tipe.0' => 'required',
-        //         // 'juml_unit.0' => 'required',
-        //         // 'kategori.0' => 'required',
-        //         // 'pengajuan_id.0' => 'required',
-        //         'tipe.*' => 'required',
-        //         'juml_unit.*' => 'required',
-        //         'kategori.*' => 'required',
-        //         'jln_saluran' => 'required',
-        //         'taman' => 'required',
-        //         'rth' => 'required',
-        //         'ibadah' => 'required',
-        //         'olahraga' => 'required',
-        //         'kesehatan' => 'required',
-        //         'lain' => 'required',
-        //         // 'pengajuan_id.*' => 'required',
-        //     ],
-        //     [
-        //         // 'tipe.0.required' => 'tipe field is required',
-        //         // 'juml_unit.0.required' => 'juml_unit field is required',
-        //         // // 'kategori.0.required' => 'kategori field is required',
-        //         // 'pengajuan_id.0.required' => 'pengajuan_id field is required',
-        //         'tipe.*.required' => 'tipe field is required',
-        //         'juml_unit.*.required' => 'juml_unit field is required',
-        //         'kategori.*.required' => 'kategori field is required',
-        //         // 'pengajuan_id.*.required' => 'pengajuan_id field is required',
-        //     ]
-        // );
-
-
-        // if ($this->tipe) {
-        //     Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
-
-        //     Psu::updateOrCreate([
-        //         'pengajuan_id' => $this->pengajuan_id,
-        //         'jln_saluran' => $this->jln_saluran,
-        //         'taman' => $this->taman,
-        //         'rth' => $this->rth,
-        //         'ibadah' => $this->ibadah,
-        //         'olahraga' => $this->olahraga,
-        //         'kesehatan' => $this->kesehatan,
-        //         'lain' => $this->lain,
-        //      ]);
-        //     foreach ($this->tipe as $key => $value) {
-        //         $this->bangun = Tipe::updateOrCreate([
-        //             'pengajuan_id' => $this->pengajuan_id,
-        //             'tipe' => $this->tipe[$key],
-        //             'juml_unit' => $this->juml_unit[$key],
-        //             'kategori' => $this->kategori[$key],
-        //         ]);
-        //     }
-
-
-        // } else {
-        //     foreach ($this->tipe as $key => $value) {
-        //         $this->bangun = Tipe::updateOrCreate([
-        //             'pengajuan_id' => $this->pengajuan_id,
-        //             'tipe' => $this->tipe[$key],
-        //             'juml_unit' => $this->juml_unit[$key],
-        //             'kategori' => $this->kategori[$key],
-        //         ]);
-        //     }
-        // Psu::updateOrCreate([
-        //     'pengajuan_id' => $this->pengajuan_id,
-        //     'jln_saluran' => $this->jln_saluran,
-        //     'taman' => $this->taman,
-        //     'rth' => $this->rth,
-        //     'ibadah' => $this->ibadah,
-        //     'olahraga' => $this->olahraga,
-        //     'kesehatan' => $this->kesehatan,
-        //     'lain' => $this->lain,
-        // ]);
-
-        // }
-
 
         $this->step++;
-        // $this->alert('success', 'Data Berhasil Diupdate', [
-        //     'position' => 'top-right',
-        //     'timer' => 3000,
-        //     'toast' => true,
-        // ]);
+
 
     }
 
@@ -445,5 +360,13 @@ class ShowRevisi extends Component
             }
 
         }
+
+    public $preview;
+
+    public function showPreview($id){
+
+        // dd($id);
+            $this->preview = $id;
+    }
 
 }

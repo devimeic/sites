@@ -9,20 +9,21 @@
             </div>
             <div class="card">
 
-            <div class="card-body" >
+                <div class="card-body" >
+                   @if ($preview)
+                        @if (substr($preview, -3) == 'dwg')
+                            <h1>Format Berkas Tidak Dapat Ditampilkan</h1>
+                        @else
+                                <iframe src="{{  asset(str_replace('public/','', $preview)) }}" type="application/pdf" width="100%" height="500"></iframe>
+                        @endif
+                    @endif
 
-
-                    @if ($preview)
-                    <iframe src="{{  asset(str_replace('public/','', $preview)) }}" type="application/pdf" width="100%" height="500">
-            @endif
-
-            {{-- <div class="modal-footer" wire:ignore>
-                <button  wire:ignore.self type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div> --}}
-        </div>
-
+                {{-- <div class="modal-footer" wire:ignore>
+                    <button  wire:ignore.self type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div> --}}
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 

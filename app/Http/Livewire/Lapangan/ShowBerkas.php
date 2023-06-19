@@ -51,7 +51,7 @@ class ShowBerkas extends Component
         foreach( $berks as $key){
 
         // array_push($this->catatan,$key->catatan);
-        array_push($this->status_brks,$key->status_berkas);
+        array_push($this->status_brks,$key->status_lapangan);
         array_push($this->berkas_id,$key->id);
         };
     }
@@ -84,7 +84,7 @@ class ShowBerkas extends Component
             $this->catatansimpan($id);
             if ($smp) {
                 $smp->update([
-                    'status_berkas'=> $sta,
+                    'status_lapangan'=> $sta,
                     // 'catatan' => $this->catatan[$id]
             ]);
                 // $this->alert('success', 'Berhasil', [

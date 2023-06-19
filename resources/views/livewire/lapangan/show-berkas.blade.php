@@ -1,6 +1,6 @@
 <div>
     @push('css')
-       
+
         <link rel="stylesheet" type="text/css" href="/disk/pikaday.css">
     @endpush
     <div class="card">

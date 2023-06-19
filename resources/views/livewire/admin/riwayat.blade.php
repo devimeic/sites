@@ -74,7 +74,7 @@
                                               class="fa fa-print color-muted"></i> </a>
                                         @elseif ($key->status_pengajuan == 'Rekomendasi')
                                         <a href="{{ route('download-file',$key->id) }} " class="download btn btn-secondary shadow btn-xs sharp mr-1" data-toggle="tooltip"
-                                            data-placement="top" title="download"><i
+                                            data-placement="top" title="download berkas"><i
                                               class="fa fa-download color-muted"></i> </a>
                                         @endif
 

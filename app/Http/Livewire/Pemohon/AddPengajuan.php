@@ -128,15 +128,15 @@ class AddPengajuan extends Component
         $this->$action();
     }
 
-    protected $rules=
-    [
-        'dev' => 'required',
-        'nama_dev' => 'required',
-        'alamat_dev' => 'required',
-        'asosiasi' => 'required',
-        'no_anggota' => 'required',
-        'tel_pemohon1' => 'required|min:11|max:15',
-];
+//     protected $rules=
+//     [
+//         'dev' => 'required',
+//         'nama_dev' => 'required',
+//         'alamat_dev' => 'required',
+//         'asosiasi' => 'required',
+//         'no_anggota' => 'required',
+//         'tel_pemohon1' => 'required|min:11|max:15',
+// ];
 
     protected $messages = [
         'dev.required' => 'nama developer tidak boleh kosong',
@@ -147,7 +147,8 @@ class AddPengajuan extends Component
         'tel_pemohon1.min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon2.min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon1.max'=> 'nomor hp terlalu panjang',
-        'tel_pemohon2.max'=> 'nomor hp terlalu panjang'
+        'tel_pemohon2.max'=> 'nomor hp terlalu panjang',
+        'nama_berkas.*.max'=> 'File terlalu besar'
     ];
 
     public function submit2()
@@ -253,7 +254,17 @@ class AddPengajuan extends Component
     public $nama_berkas = [];
     public $berkas_id = [];
 
+    protected $rules = [
+        // 'name' => 'required|min:6',
+        'nama_berkas.*' => 'file|max:52288',
+    ];
 
+    // protected $messages = [];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
 
     public function submit5()
@@ -269,6 +280,10 @@ class AddPengajuan extends Component
 
 
             foreach($this->nama_berkas as $key => $value ){
+
+                $this->validate([
+                    'nama_berkas.' . $key => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+                ]);
 
                 $imagePath = $value->store('public/berkas/'.$directori);
                 Upload::create([

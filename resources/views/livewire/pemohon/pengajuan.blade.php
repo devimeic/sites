@@ -341,7 +341,7 @@
                             <div class="card-body">
                                 <div class="basic-form">
                                     <div class="table-responsive">
-                                        <table class="table table-responsive-sm">
+                                        <table class="table table-responsive-sm text-black">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -365,8 +365,9 @@
                                                     <td class="text-black">{!! nl2br(e($value->nama_berkas))!!}</td>
 
                                                     <td class="input-group mt-4">
-                                                        <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                        <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                                         <label class="custom-file-label">Pilih file</label>
+                                                        @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                     </td>
                                                     <td>
                                                         <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div>
@@ -391,9 +392,6 @@
 
                                                     </td>
                                                     <td>{{ $nama_berkas[$value->id]->getClientOriginalName() }}</td>
-                                                    <td>
-                                                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                                                    </td>
 
 
                                                     @endif

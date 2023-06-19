@@ -32,7 +32,7 @@ class UserManagement extends Component
     public function render()
     {
         return view('livewire.admin.user-management',[
-          'data'  => User::search('name', $this->search)->whereLike('role',$this->search)->whereLike('status_users',$this->search)
+          'data'  => User::search('name', $this->search)->whereLike('role',$this->search)->whereLike('username',$this->search)->whereLike('status_users',$this->search)
           ->orderBy('created_at', 'desc')->paginate(10),
         ])->extends('layouts.main',[
             'tittle' => 'User Management',

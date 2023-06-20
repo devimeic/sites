@@ -192,16 +192,16 @@ class ShowDraft extends Component
 
         $this->$action();
     }
-    protected $rules=
-    [
-        'dev' => 'required',
-        'nama_dev' => 'required',
-        'alamat_dev' => 'required',
-        'asosiasi' => 'required',
-        'no_anggota' => 'required',
-        'tel_pemohon1' => 'required|min:11|max:15',
-        'tel_pemohon2' => 'min:11|max:15',
-];
+//     protected $rules=
+//     [
+//         'dev' => 'required',
+//         'nama_dev' => 'required',
+//         'alamat_dev' => 'required',
+//         'asosiasi' => 'required',
+//         'no_anggota' => 'required',
+//         'tel_pemohon1' => 'required|min:11|max:15',
+//         'tel_pemohon2' => 'min:11|max:15',
+// ];
 
     protected $messages = [
         'dev.required' => 'nama developer tidak boleh kosong',
@@ -209,10 +209,21 @@ class ShowDraft extends Component
         'alamat_dev.required' => 'alamat developer tidak boleh kosong',
         'asosiasi.required' => 'asosiasi tidak boleh kosong',
         'no_anggota.required' => 'nomor anggota developer tidak boleh kosong',
-        'tel_pemohon1 min'=> 'nomor hp kurang dari 11 karakter',
-        'tel_pemohon2 min'=> 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon1.min'=> 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon2.min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon1.max'=> 'nomor hp terlalu panjang',
-        'tel_pemohon2.max'=> 'nomor hp terlalu panjang'
+        'tel_pemohon2.max'=> 'nomor hp terlalu panjang',
+        'nama_berkas.*.max'=> 'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.',
+        'nama_pro.required' => 'nama proyek tidak boleh kosong',
+        'alamat_pro.required' => 'alamat proyek tidak boleh kosong',
+        'pemohon1.required' => 'nama pemohon tidak boleh kosong',
+        'tel_pemohon1.required' => 'nomor hp tidak boleh kosong',
+        'tel_pemohon1.min' => 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon1.max' => 'nomor hp terlalu panjang',
+        'tel_pemohon1.required' => 'nomor hp tidak boleh kosong',
+        'tel_pemohon2.min' => 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon2.max' => 'nomor hp terlalu panjang',
+        'total.required' => 'total tidak boleh kosong'
     ];
 
     public function submit2()
@@ -261,8 +272,8 @@ class ShowDraft extends Component
                 'nama_pro' => 'required',
                 'alamat_pro' => 'required',
                 'pemohon1' => 'required',
-                'tel_pemohon1' => 'required|min:12',
-                'tel_pemohon2' => 'min:12',
+                'tel_pemohon1' => 'required|min:11|max:15',
+                'tel_pemohon2' => 'min:11|max:15',
                 'total' => 'required',
 
             ]);
@@ -296,6 +307,15 @@ class ShowDraft extends Component
         public $bangun;
         public $berkas_id = [];
         public $nama_berkas = [];
+        protected $rules = [
+            // 'name' => 'required|min:6',
+            'nama_berkas.*' => 'file|max:3000',
+        ];
+
+            public function updated($propertyName)
+        {
+            $this->validateOnly($propertyName);
+        }
 
     //     public function submit5()
     // {
@@ -341,6 +361,9 @@ class ShowDraft extends Component
     // }
     public function submit5()
     {
+        $this->validate([
+            'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+        ]);
 
         if ($this->nama_berkas) {
 
@@ -417,15 +440,12 @@ class ShowDraft extends Component
 
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
-                'kategori.*' => 'required',
-
+                'kategori.*' => 'required'
             ],
             [
-
-                'tipe.*.required' => 'tipe field is required',
-                'juml_unit.*.required' => 'juml_unit field is required',
-                'kategori.*.required' => 'kategori field is required',
-
+                'tipe.*.required' => 'Bidang tipe harus diisi.',
+                'juml_unit.*.required' => 'Bidang jumlah unit harus diisi.',
+                'kategori.*.required' => 'Bidang kategori harus diisi.',
             ]
         );
 

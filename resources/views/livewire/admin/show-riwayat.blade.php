@@ -36,7 +36,7 @@
                             </a></li>
                         @endif
 
-                           
+
                         </ul>
                         <div class="">
                             @if ($step == 0)
@@ -151,7 +151,7 @@
                                                     <div class="col-xl-4">
                                                         <div class="mb-4">
                                                             <div class="form-group">
-                                                                <label class="text-black">Type Bangunan</label>
+                                                                <label class="text-black">Tipe Bangunan</label>
                                                                 <input type="text" id="tipe" name="tipe" class="form-control text-black"  value="{{ $key->tipe }}" readonly>
                                                             </div>
                                                         </div>
@@ -171,6 +171,7 @@
 
 
                                         <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
+                                        @if(isset($jln_saluran[0]))
                                         <div class="form-group row mt-3">
                                             <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                             <div class="col-sm-5">
@@ -180,6 +181,9 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+
+                                        @if(isset($taman[0]))
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Taman</label>
                                             <div class="col-sm-5">
@@ -189,6 +193,9 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+
+                                        @if(isset($rth[0]))
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">RTH</label>
                                             <div class="col-sm-5">
@@ -198,6 +205,9 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+
+                                        @if(isset($ibadah[0]))
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                             <div class="col-sm-5">
@@ -207,6 +217,9 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+
+                                        @if(isset($olahraga[0]))
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                             <div class="col-sm-5">
@@ -216,6 +229,9 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+
+                                        @if(isset($kesehatan[0]))
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                             <div class="col-sm-5">
@@ -225,6 +241,8 @@
                                                 <label class="text-black">/m<sup>2</sup></label>
                                             </div>
                                         </div>
+                                        @endif
+                                        
                                         @foreach($lain as $key )
                                         <div class="add-input2">
                                             <div class="form-group row">

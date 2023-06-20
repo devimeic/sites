@@ -163,6 +163,7 @@
                                                                         <option value="Ruko">1 - Ruko</option>
                                                                         <option value="Perumahan">2 - Perumahan</option>
                                                                     </select>
+                                                                    @error("kategori.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -171,6 +172,7 @@
                                                                 <div class="form-group">
                                                                     <label class="text-black">Type Bangunan</label>
                                                                     <input type="text" wire:model="tipe.0" class="form-control text-black" placeholder="Masukkan Type Bangunan">
+                                                                    @error("tipe.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -179,6 +181,7 @@
                                                                 <div class="form-group">
                                                                     <label class="text-black">Jumlah unit</label>
                                                                     <input type="number" wire:model="juml_unit.0" class="form-control text-black" placeholder="Masukkan Jumlah Unit">
+                                                                    @error("juml_unit.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -243,6 +246,7 @@
 
 
                                             <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
+
                                             <div class="form-group row mt-3">
                                                 <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                                 <div class="col-sm-5">
@@ -365,8 +369,9 @@
                                                             <td><strong>{{ $no++ }}</strong></td>
                                                             <td>{!! nl2br(e($value->nama_berkas))!!}</td>
                                                             <td class="input-group mt-4">
-                                                                <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                                <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                                                 <label class="custom-file-label">Pilih file</label>
+                                                                @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                             </td>
                                                             <td>
                                                                 <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div>

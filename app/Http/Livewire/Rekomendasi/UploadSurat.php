@@ -46,18 +46,24 @@ class UploadSurat extends Component
     public $pengajuan_id;
 
     protected $rules = [
-        'files' => 'required',
+        'files' => 'required|file|max:3000',
         'nomor_rekomendasi' => 'required'
     ];
     protected $messages = [
         'files.required' => 'Berkas harus diisi.',
-        'nomor_rekomendasi.required' => 'Nomor rekomendasi harus diisi.'
+        'nomor_rekomendasi.required' => 'Nomor rekomendasi harus diisi.',
+        'files.max'=> 'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.'
     ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function setuju()
     {
         $this->validate([
-        'files'=> 'required',
+        'files'=> 'required|file|max:3000',
         'nomor_rekomendasi'=> 'required'
         ]);
         // if ($this->files) {

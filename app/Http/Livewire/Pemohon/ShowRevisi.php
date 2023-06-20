@@ -163,16 +163,16 @@ class ShowRevisi extends Component
 
         $this->$action();
     }
-    protected $rules=
-    [
-        'dev' => 'required',
-        'nama_dev' => 'required',
-        'alamat_dev' => 'required',
-        'asosiasi' => 'required',
-        'no_anggota' => 'required',
-        'tel_pemohon1' => 'required|min:11|max:15',
-        'tel_pemohon2' => 'min:11|max:15',
-];
+//     protected $rules=
+//     [
+//         'dev' => 'required',
+//         'nama_dev' => 'required',
+//         'alamat_dev' => 'required',
+//         'asosiasi' => 'required',
+//         'no_anggota' => 'required',
+//         'tel_pemohon1' => 'required|min:11|max:15',
+//         'tel_pemohon2' => 'min:11|max:15',
+// ];
 
     protected $messages = [
         'dev.required' => 'nama developer tidak boleh kosong',
@@ -183,7 +183,8 @@ class ShowRevisi extends Component
         'tel_pemohon1 min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon2 min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon1.max'=> 'nomor hp terlalu panjang',
-        'tel_pemohon2.max'=> 'nomor hp terlalu panjang'
+        'tel_pemohon2.max'=> 'nomor hp terlalu panjang',
+        'nama_berkas.*.max'=> 'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.'
     ];
 
     public function submit2()
@@ -252,8 +253,24 @@ class ShowRevisi extends Component
         public $berkas_id = [];
         public $nama_berkas = [];
 
+        protected $rules = [
+            // 'name' => 'required|min:6',
+            'nama_berkas.*' => 'file|max:3000',
+        ];
+
+        // protected $messages = [];
+
+        public function updated($propertyName)
+        {
+            $this->validateOnly($propertyName);
+        }
+
         public function submit5()
         {
+
+            $this->validate([
+                'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+            ]);
 
             if ($this->nama_berkas) {
 

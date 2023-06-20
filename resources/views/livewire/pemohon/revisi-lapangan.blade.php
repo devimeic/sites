@@ -4,7 +4,7 @@
             <div class="basic-form">
             <form wire:submit.prevent="submit">
                 <div class="table-responsive">
-                    <table class="table table-responsive-sm">
+                    <table class="table table-responsive-sm text-black">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -63,15 +63,17 @@
                                         @if ($item->status_lapangan == 'tolak' && $item->pengajuan_id == $pengajuan->id)
                                         {{-- {{ $item->status_lapangan }} --}}
                                         {{-- {{ $this->nama_pro }} --}}
-                                            <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                            <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                             <label class="custom-file-label">Pilih file</label>
+                                            @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                         @else
                                         @endif
                                     @empty
-                                    <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                    <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                             <label class="custom-file-label">Pilih file</label>
                                     @endforelse
                                 </td>
+                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div></td>
                                 {{-- <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#previewModal" >
                                     Preview
                                 </button> --}}

@@ -158,7 +158,7 @@
                                                                 <div class="mb-4">
                                                                     <div class="form-group">
                                                                         <label class="text-black">Kategori</label>
-                                                                        <select class="form-control default-select text-black" wire:model="kategori.0" @readonly(true)>
+                                                                        <select class="form-control default-select text-black" wire:model="kategori.0" disabled>
                                                                             <option value="">Pilih Kategori</option>
                                                                             <option value="Ruko">1 - Ruko</option>
                                                                             <option value="Perumahan">2 - Perumahan</option>
@@ -197,7 +197,7 @@
                                                                     <div class="mb-4">
                                                                         <div class="form-group">
                                                                             <label class="text-black">Kategori</label>
-                                                                            <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}" @readonly(true)>
+                                                                            <select class="form-control default-select text-black" wire:model="kategori.{{ $value }}" disabled>
                                                                                 <option value="">Pilih Kategori</option>
                                                                                 <option value="Ruko">1 - Ruko</option>
                                                                                 <option value="Perumahan">2 - Perumahan</option>
@@ -229,6 +229,7 @@
 
 
                                                 <strong class="text-black">* Prasarana Sarana & Utilitas</strong>
+                                                @if(isset($jln_saluran[0]))
                                                 <div class="form-group row mt-3">
                                                     <label class="col-sm-3 col-form-label">Jalan & Saluran</label>
                                                     <div class="col-sm-5">
@@ -238,6 +239,9 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
+                                                @if(isset($taman[0]))
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Taman</label>
                                                     <div class="col-sm-5">
@@ -247,6 +251,9 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
+                                                @if(isset($rth[0]))
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">RTH</label>
                                                     <div class="col-sm-5">
@@ -256,6 +263,9 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
+                                                @if(isset($ibadah[0]))
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Peribadatan</label>
                                                     <div class="col-sm-5">
@@ -265,6 +275,9 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
+                                                @if(isset($olahraga[0]))
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Olahraga</label>
                                                     <div class="col-sm-5">
@@ -274,6 +287,9 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
+                                                @if(isset($kesehatan[0]))
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Sarana Kesehatan</label>
                                                     <div class="col-sm-5">
@@ -283,6 +299,8 @@
                                                         <label class="text-black">/m<sup>2</sup></label>
                                                     </div>
                                                 </div>
+                                                @endif
+
                                                 @foreach($lain as $key )
                                                 <div class="add-input2">
                                                     <div class="form-group row">
@@ -307,7 +325,7 @@
                                         <div class="card-body">
                                             <div class="basic-form">
                                                 <div class="table-responsive">
-                                                    <table class="table table-responsive-sm">
+                                                    <table class="table table-responsive-sm text-black">
                                                         <thead>
                                                             <tr>
                                                                 <th>No</th>
@@ -365,17 +383,19 @@
                                                                     @forelse ($value->upload as $item)
                                                                         @if ($item->status_berkas == 'tolak')
                                                                         {{-- {{ $item->status_berkas }} --}}
-                                                                            <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                                            <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                                                             <label class="custom-file-label">Pilih file</label>
+                                                                            @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                                         @else
                                                                         {{-- {{ $item->status_berkas }} --}}
 
                                                                         @endif
                                                                     @empty
-                                                                    <input wire:model="nama_berkas.{{ $value->id }}" type="file" class="custom-file-input">
+                                                                    <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                                                             <label class="custom-file-label">Pilih file</label>
                                                                     @endforelse
                                                                 </td>
+                                                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div></td>
 
                                                                 @if (isset($nama_berkas[$value->id]))
                                                                 @if ($nama_berkas[$value->id])

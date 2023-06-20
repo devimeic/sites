@@ -161,14 +161,16 @@
                                                                 <option value="Ruko">1 - Ruko</option>
                                                                 <option value="Perumahan">2 - Perumahan</option>
                                                             </select>
+                                                            @error("kategori.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-4">
                                                     <div class="mb-4">
                                                         <div class="form-group">
-                                                            <label class="text-black">Type Bangunan</label>
+                                                            <label class="text-black">Tipe Bangunan</label>
                                                             <input type="text" wire:model="tipe.0" class="form-control text-black" placeholder="Masukkan Type Bangunan">
+                                                            @error("tipe.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,6 +179,7 @@
                                                         <div class="form-group">
                                                             <label class="text-black">Jumlah unit</label>
                                                             <input type="number" wire:model="juml_unit.0" class="form-control text-black" placeholder="Masukkan Jumlah Unit">
+                                                            @error("juml_unit.0") <span class="text-danger">{{ $message }}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -210,7 +213,7 @@
                                                 <div class="col-xl-4">
                                                     <div class="mb-4">
                                                         <div class="form-group">
-                                                            <label class="text-black">Type Bangunan</label>
+                                                            <label class="text-black">Tipe Bangunan</label>
                                                             <input type="text" wire:model="tipe.{{ $value }}" class="form-control text-black" placeholder="Masukkan Type Bangunan">
                                                         </div>
                                                     </div>

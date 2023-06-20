@@ -105,31 +105,48 @@
             </div>
             @endforeach
             <strong>* Prasarana Sarana & Utilitas</strong>
+            @if(isset($jln_saluran->luas))
+            <div class="row text-black">
+                <div class="col-3"><p>Jalan & Saluran</p></div>
+                <div class="col-1"><p>:</p></div>
+                <div class="col-7"><p>{{ $jln_saluran->luas }}</p></div>
+            </div>
+            @endif
+            @if(isset($taman->luas))
             <div class="row text-black">
                 <div class="col-3"><p>Taman</p></div>
                 <div class="col-1"><p>:</p></div>
                 <div class="col-7"><p>{{ $taman->luas }}</p></div>
             </div>
+            @endif
+            @if(isset($rth->luas))
             <div class="row text-black">
                 <div class="col-3"><p>RTH</p></div>
                 <div class="col-1"><p>:</p></div>
                 <div class="col-7"><p>{{ $rth->luas }}</p></div>
             </div>
+            @endif
+            @if(isset($ibadah->luas))
             <div class="row text-black">
                 <div class="col-3"><p>Sarana Peribadatan</p></div>
                 <div class="col-1"><p>:</p></div>
                 <div class="col-7"><p>{{ $ibadah->luas }}</p></div>
             </div>
+            @endif
+            @if(isset($olahraga->luas))
             <div class="row text-black">
                 <div class="col-3"><p>Sarana Olahraga</p></div>
                 <div class="col-1"><p>:</p></div>
                 <div class="col-7"><p>{{ $olahraga->luas }}</p></div>
             </div>
+            @endif
+            @if(isset($kesehatan->luas))
             <div class="row text-black">
                 <div class="col-3"><p>Sarana Kesehatan</p></div>
                 <div class="col-1"><p>:</p></div>
                 <div class="col-7"><p>{{ $kesehatan->luas }}</p></div>
             </div>
+            @endif
             @foreach ($lain as $item)
 
             <div class="row text-black">

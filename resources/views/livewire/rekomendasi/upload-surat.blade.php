@@ -39,8 +39,9 @@
                         <input type="file" class="custom-file-input"  wire:model="files">
                         <label class="custom-file-label">Pilih file</label>
                     </div>
+                    <div class="m-2 text-black" wire:loading wire:target="files">Uploading...</div>
                     @if($files)
-                    <label class="m-2">{{ $files->getClientOriginalName() }}</label>
+                    <label class="m-2 text-black">{{ $files->getClientOriginalName() }}</label>
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="m-2 text-success"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
                     @endif
                     @error("files") <span class="text-danger m-2">{{ $message }}</span>@enderror

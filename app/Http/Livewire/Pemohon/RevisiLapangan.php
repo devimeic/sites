@@ -39,6 +39,10 @@ class RevisiLapangan extends Component
     public $status_brks ;
     public $nama_pro;
 
+    protected $messages = [
+        'nama_berkas.*.max'=> 'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.'
+    ];
+
     public function mount($id)
     {
 
@@ -75,9 +79,24 @@ class RevisiLapangan extends Component
         public $nama_berkas = [];
         // public $pengajuan_id;
 
+        protected $rules = [
+            // 'name' => 'required|min:6',
+            'nama_berkas.*' => 'file|max:3000',
+        ];
+
+        // protected $messages = [];
+
+        public function updated($propertyName)
+        {
+            $this->validateOnly($propertyName);
+        }
+
         public function submit()
         {
-
+            $this->validate([
+                'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+            ]);
+            
         if ($this->nama_berkas) {
 
             $directori = strtolower(str_replace(' ', '_', $this->nama_pro));

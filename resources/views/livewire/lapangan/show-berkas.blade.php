@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="">
                 <div class="table-responsive">
-                    <table class="table table-responsive-sm">
+                    <table class="table table-responsive-sm text-black">
                         <thead>
                             <tr>
                                 <th>No</th>

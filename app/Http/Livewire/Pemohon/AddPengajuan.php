@@ -148,7 +148,17 @@ class AddPengajuan extends Component
         'tel_pemohon2.min'=> 'nomor hp kurang dari 11 karakter',
         'tel_pemohon1.max'=> 'nomor hp terlalu panjang',
         'tel_pemohon2.max'=> 'nomor hp terlalu panjang',
-        'nama_berkas.*.max'=> 'File terlalu besar'
+        'nama_berkas.*.max'=> 'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.',
+        'nama_pro.required' => 'nama proyek tidak boleh kosong',
+        'alamat_pro.required' => 'alamat proyek tidak boleh kosong',
+        'pemohon1.required' => 'nama pemohon tidak boleh kosong',
+        'tel_pemohon1.required' => 'nomor hp tidak boleh kosong',
+        'tel_pemohon1.min' => 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon1.max' => 'nomor hp terlalu panjang',
+        'tel_pemohon1.required' => 'nomor hp tidak boleh kosong',
+        'tel_pemohon2.min' => 'nomor hp kurang dari 11 karakter',
+        'tel_pemohon2.max' => 'nomor hp terlalu panjang',
+        'total.required' => 'total tidak boleh kosong'
     ];
 
     public function submit2()
@@ -256,7 +266,7 @@ class AddPengajuan extends Component
 
     protected $rules = [
         // 'name' => 'required|min:6',
-        'nama_berkas.*' => 'file|max:52288',
+        'nama_berkas.*' => 'file|max:3000',
     ];
 
     // protected $messages = [];
@@ -269,6 +279,9 @@ class AddPengajuan extends Component
 
     public function submit5()
     {
+        $this->validate([
+            'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+        ]);
 
         if ($this->nama_berkas) {
 
@@ -281,9 +294,6 @@ class AddPengajuan extends Component
 
             foreach($this->nama_berkas as $key => $value ){
 
-                $this->validate([
-                    'nama_berkas.' . $key => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
-                ]);
 
                 $imagePath = $value->store('public/berkas/'.$directori);
                 Upload::create([
@@ -343,19 +353,12 @@ class AddPengajuan extends Component
 
                 'tipe.*' => 'required',
                 'juml_unit.*' => 'required',
-                'kategori.*' => 'required',
-                'keterangan_lain.*' => 'required',
-                'luas_lain.*' => 'required',
-
+                'kategori.*' => 'required'
             ],
             [
-
-                'tipe.*.required' => 'tipe tidak boleh kosong',
-                'juml_unit.*.required' => 'jumlah unit tidak boleh kosong',
-                'kategori.*.required' => 'kategori tidak boleh kosong',
-                'keterangan_lain.*.required' => 'tidak boleh kosong',
-                'luas_lain.*.required' => 'tidak boleh kosong',
-
+                'tipe.*.required' => 'Bidang tipe harus diisi.',
+                'juml_unit.*.required' => 'Bidang jumlah unit harus diisi.',
+                'kategori.*.required' => 'Bidang kategori harus diisi.',
             ]
         );
         $dell = Tipe::query()->where('pengajuan_id', $this->pengajuan_id)->get();

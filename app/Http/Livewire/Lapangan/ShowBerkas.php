@@ -45,12 +45,12 @@ class ShowBerkas extends Component
     {
         $this->pengajuan = Pengajuan::where('id', $id)->first();
         $berks = Upload::where('pengajuan_id',$this->pengajuan->id)->get();
-        // $this->catatan[0]= null;
+        $this->catatan[0]= null;
         $this->berkas_id[0]= null;
         $this->status_brks[0]= null;
         foreach( $berks as $key){
 
-        // array_push($this->catatan,$key->catatan);
+        array_push($this->catatan,$key->catatan);
         array_push($this->status_brks,$key->status_lapangan);
         array_push($this->berkas_id,$key->id);
         };

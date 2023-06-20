@@ -16,14 +16,14 @@ class PrintController extends Controller
         $cc = Pengajuan::where('id',$id)->first();
         $tabel = Upload::where('pengajuan_id',$id)->get();
         $tipe = Tipe::where('pengajuan_id',$id)->get();
-        $jln = Psu::where('pengajuan_id',$id)->where('psu','jln_saluran')->first();
+        $jln_saluran = Psu::where('pengajuan_id',$id)->where('psu','jln_saluran')->first();
         $taman = Psu::where('pengajuan_id',$id)->where('psu','taman')->first();
         $rth = Psu::where('pengajuan_id',$id)->where('psu','rth')->first();
         $ibadah = Psu::where('pengajuan_id',$id)->where('psu','ibadah')->first();
         $olahraga = Psu::where('pengajuan_id',$id)->where('psu','olahraga')->first();
         $kesehatan = Psu::where('pengajuan_id',$id)->where('psu','kesehatan')->first();
         $lain = Psu::where('pengajuan_id',$id)->where('psu','lain')->get();
-        return view('layouts.print-revisiBerkas',compact('cc','tabel','tipe','jln','taman','rth','ibadah','olahraga','kesehatan','lain'));
+        return view('layouts.print-revisiBerkas',compact('cc','tabel','tipe','jln_saluran','taman','rth','ibadah','olahraga','kesehatan','lain'));
     }
     public function lapangan($id)
     {
@@ -31,14 +31,14 @@ class PrintController extends Controller
         $cc = Pengajuan::where('id',$id)->first();
         $tabel = Upload::where('pengajuan_id',$id)->get();
         $tipe = Tipe::where('pengajuan_id',$id)->get();
-        $jln = Psu::where('pengajuan_id',$id)->where('psu','jln_saluran')->first();
+        $jln_saluran = Psu::where('pengajuan_id',$id)->where('psu','jln_saluran')->first();
         $taman = Psu::where('pengajuan_id',$id)->where('psu','taman')->first();
         $rth = Psu::where('pengajuan_id',$id)->where('psu','rth')->first();
         $ibadah = Psu::where('pengajuan_id',$id)->where('psu','ibadah')->first();
         $olahraga = Psu::where('pengajuan_id',$id)->where('psu','olahraga')->first();
         $kesehatan = Psu::where('pengajuan_id',$id)->where('psu','kesehatan')->first();
         $lain = Psu::where('pengajuan_id',$id)->where('psu','lain')->get();
-        return view('layouts.print-revisiLap',compact('cc','tabel','tipe','jln','taman','rth','ibadah','olahraga','kesehatan','lain'));
+        return view('layouts.print-revisiLap',compact('cc','tabel','tipe','jln_saluran','taman','rth','ibadah','olahraga','kesehatan','lain'));
     }
 
     // public function berkas(){

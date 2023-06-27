@@ -64,12 +64,12 @@
                                       data-placement="top" title="Lihat Rincian Pengajuan"><i
                                         class="fa fa-eye color-muted"></i> </a>
                                         @if ($key->status_pengajuan == 'Revisi Berkas')
-                                        <a href="{{ route('print-berkas', $key->id) }}" class="btn btn-success shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                        <a href="{{ route('print-berkas', $key->id) }}" target="_blank" class="btn btn-success shadow btn-xs sharp mr-1 download    " data-toggle="tooltip"
                                           data-placement="top" title="cetak revisi berkas"><i
                                             class="fa fa-print color-muted"></i> </a>
 
                                         @elseif ($key->status_pengajuan == 'Revisi Lapangan')
-                                        <a href="{{ route('print-lapangan', $key->id) }}" class="btn btn-success shadow btn-xs sharp mr-1" data-toggle="tooltip"
+                                        <a href="{{ route('print-lapangan', $key->id) }}" target="_blank" class="btn btn-success shadow btn-xs sharp mr-1 download" data-toggle="tooltip"
                                             data-placement="top" title="cetak revisi lapangan"><i
                                               class="fa fa-print color-muted"></i> </a>
                                         @elseif ($key->status_pengajuan == 'Rekomendasi')

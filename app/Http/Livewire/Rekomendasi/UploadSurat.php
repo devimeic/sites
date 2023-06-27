@@ -23,7 +23,7 @@ class UploadSurat extends Component
             'pengajuan'=> Pengajuan::all(),
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Riwayat',
+            'tittle' => 'Unggah Surat Rekomendasi',
         ])->section('isi');
     }
 

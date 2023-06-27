@@ -53,11 +53,11 @@
 </style>
 @endpush
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
-        var socket = io('http://localhost:8001/');
+        var socket = io('https://whatsaap-api-perkim.up.railway.app/');
 
         socket.on('message', function(msg) {
             $('.logs').prepend($('<li>').text(msg));

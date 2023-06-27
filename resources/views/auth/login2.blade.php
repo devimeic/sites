@@ -36,6 +36,12 @@
                                                 {{ session('error') }}
                                             </div>
                                         @endif
+                                        @if (session('message'))
+                                            <div class="alert alert-danger">
+                                                {{ session('message') }}
+                                            </div>
+                                        @endif
+
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Username</strong></label>
                                             <input id="username" type="username" class="form-control text-black  @error('username') is-invalid @enderror" name="username" placeholder="Masukkan Username" value="{{ old('username') }}" autocomplete="username" autofocus>

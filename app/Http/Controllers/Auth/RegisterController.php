@@ -106,7 +106,7 @@ class RegisterController extends Controller
             'no_hp'=> $user->no_hp,
 
         ]);
-        $response = Http::post('http://localhost:8001/send-message', [
+        $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
             'number' => $user->no_hp,
             'message' => 'Silahkan Masukkan nomer otp berikut '.$otp,
         ]);
@@ -142,12 +142,12 @@ class RegisterController extends Controller
             $user->update([
                 'status_users'=>'aktif'
             ]);
-            $response = Http::post('http://localhost:8001/send-message', [
+            $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
                 'number' => $user->no_hp,
                 'message' => 'Terima Kasih akun anda sudah aktif',
             ]);
             // $this->guard()->login($user);
-            return redirect()->route('home');
+            return redirect()->route('home')->with('message', 'Akun Anda telah berhasil diaktifkan.');
 
         }else {
             return back()->with('message', 'Otp yang anda masukkan salah.');

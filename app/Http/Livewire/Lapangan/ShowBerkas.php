@@ -153,7 +153,7 @@ class ShowBerkas extends Component
 
     protected $messages = [
         'agenda.required' => 'agenda tidak boleh kosong',
-        'jadwal.required' => 'Jadwal tidak boleh kosong',
+        'selectedDate.required' => 'waktu tidak boleh kosong',
 
     ];
 

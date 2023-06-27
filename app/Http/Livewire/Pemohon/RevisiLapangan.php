@@ -29,7 +29,7 @@ class RevisiLapangan extends Component
             'upload' => Upload::where('pengajuan_id', $this->pengajuan->id)->first(),
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Riwayat',
+            'tittle' => 'Revisi Lapangan',
         ])->section('isi');
     }
 
@@ -96,7 +96,7 @@ class RevisiLapangan extends Component
             $this->validate([
                 'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
             ]);
-            
+
         if ($this->nama_berkas) {
 
             $directori = strtolower(str_replace(' ', '_', $this->nama_pro));

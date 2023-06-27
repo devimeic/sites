@@ -47,7 +47,7 @@ class ShowList extends Component
             'upload' => Upload::where('pengajuan_id', $this->pengajuan->id)->first(),
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Riwayat',
+            'tittle' => 'Daftar Pengajuan Berkas',
         ])->section('isi');
     }
 

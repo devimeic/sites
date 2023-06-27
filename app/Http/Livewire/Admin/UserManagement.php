@@ -62,7 +62,10 @@ class UserManagement extends Component
         'no_hp.required' => 'nomor hp tidak boleh kosong',
         'no_hp.min' => 'nomor hp kurang dari 11 karakter',
         'no_hp.max' => 'nomor hp terlalu panjang',
-        'role.required' => 'role belum dipilih'
+        'role.required' => 'role belum dipilih',
+        'status_users.required' => 'status user belum dipilih',
+        'password_confirmation.required' => 'Konfirmasi password tidak boleh kosong',
+        'password_confirmation.same:password' => 'Konfirmasi password tidak sama',
 
     ];
 
@@ -225,7 +228,7 @@ class UserManagement extends Component
                 'position' => 'center',
                 'timer' => 3000,
                 'toast' => false,
-                'text' => 'Mengubah User',
+                'text' => 'Mengubah Password User',
                 'timerProgressBar' => true,
             ]);
             $v = User::where('id',Auth::user()->id)->get();

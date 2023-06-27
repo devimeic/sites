@@ -433,7 +433,6 @@ class ShowDraft extends Component
 
         public function store()
     {
-        $this->pengajuan_id = $this->pengajuan->id;
 
         $validatedDate = $this->validate(
             [
@@ -446,15 +445,26 @@ class ShowDraft extends Component
                 'tipe.*.required' => 'Bidang tipe harus diisi.',
                 'juml_unit.*.required' => 'Bidang jumlah unit harus diisi.',
                 'kategori.*.required' => 'Bidang kategori harus diisi.',
-            ]
-        );
+                ]
+            );
 
+        $this->pengajuan_id = $this->pengajuan->id;
+        $dell = Tipe::query()->where('pengajuan_id', $this->pengajuan_id)->get();
+        // Psu::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+        $del = Psu::where('pengajuan_id', $this->pengajuan_id )->get();
 
         if ($this->tipe) {
-            Tipe::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
-            Psu::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
+            foreach ($del as $k)
+            {
+                $k->delete();
+                }
 
-            if ($this->jln_saluran) {
+            foreach ($dell as $k)
+            {
+                $k->delete();
+                }
+
+            if (isset($this->jln_saluran)) {
                 # code...
                 Psu::create([
                     'pengajuan_id' => $this->pengajuan_id,
@@ -462,7 +472,7 @@ class ShowDraft extends Component
                     'luas'=> $this->jln_saluran[0],
                 ]);
             }
-            if ($this->taman) {
+            if (isset($this->taman[0])) {
             Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
                 'psu'=>'taman',
@@ -470,28 +480,28 @@ class ShowDraft extends Component
             ]);
         }
 
-        if ($this->rth) {
+        if (isset($this->rth[0])) {
             Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
                 'psu'=>'rth',
                 'luas'=> $this->rth[0],
             ]);
         }
-        if ($this->ibadah) {
+        if (isset($this->ibadah[0])) {
             Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
                 'psu'=>'ibadah',
                 'luas'=> $this->ibadah[0],
             ]);
         }
-        if ($this->olahraga) {
+        if (isset($this->olahraga[0])) {
             Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
                 'psu'=>'olahraga',
                 'luas'=> $this->olahraga[0],
             ]);
         }
-        if ($this->kesehatan) {
+        if (isset($this->kesehatan[0])) {
             Psu::create([
                 'pengajuan_id' => $this->pengajuan_id,
                 'psu'=>'kesehatan',

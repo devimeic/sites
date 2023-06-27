@@ -201,5 +201,17 @@
             <button class="print-button" onclick="window.print()">Cetak</button>
         </div>
     </div>
+
+    <script>
+        window.onbeforeprint = function() {
+            var printButton = document.querySelector('.print-button');
+            printButton.style.display = 'none';
+        };
+
+        window.onafterprint = function() {
+            var printButton = document.querySelector('.print-button');
+            printButton.style.display = 'block';
+        };
+    </script>
 </body>
 </html>

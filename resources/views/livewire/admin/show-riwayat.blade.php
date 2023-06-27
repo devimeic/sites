@@ -76,7 +76,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Nomor Anggota Asosiasi</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="no_anggota" name="no_anggota" class="form-control text-black"  value="{{ $pengajuan->no_anggota }}" readonly>
+                                                <input type="text" id="no_anggota" name="no_anggota" class="form-control text-black"  value="{{ $pengajuan->no_anggota }}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -242,7 +242,7 @@
                                             </div>
                                         </div>
                                         @endif
-                                        
+
                                         @foreach($lain as $key )
                                         <div class="add-input2">
                                             <div class="form-group row">
@@ -388,6 +388,15 @@
                                     @endif
                                     @if ($step == 4)
                                     <a href="{{ route('laporan-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+
+                                    @endif
+                                @elseif ($pengajuan->status_pengajuan == 'Dikembalikan')
+                                    @if ($step < 3)
+                                        <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                        @endif
+                                        @if ($step == 3)
+                                        <a href="{{ route('laporan-admin') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+                                        {{-- <a href="{{ route('print-berkas') }}"class="btn btn-primary sw-btn-next" type="button">Cetak</a> --}}
 
                                     @endif
                                 @else

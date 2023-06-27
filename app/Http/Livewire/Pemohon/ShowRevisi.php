@@ -65,7 +65,7 @@ class ShowRevisi extends Component
             'berkas'  => $berkas,
         ])
         ->extends('layouts.main',[
-            'tittle' => 'Revisi',
+            'tittle' => 'Revisi Berkas',
         ])->section('isi');
     }
 

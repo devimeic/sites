@@ -51,8 +51,8 @@
     </div>
     <div class=" card-footer">
         <div class="d-flex justify-content-center" >
-            <button  wire:click="revisi()" class="btn btn-danger sw-btn-next mx-5" >Di Tolak</button>
-            <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Di Setuju</button>
+            <button  wire:click="revisi()" class="btn btn-danger sw-btn-next mx-5" >Tolak</button>
+            <button  wire:click="setuju()" class="btn btn-success sw-btn-next" >Setuju</button>
         </div>
     </div>
    </div>

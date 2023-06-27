@@ -267,6 +267,7 @@ class AddPengajuan extends Component
     protected $rules = [
         // 'name' => 'required|min:6',
         'nama_berkas.*' => 'file|max:3000',
+        // 'tipe.*'=>'required'
     ];
 
     // protected $messages = [];
@@ -346,14 +347,15 @@ class AddPengajuan extends Component
 
     public function store()
     {
-        $this->pengajuan_id = $this->pengajuans->id;
 
         $this->validate(
             [
-
+                'tipe.0' => 'required',
+                'juml_unit.0' => 'required',
+                'kategori.0' => 'required',
                 'tipe.*' => 'required',
-                'juml_unit.*' => 'required',
-                'kategori.*' => 'required'
+                // 'juml_unit.*' => 'required',
+                // 'kategori.*' => 'required'
             ],
             [
                 'tipe.*.required' => 'Bidang tipe harus diisi.',
@@ -361,6 +363,8 @@ class AddPengajuan extends Component
                 'kategori.*.required' => 'Bidang kategori harus diisi.',
             ]
         );
+
+        $this->pengajuan_id = $this->pengajuans->id;
         $dell = Tipe::query()->where('pengajuan_id', $this->pengajuan_id)->get();
         // Psu::query()->whereIn('pengajuan_id', [$this->pengajuan_id])->delete();
         $del = Psu::where('pengajuan_id', $this->pengajuan_id )->get();
@@ -372,21 +376,12 @@ class AddPengajuan extends Component
             {
                 $k->delete();
                 }
+
             foreach ($dell as $k)
             {
                 $k->delete();
                 }
 
-            // Psu::updateOrCreate([
-            //     'pengajuan_id' => $this->pengajuan_id,
-            //     'jln_saluran' => $this->jln_saluran,
-            //     'taman' => $this->taman,
-            //     'rth' => $this->rth,
-            //     'ibadah' => $this->ibadah,
-            //     'olahraga' => $this->olahraga,
-            //     'kesehatan' => $this->kesehatan,
-            //     'lain' => $this->lain,
-            //  ]);
 
             if ($this->jln_saluran) {
                 # code...
@@ -404,54 +399,54 @@ class AddPengajuan extends Component
                 ]);
             }
 
-        if ($this->rth) {
-            Psu::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'psu'=>'rth',
-                'luas'=> $this->rth,
-            ]);
-        }
-        if ($this->ibadah) {
-            Psu::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'psu'=>'ibadah',
-                'luas'=> $this->ibadah,
-            ]);
-        }
-        if ($this->olahraga) {
-            Psu::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'psu'=>'olahraga',
-                'luas'=> $this->olahraga,
-            ]);
-        }
-        if ($this->kesehatan) {
-            Psu::create([
-                'pengajuan_id' => $this->pengajuan_id,
-                'psu'=>'kesehatan',
-                'luas'=> $this->kesehatan,
-            ]);
-        }
+                    if ($this->rth) {
+                        Psu::create([
+                            'pengajuan_id' => $this->pengajuan_id,
+                            'psu'=>'rth',
+                            'luas'=> $this->rth,
+                        ]);
+                    }
+                    if ($this->ibadah) {
+                        Psu::create([
+                            'pengajuan_id' => $this->pengajuan_id,
+                            'psu'=>'ibadah',
+                            'luas'=> $this->ibadah,
+                        ]);
+                    }
+                    if ($this->olahraga) {
+                        Psu::create([
+                            'pengajuan_id' => $this->pengajuan_id,
+                            'psu'=>'olahraga',
+                            'luas'=> $this->olahraga,
+                        ]);
+                    }
+                    if ($this->kesehatan) {
+                        Psu::create([
+                            'pengajuan_id' => $this->pengajuan_id,
+                            'psu'=>'kesehatan',
+                            'luas'=> $this->kesehatan,
+                        ]);
+                    }
 
-            foreach ($this->keterangan_lain as $key => $value) {
-                # code...
-                if ($this->keterangan_lain[$key]) {
-                Psu::create([
-                    'pengajuan_id' => $this->pengajuan_id,
-                    'psu'=>'lain',
-                    'keterangan'=> $this->keterangan_lain[$key],
-                    'luas'=> $this->luas_lain[$key],
-                ]);}
-            }
+                        foreach ($this->keterangan_lain as $key => $value) {
+                            # code...
+                            if ($this->keterangan_lain[$key]) {
+                            Psu::create([
+                                'pengajuan_id' => $this->pengajuan_id,
+                                'psu'=>'lain',
+                                'keterangan'=> $this->keterangan_lain[$key],
+                                'luas'=> $this->luas_lain[$key],
+                            ]);}
+                        }
 
-            foreach ($this->tipe as $key => $value) {
-                $this->bangun = Tipe::updateOrCreate([
-                    'pengajuan_id' => $this->pengajuan_id,
-                    'tipe' => $this->tipe[$key],
-                    'juml_unit' => $this->juml_unit[$key],
-                    'kategori' => $this->kategori[$key],
-                ]);
-            }
+                        foreach ($this->tipe as $key => $value) {
+                            $this->bangun = Tipe::updateOrCreate([
+                                'pengajuan_id' => $this->pengajuan_id,
+                                'tipe' => $this->tipe[$key],
+                                'juml_unit' => $this->juml_unit[$key],
+                                'kategori' => $this->kategori[$key],
+                            ]);
+                        }
 
 
         } else {
@@ -463,6 +458,7 @@ class AddPengajuan extends Component
                     'kategori' => $this->kategori[$key],
                 ]);
             }
+
         Psu::updateOrCreate([
             'pengajuan_id' => $this->pengajuan_id,
             'jln_saluran' => $this->jln_saluran,

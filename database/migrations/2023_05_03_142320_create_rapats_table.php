@@ -13,13 +13,13 @@ class CreateRapatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rapats', function (Blueprint $table) {
+        Schema::create('tb_rapat', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rapat_id')->constrained()
                 ->onUpdate('cascade');
             $table->string('agenda',40);
             $table->dateTime('jadwal')->nullable();
-            $table->foreign('rapat_id')->references('id')->on('pengajuans')->onUpdate('cascade');
+            $table->foreign('rapat_id')->references('id')->on('tb_pengajuan')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateRapatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rapats');
+        Schema::dropIfExists('tb_rapat');
     }
 }

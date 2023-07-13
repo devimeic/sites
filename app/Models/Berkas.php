@@ -10,7 +10,7 @@ class Berkas extends Model
     use HasFactory;
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
-    protected $table = 'berkas';
+    protected $table = 'tb_berkas';
 
     public function upload()
     {

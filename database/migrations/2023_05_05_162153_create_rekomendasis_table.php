@@ -13,13 +13,13 @@ class CreateRekomendasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('rekomendasis', function (Blueprint $table) {
+        Schema::create('tb_rekomendasi', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_rekomendasi');
             $table->string('files');
             $table->unsignedBigInteger('pengajuan_id')->constrained()
                 ->onUpdate('cascade');
-            $table->foreign('pengajuan_id')->references('id')->on('pengajuans')->onUpdate('cascade');
+            $table->foreign('pengajuan_id')->references('id')->on('tb_pengajuan')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateRekomendasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rekomendasis');
+        Schema::dropIfExists('tb_rekomendasi');
     }
 }

@@ -16,6 +16,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Berkas Persyaratan</th>
+                                <th style="width: 25%;">Wajib / Tidak Wajib diisi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                             <tr>
                                 <th>{{ $no++ }}</th>
                                 <td class="text-black">{!! nl2br(e($brks->nama_berkas))!!}</td>
+                                <td class="text-black text-center">{{ $brks->wajib }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <button type="button" data-toggle="modal" wire:click.prevent="edit({{ $brks->id }})" data-target="#editModal" class="btn btn-primary shadow btn-xs sharp mr-1">

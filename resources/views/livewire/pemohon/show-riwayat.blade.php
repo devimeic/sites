@@ -375,7 +375,7 @@
 
                                 @endif
                                 @if ($step > 0)
-                                <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" wire:loading.class="disabled" type="button">Sebelumnya</a>
                                 @endif
 
                                 @if ($pengajuan->status_pengajuan == 'Selesai')
@@ -384,7 +384,16 @@
                                     <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                                     @endif
                                     @if ($step == 4)
-                                    <a href="{{ route('riwayat-pemohon') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+                                    <a href="{{ route('laporan-pemohon') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+
+                                    @endif
+                                @elseif ($pengajuan->status_pengajuan == 'Dikembalikan')
+                                    @if ($step < 3)
+                                        <button wire:click.prevent="plus()" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
+                                        @endif
+                                        @if ($step == 3)
+                                        <a href="{{ route('laporan-pemohon') }}"class="btn btn-primary sw-btn-next" type="button">Kembali</a>
+                                        {{-- <a href="{{ route('print-berkas') }}"class="btn btn-primary sw-btn-next" type="button">Cetak</a> --}}
 
                                     @endif
                                 @else

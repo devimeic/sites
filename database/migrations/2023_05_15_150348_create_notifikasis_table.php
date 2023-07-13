@@ -13,14 +13,14 @@ class CreateNotifikasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifikasis', function (Blueprint $table) {
+        Schema::create('tb_notifikasi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->constrained()
                 ->onUpdate('cascade');
             $table->string('keterangan');
             $table->string('status',15);
             $table->dateTime('jadwal')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('tb_user')->onUpdate('cascade');
             $table->timestamps();
         });
     }

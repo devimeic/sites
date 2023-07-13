@@ -36,8 +36,8 @@
                                 <span class="w-100 px-2">Upload Berkas</span>
                             </a></li>
                         </ul>
+                        <form wire:submit.prevent="submit">
                         <div class="">
-                            <form wire:submit.prevent="submit">
                                 @if ($step == 0)
                                 <div wire:ignore.self id="developer" class="tab-pane" role="tabpanel">
                                     <div class="card-body">
@@ -374,15 +374,22 @@
                                                                 @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                             </td>
                                                             <td>
-                                                                <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div>
+                                                                <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Diproses...</div>
                                                             </td>
+
 
                                                             @if (isset($nama_berkas[$value->id]))
                                                             @if ($nama_berkas[$value->id])
                                                             @php
                                                                 $previewUrl =[];
                                                                 $directori = strtolower(str_replace(' ', '_', $nama_pro));
-                                                                $tempPath = $nama_berkas[$value->id]->store('public/temp/'.$directori);
+                                                                if (is_string($nama_berkas[$value->id])) {
+                                                                    # code...
+                                                                    $tempPath=$nama_berkas[$value->id];
+                                                                }else {
+                                                                    # code...
+                                                                    $tempPath = $nama_berkas[$value->id]->store('public/temp/'.$directori);
+                                                                }
                                                                 $previewUrl[$value->id] = url('storage/'.$tempPath);
                                                                 // dd($previewUrl);
                                                             @endphp
@@ -392,15 +399,26 @@
                                                                 </button>
 
                                                             </td>
-                                                            <td>{{ $nama_berkas[$value->id]->getClientOriginalName() }}</td>
+                                                            <td>
+                                                                @if (is_string($nama_berkas[$value->id]))
+
+                                                                {{ substr($nama_berkas[$value->id],-10) }}
+
+                                                                @else
+
+                                                                {{ $nama_berkas[$value->id]->getClientOriginalName()  }}
+                                                                @endif
+
+                                                            </td>
 
                                                             @endif
                                                             @endif
 
                                                         </tr>
 
+
+                                                        @endforeach
                                                     </tbody>
-                                                    @endforeach
                                                     {{-- @include('livewire.pemohon.modal-berkas') --}}
                                                 </table>
                                             </div>
@@ -412,29 +430,35 @@
                                 @endif
 
                             </div>
-                            <div   class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
+                            <div   class="toolbar " role="toolbar" style="text-align: right;">
                                 <div class="d-flex justify-content-between">
                                     @if ($step == 0)
                                     <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
                                     @endif
                                     @if ($step > 0)
-                                    <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                    <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" wire:loading.class="disabled" type="button">Sebelumnya</a>
                                     @endif
                                     @if ($step <3)
                                     <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                                     @endif
                                     @if ($step == 3)
-                                    <button type="submit"  class="btn btn-primary sw-btn-next" wire:loading.attr="disabled">
-                                        Simpan
-                                        <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                          </div></button>
+                                    {{-- <div class="d-flex justify-content-end"> --}}
+                                        <div>
 
+                                            <a wire:click.prevent="draft" class="btn btn-danger mx-2" wire:loading.attr="disabled" >Draft
+                                                <div  wire:loading.delay.longest wire:target="draft" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </a>
+                                            <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target=".bd-example-modal-sm">Lanjutkan</button>
+                                        </div>
+                                        @include('livewire.pemohon.modal-konfirmasi')
+                                    {{-- </div> --}}
                                     @endif
                                 </div>
                             </div>
-                            </form>
+                        </form>
 
                     </div>
                 </div>

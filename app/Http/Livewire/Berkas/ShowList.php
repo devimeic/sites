@@ -80,9 +80,11 @@ class ShowList extends Component
     public function catatansimpan($id)
     {
         $smp = Upload::where('pengajuan_id',$this->pengajuan->id)->where('berkas_id',$id)->first();
+        // Memeriksa apakah ID berkas sudah ada dalam array catatan
         if(!array_key_exists($id,$this->catatan)){
             $this->catatan[$id] = null;
         }
+        // Memeriksa apakah data upload ditemukan
     if ($smp) {
         $smp->update([
             'catatan' => $this->catatan[$id]
@@ -103,17 +105,17 @@ public function simpan($id ,$st)
             'status_berkas'=> $sta,
             // 'catatan' => $this->catatan[$id]
     ]);
-    //     $this->alert('success', 'Berhasil', [
-    //         'position' => 'top-right',
-    //         'timer' => 3000,
-    //         'toast' => true,
-    //     ]);
-    // }else {
-    //     $this->alert('error', 'berkas kosong', [
-    //         'position' => 'top-right',
-    //         'timer' => 3000,
-    //         'toast' => true,
-    //     ]);
+        $this->alert('success', 'Berhasil', [
+            'position' => 'top-right',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
+    }else {
+        $this->alert('error', 'berkas kosong', [
+            'position' => 'top-right',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
     }
 
 }
@@ -154,6 +156,7 @@ public function simpan($id ,$st)
         foreach ($smp as $key ) {
         $key->update([
             'status_berkas'=> null,
+            'catatan'=> null,
         ]);
             Notifikasi::create([
                 'user_id' => $this->pengajuan->pengaju,

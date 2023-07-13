@@ -18,6 +18,17 @@
                                 @error("nama_berkas") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="name" class=" col-form-label">Wajib / Tidak diisi</label>
+                            <div class="col">
+                                <select class="form-control default-select text-black" wire:model="wajib">
+                                    <option>Pilih</option>
+                                    <option value="wajib">Wajib</option>
+                                    <option value="tidak">Tidak Wajib</option>
+                                </select>
+                                @error("wajib") <span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">

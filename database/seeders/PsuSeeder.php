@@ -343,553 +343,553 @@ class PsuSeeder extends Seeder
             'luas' => '22',
         ]);
 
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '7',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '7',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '8',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '8',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '9',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '9',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '10',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '10',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '11',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '11',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '12',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '12',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '13',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '13',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '14',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '14',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
 
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '15',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'jln_saluran',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'taman',
-            'keterangan' => null,
-            'luas' => '13',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'rth',
-            'keterangan' => null,
-            'luas' => '21',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'ibadah',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'olahraga',
-            'keterangan' => null,
-            'luas' => '25',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'kesehatan',
-            'keterangan' => null,
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'lain',
-            'keterangan' => 'hotel',
-            'luas' => '12',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'lain',
-            'keterangan' => 'kolam renang',
-            'luas' => '32',
-        ]);
-        Psu::create([
-            'pengajuan_id' => '16',
-            'psu' => 'lain',
-            'keterangan' => 'tpu',
-            'luas' => '22',
-        ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '15',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'jln_saluran',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'taman',
+        //     'keterangan' => null,
+        //     'luas' => '13',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'rth',
+        //     'keterangan' => null,
+        //     'luas' => '21',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'ibadah',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'olahraga',
+        //     'keterangan' => null,
+        //     'luas' => '25',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'kesehatan',
+        //     'keterangan' => null,
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'hotel',
+        //     'luas' => '12',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'kolam renang',
+        //     'luas' => '32',
+        // ]);
+        // Psu::create([
+        //     'pengajuan_id' => '16',
+        //     'psu' => 'lain',
+        //     'keterangan' => 'tpu',
+        //     'luas' => '22',
+        // ]);
     }
 }

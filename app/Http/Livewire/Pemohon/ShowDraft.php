@@ -51,6 +51,7 @@ class ShowDraft extends Component
     public $luas_lain = [];
     public $inputs_lain =[];
     public $l = 1;
+    public $filelama=[];
 
     public function render()
     {
@@ -93,6 +94,16 @@ class ShowDraft extends Component
         $this->total  = $this->pengajuan->total;
 
 
+
+        $save = Berkas::all();
+        foreach ($save as $key => $value) {
+            foreach ($value->upload as $item) {
+                if ($item->pengajuan_id == $this->pengajuan->id) {
+                    $this->nama_berkas[$value->id]=$item->lokasi_berkas;
+                }
+            }
+        }
+
         $tipes =  Tipe::where('pengajuan_id',$this->pengajuan->id)->get();
         $j = 1;
         foreach ($tipes as $key ) {
@@ -106,6 +117,8 @@ class ShowDraft extends Component
             // $this->kategori[$j++]  = $key->kategori ;
             // $this->juml_unit[$j++]  = $key->juml_unit;
         }
+
+
 
 
         // public $keterangan = [];
@@ -129,17 +142,12 @@ class ShowDraft extends Component
                 array_push($this->inputs_lain ,$l++);
 
 
-                // $this->kategori[$j++]  = $key->kategori ;
-                // $this->juml_unit[$j++]  = $key->juml_unit;
             }
-            // dd($this->inputs_lain);
-
-        // } else {
-        //     $this->step = 0;
-        // }
 
         $this->step = 0;
     }
+
+
 
     public function add_lain($l)
     {
@@ -361,9 +369,35 @@ class ShowDraft extends Component
     // }
     public function submit5()
     {
-        $this->validate([
-            'nama_berkas.*' => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
-        ]);
+        $cekk = Berkas::all();
+        $save=[];
+        foreach ($cekk as $key => $value) {
+
+        if ($value->wajib == 'wajib') {
+            if (isset($this->nama_berkas[$value->id])) {
+                if (is_string($this->nama_berkas[$value->id])) {
+
+                    $save['nama_berkas.'.$value->id] ='required';
+                }else{
+                    $save['nama_berkas.'.$value->id] ='required|file|max:3000';
+
+                }
+            }else {
+                $save['nama_berkas.'.$value->id] ='required|file|max:3000';
+            }
+
+        }else {
+            $save['nama_berkas.'.$value->id] ='file|max:3000';
+
+        }
+
+    }
+    // dd($save);
+
+    $this->validate($save,[
+        'nama_berkas.*.required'=>'berkas wajib di isi',
+        'nama_berkas.*.max'=>'Ukuran berkas terlalu besar. Mohon unggah berkas dengan ukuran maksimal 2 MB.'
+    ]);
 
         if ($this->nama_berkas) {
 
@@ -375,20 +409,31 @@ class ShowDraft extends Component
 
 
             foreach($this->nama_berkas as $key => $value ){
+
                 $cek = Upload::where('berkas_id',$key)->where('pengajuan_id',$this->pengajuan_id)->first();
                 if ($cek) {
-
 
                     if (Storage::exists($cek->lokasi_berkas)) {
                         Storage::delete($cek->lokasi_berkas);
                     }
-                    $imagePath = $value->store('public/berkas/'.$directori);
+                    if (is_string($value)) {
+                        # code...
+                        $imagePath = $value;
+                    }else{
+
+                        $imagePath = $value->store('public/berkas/'.$directori);
+                    }
                     $cek->update([
                     'lokasi_berkas' => $imagePath,
                    ]);
                 }else{
 
-                    $imagePath = $value->store('public/berkas/'.$directori);
+                    if (is_string($value)) {
+                        $imagePath = $value;
+                    }else{
+
+                        $imagePath = $value->store('public/berkas/'.$directori);
+                    }
                     Upload::create([
                     'berkas_id' => $key,
                     'lokasi_berkas' => $imagePath,
@@ -429,6 +474,82 @@ class ShowDraft extends Component
             'toast' => true,
         ]);
         return redirect()->route('riwayat-pemohon');
+    }
+
+    public function draft()
+    {
+
+
+        $cekk = Berkas::all();
+        $save=[];
+        foreach ($cekk as $key => $value) {
+
+        if ($value->wajib == 'wajib') {
+            if (isset($this->nama_berkas[$value->id])) {
+                # code...
+                if (is_string($this->nama_berkas[$value->id])) {
+
+                    $save['nama_berkas.'.$value->id] ='required';
+                }else{
+                    $save['nama_berkas.'.$value->id] ='file|max:3000';
+
+                }
+            }else {
+                $save['nama_berkas.'.$value->id] ='file|max:3000';
+            }
+
+        }else {
+            $save['nama_berkas.'.$value->id] ='file|max:3000';
+            // $save =[
+            //     'nama_berkas.'.$key => 'file|max:3000', // Validasi ukuran maksimum 3 MB (3000 KB)
+            // ];
+        }
+
+    }
+    // dd($save);
+
+    $this->validate($save,['nama_berkas.*.required'=>'berkas wajib di isi']);
+
+        if ($this->nama_berkas) {
+
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+
+            if (!Storage::exists($directori)) {
+                Storage::makeDirectory($directori, 0777, true, true);
+            }
+
+
+            foreach($this->nama_berkas as $key => $value ){
+
+
+                if (is_string($value)) {
+                    # code...
+                    $imagePath = $value;
+                }else{
+
+                    $imagePath = $value->store('public/berkas/'.$directori);
+                }
+                Upload::create([
+                'berkas_id' => $key,
+                'lokasi_berkas' => $imagePath,
+                'pengajuan_id' =>$this->pengajuan_id,
+
+               ]);
+            }
+
+            $peng = Pengajuan::where('id',$this->pengajuan_id)->first();
+            $peng->update(['status_pengajuan' => 'Draft',]);
+
+            $directori = strtolower(str_replace(' ', '_', $this->nama_pro));
+            Storage::deleteDirectory('public/temp/'.$directori);
+        }
+
+        $this->alert('success', 'Berkas dimasukkan draft', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+        ]);
+        return redirect()->route('list-pengajuan');
     }
 
         public function store()

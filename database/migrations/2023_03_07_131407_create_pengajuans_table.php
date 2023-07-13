@@ -13,7 +13,7 @@ class CreatePengajuansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengajuans', function (Blueprint $table) {
+        Schema::create('tb_pengajuan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pengaju')->constrained()
                 ->onUpdate('cascade');
@@ -32,7 +32,7 @@ class CreatePengajuansTable extends Migration
             $table->integer('total')->nullable();
             $table->date('tanggal')->nullable();
             $table->enum('status_pengajuan', ['Draft','Verifikasi Berkas','Revisi Berkas','Verifikasi Lapangan','Revisi Lapangan','Rekomendasi','Dikembalikan','Selesai'])->nullable();
-            $table->foreign('pengaju')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('pengaju')->references('id')->on('tb_user')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -44,6 +44,6 @@ class CreatePengajuansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajuans');
+        Schema::dropIfExists('tb_pengajuan');
     }
 }

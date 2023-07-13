@@ -73,7 +73,7 @@
                                             <label class="custom-file-label">Pilih file</label>
                                     @endforelse
                                 </td>
-                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div></td>
+                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Diproses...</div></td>
                                 {{-- <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#previewModal" >
                                     Preview
                                 </button> --}}

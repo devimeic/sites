@@ -13,13 +13,13 @@ class CreateOtpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('otps', function (Blueprint $table) {
+        Schema::create('tb_otp', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->constrained()
             ->onUpdate('cascade');
             $table->string('no_hp',15)->nullable();
             $table->string('otp',4)->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('tb_user')->onUpdate('cascade');
             $table->timestamps();
         });
     }

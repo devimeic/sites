@@ -18,7 +18,7 @@ class Psu extends Model
     'keterangan',
 
 ];
-protected $table = 'psus';
+protected $table = 'tb_psu';
 
 public function psu()
 {

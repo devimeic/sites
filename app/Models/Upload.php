@@ -21,7 +21,7 @@ class Upload extends Model
         'status_lapangan'
 
     ];
-    protected $table = 'uploads';
+    protected $table = 'tb_upload';
 
     public function pengajuan()
     {

@@ -11,7 +11,7 @@ class Notifikasi extends Model
 
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
-    protected $table = 'notifikasis';
+    protected $table = 'tb_notifikasi';
 
     protected $casts = [
         'jadwal'=>'datetime'

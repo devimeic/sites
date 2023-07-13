@@ -393,9 +393,10 @@
                                                                     @empty
                                                                     <input wire:model="nama_berkas.{{ $value->id }}" type="file" wire:loading.attr="disabled" class="custom-file-input">
                                                                             <label class="custom-file-label">Pilih file</label>
+                                                                            @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                                     @endforelse
                                                                 </td>
-                                                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div></td>
+                                                                <td><div wire:loading wire:target="nama_berkas.{{ $value->id }}">Diproses...</div></td>
 
                                                                 @if (isset($nama_berkas[$value->id]))
                                                                 @if ($nama_berkas[$value->id])
@@ -439,7 +440,7 @@
 
                                         @endif
                                         @if ($step > 0)
-                                        <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                                        <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" wire:loading.class="disabled" type="button">Sebelumnya</a>
                                         @endif
                                         @if ($step <3)
                                         <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>

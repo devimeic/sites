@@ -96,7 +96,7 @@
 
 
     <script src="/disk/vendor/moment/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="/disk/pikaday.js"></script>
     <script src="/disk/id.js"></script>
     <script>

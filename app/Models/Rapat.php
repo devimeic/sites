@@ -18,6 +18,6 @@ class Rapat extends Model
     }
 
     protected $casts = [
-        'email_verified_at' => 'jadwal',
+        'jadwal' => 'datetime',
     ];
 }

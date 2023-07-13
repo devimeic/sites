@@ -8,14 +8,24 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            {{-- <form wire:submit.prevent="update()" class=""> --}}
             <div class="card-body">
-                <div class="basic-form">
-                    <form wire:submit.prevent=”update()” class=”form-horizontal”>
+                <div class="">
                         <div class="form-group">
-                            <label for="name" class=" col-form-label">Nama Berkas</label>
+                            <label for="name" class="col-form-label">Nama Berkas</label>
                             <div class="col">
                                 <textarea rows="4" type="text" wire:model="nama_berkas" class="form-control text-black" placeholder="Masukan Nama Berkas" ></textarea>
                                 @error("nama_berkas") <span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Wajib / Tidak diisi</label>
+                            <div class="col">
+                                <select wire:model="wajib" class="form-control default-select text-black" >
+                                    <option value="wajib">Wajib</option>
+                                    <option value="tidak">Tidak Wajib</option>
+                                </select>
+                                @error("wajib") <span class="text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                     </div>
@@ -28,8 +38,8 @@
                               </div>
                         </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            {{-- </form> --}}
         </div>
     </div>
 </div>

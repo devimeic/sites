@@ -29,6 +29,7 @@ class BerkasSeeder extends Seeder
         Berkas::create([
             // 'id' => 0,
             'nama_berkas' => 'Fotokopi : Akta Pendirian PT (berbadan Hukum) bergerak di bidang perumahan SK Menteri Hukum dan HAM beserta angggota asosiasi perumahan',
+            'wajib' => 'tidak'
         ]);
         Berkas::create([
             // 'id' => 0,
@@ -77,6 +78,7 @@ class BerkasSeeder extends Seeder
         Berkas::create([
             // 'id' => 0,
             'nama_berkas' => 'Surat Keterangan lain bila diperlukan',
+            'wajib' => 'tidak'
         ]);
     }
 }

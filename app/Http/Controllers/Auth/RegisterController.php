@@ -28,7 +28,10 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    public function showRegistrationForm()
+    {
+        return view('auth.register2');
+    }
     /**
      * Where to redirect users after registration.
      *
@@ -108,7 +111,7 @@ class RegisterController extends Controller
         ]);
         $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
             'number' => $user->no_hp,
-            'message' => 'Silahkan Masukkan nomer otp berikut '.$otp,
+            'message' => 'Silahkan Masukkan nomer otp berikut '.$otp. " pada siteplan.dinaspkp.magetan.site/otp/" . $user->id,
         ]);
 
         // $this->guard()->login($user);

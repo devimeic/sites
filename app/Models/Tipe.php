@@ -18,7 +18,7 @@ class Tipe extends Model
         'juml_unit',
 
     ];
-    protected $table = 'tipes';
+    protected $table = 'tb_tipe';
 
     public function tipe()
     {

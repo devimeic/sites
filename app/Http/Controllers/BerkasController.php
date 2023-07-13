@@ -46,58 +46,58 @@ class BerkasController extends Controller
 public function downloadFiles($id)
 {
     try {
-        // Specify the directory within the storage folder where your files are located
+        // Menentukan direktori di dalam folder storage tempat file-file Anda disimpan
         $peng = Pengajuan::where('id',$id)->first();
     $directori = strtolower(str_replace(' ', '_', $peng->nama_pro));
     // Specify the directory within the storage folder where your files are located
     $directory = 'public/berkas/'.$directori;
 
-        // Get the file names within the directory
+         // Mendapatkan daftar nama file dalam direktori
         $files = Storage::files($directory);
 
-        // Create a new instance of ZipArchive
+        // Membuat instance baru dari ZipArchive
       $zipFile = public_path($directori.'.zip');
         $zip = new ZipArchive;
 
         if ($zip->open($zipFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
-            // Loop through each file and add it to the zip
+            // Melakukan perulangan melalui setiap file dan menambahkannya ke dalam zip
             foreach ($files as $file) {
-                // Get the file contents
+                // Mendapatkan konten file
                 $fileContent = Storage::get($file);
-                // Get the file name with the path removed
+                 // Mendapatkan nama file tanpa path
                 $fileName = basename($file);
                 $pp = Upload::where('lokasi_berkas','public/berkas/'.$directori.'/'.$fileName)->first();
                 $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-                // Rename the file within the zip
-                $newFileName = $pp->berkas->nama_berkas.'.'.$extension; // Modify the new file name as per your requirements
+                // Mengganti nama file dalam zip
+                $newFileName = str_replace('/',',',$pp->berkas->nama_berkas).'.'.$extension; // Modify the new file name as per your requirements
 
-                // Add the file to the zip with the new name
+                // Menambahkan file ke dalam zip dengan nama baru
                 $zip->addFromString($newFileName, $fileContent);
             }
 
-            // Close the zip file
+            // Menutup file zip
             $zip->close();
 
-            // Check if the zip file exists
+            // Memeriksa apakah file zip ada
             if (file_exists($zipFile)) {
-                // Return the zip file as a download response
+                // Mengembalikan file zip sebagai respons unduhan
                 return response()->download($zipFile)->deleteFileAfterSend();
             } else {
-                throw new FileNotFoundException("The zip file does not exist.");
+                throw new FileNotFoundException("File zip tidak ditemukan.");
                 return redirect()->back();
             }
         } else {
-            throw new \Exception("Failed to create the zip file.");
+            throw new \Exception("Gagal membuat file zip.");
             return redirect()->back();
 
         }
     } catch (FileNotFoundException $e) {
-        // Handle the file not found exception
+        // Menangani exception file tidak ditemukan
         return redirect()->back();
 
-        // Log or display an error message
+        // Mencatat atau menampilkan pesan kesalaha
     } catch (\Exception $e) {
-        // Handle other exceptions
+        // Mencatat atau menampilkan pesan kesalahan
         return redirect()->back();
 
         // Log or display an error message

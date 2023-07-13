@@ -21,21 +21,21 @@
             <div class="card-body">
                 <div wire:ignore.self  class="form-wizard order-create">
                     <ul class="nav nav-wizard"  >
-                        <li><a class="w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
+                        <li><a class="wizard w-100 h-100 rounded-fullborder border-primary btn mx-5{{ $step > 0 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 0 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}">
                             <span class="w-100 px-2">Developer</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                        <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 1 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 1 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Pengajuan</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                        <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 2 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 2 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Tipe Bangunan</span>
                         </a></li>
-                        <li><a class="w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
+                        <li><a class="wizard w-100 h-100 rounded-full border-primary btn mx-5{{ $step > 3 ? 'btn-primary bg-primary  text-white mx-5' : '' }} {{  $step == 3 ? 'rounded-fullborder bg-primary text-white mx-5' : '' }}" >
                             <span class="w-100 px-2">Upload Berkas</span>
                         </a></li>
                     </ul>
-                    <div class="">
                     <form wire:submit.prevent="submit">
+                    <div class="">
                         @if ($step == 0)
                         <div wire:ignore.self id="developer" class="tab-pane" role="tabpanel">
                             <div class="card-body">
@@ -373,7 +373,7 @@
                                                         @error("nama_berkas.".$value->id) <span class="text-danger">{{ $message }}</span>@enderror
                                                     </td>
                                                     <td>
-                                                        <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Uploading...</div>
+                                                        <div wire:loading wire:target="nama_berkas.{{ $value->id }}">Diproses...</div>
                                                     </td>
 
 
@@ -422,30 +422,32 @@
                         @endif
 
                     </div>
-                    <div class="toolbar toolbar-bottom" role="toolbar" style="text-align: right;">
+                    <div class="toolbar" role="toolbar" style="text-align: right;">
                         <div class="d-flex justify-content-between">
                             @if ($step == 0)
                             <button class="btn btn-primary  disabled mx-3" type="button">Sebelumnya</button>
 
                             @endif
                             @if ($step > 0)
-                            <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" type="button">Sebelumnya</a>
+                            <a class="btn btn-primary sw-btn-prev mx-3" wire:click.prevent="minus()" wire:loading.class="disabled" type="button">Sebelumnya</a>
                             @endif
                             @if ($step <3)
                             <button type="submit" class="btn btn-primary sw-btn-next" >Selanjutnya</button>
                             @endif
                             @if ($step == 3)
-                            <button type="submit"  class="btn btn-primary sw-btn-next" type="button" wire:loading.attr="disabled">
-                                Simpan
-                                <div  wire:loading.delay.longest wire:target="submit" class="spinner-border spinner-border-sm text-light mx-1" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                  </div></button>
-
+                            <div>
+                                <a wire:click.prevent="draft" class="btn btn-danger mx-2" wire:loading.attr="disabled" >Draft
+                                    <div  wire:loading.delay.longest wire:target="draft" class="spinner-border spinner-border-sm text-light mx-1" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </a>
+                                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target=".bd-example-modal-sm">Lanjutkan</button>
+                            </div>
+                            @include('livewire.pemohon.modal-konfirmasi')
                             @endif
                         </div>
-                    </form>
-
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -473,5 +475,6 @@ Content body end
     </script>
 @endpush
 @include('modal-preview')
+
 
 </div>

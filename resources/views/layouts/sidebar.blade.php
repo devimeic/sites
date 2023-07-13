@@ -5,7 +5,7 @@
             <li>
                 <a href="{{ route('admin') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
             {{-- <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}"><a href="{{ route('wa') }}" class="ai-icon" aria-expanded="false">
@@ -20,7 +20,7 @@
             </li>
             <li ><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>
-                <span class="nav-text">User Management</span>
+                <span class="nav-text">Pengelolaan Pengguna</span>
             </a>
             </li>
             <li class="{{ request()->is('admin/show-riwayat/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-admin') }}" class="ai-icon" aria-expanded="false">
@@ -50,7 +50,7 @@
             <li>
                 <a href="{{ route('pemohon') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
 
@@ -74,7 +74,7 @@
             <li>
                 <a href="{{ route('berkas') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
             <li class="{{ request()->is('berkas/show-list/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-berkas') }}" class="ai-icon" aria-expanded="false">
@@ -93,7 +93,7 @@
             <li>
                 <a href="{{ route('lapangan') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
             <li class="{{ request()->is('lapangan/show-berkas/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-lapangan') }}" class="ai-icon" aria-expanded="false">
@@ -117,7 +117,7 @@
             <li>
                 <a href="{{ route('rekomendasi') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-television"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
             <li class="{{ request()->is('rekomendasi/upload-surat/*') ? ' mm-active' : '' }}"><a href="{{ route('pengajuan-rekomendasi') }}" class="ai-icon" aria-expanded="false">

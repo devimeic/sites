@@ -10,6 +10,7 @@ class otp extends Model
     use HasFactory;
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
+    protected $table = 'tb_otp';
 
     public function user()
     {

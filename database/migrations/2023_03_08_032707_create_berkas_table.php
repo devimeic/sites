@@ -13,9 +13,10 @@ class CreateBerkasTable extends Migration
      */
     public function up()
     {
-        Schema::create('berkas', function (Blueprint $table) {
+        Schema::create('tb_berkas', function (Blueprint $table) {
             $table->id();
             $table->string('nama_berkas');
+            $table->enum('wajib',['wajib','tidak'])->default('wajib');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateBerkasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berkas');
+        Schema::dropIfExists('tb_berkas');
     }
 }

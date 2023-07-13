@@ -11,7 +11,7 @@ class Rekomendasi extends Model
 
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
-    protected $table = 'rekomendasis';
+    protected $table = 'tb_rekomendasi';
 
     public function rekomen()
     {

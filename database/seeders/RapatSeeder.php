@@ -19,10 +19,10 @@ class RapatSeeder extends Seeder
             'agenda' => 'Perumahan Maospati Regancy',
             'jadwal' => '2023-06-12  14:00:00',
             ]);
-        Rapat::create([
-            'rapat_id' => '14',
-            'agenda' => 'Kavling Siap Bangun PT.Abadi Sejahtera',
-            'jadwal' => '2023-06-13  08:00:00',
-            ]);
+        // Rapat::create([
+        //     'rapat_id' => '14',
+        //     'agenda' => 'Kavling Siap Bangun PT.Abadi Sejahtera',
+        //     'jadwal' => '2023-06-13  08:00:00',
+        //     ]);
     }
 }

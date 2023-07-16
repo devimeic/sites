@@ -59,10 +59,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'max:255'],
-            'username' => ['required', 'max:255', 'unique:users'],
+            'username' => ['required', 'max:255', 'unique:tb_user'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'no_hp' => ['required', 'min:11', 'max:15' ],
-        ],[
+            'no_hp' => ['required', 'min:11', 'max:15'],
+        ], [
             'name.required' => 'Nama tidak boleh kosong.',
             'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
             'username.required' => 'Username tidak boleh kosong.',
@@ -104,14 +104,15 @@ class RegisterController extends Controller
         // $userid=
 
         otp::create([
-            'user_id'=>$user->id,
-            'otp'=>$otp,
-            'no_hp'=> $user->no_hp,
+            'user_id' => $user->id,
+            'otp' => $otp,
+            'no_hp' => $user->no_hp,
 
         ]);
-        $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
+        $response = Http::post('http://127.0.0.1:8001/send-message', [
             'number' => $user->no_hp,
-            'message' => 'Silahkan Masukkan nomer otp berikut '.$otp. " pada siteplan.dinaspkp.magetan.site/otp/" . $user->id,
+            'message' => 'Silahkan Masukkan nomer otp berikut ' . $otp,
+            // 'message' => 'Silahkan Masukkan nomer otp berikut ' . $otp . " pada siteplan.dinaspkp.magetan.site/otp/" . $user->id,
         ]);
 
         // $this->guard()->login($user);
@@ -121,42 +122,39 @@ class RegisterController extends Controller
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect()->route('otp',$user->id);
+            ? new JsonResponse([], 201)
+            : redirect()->route('otp', $user->id);
     }
 
     public function indexotp($id)
     {
-        $user = User::where('id',$id)->first();
-        return view('otp',compact(['user']));
+        $user = User::where('id', $id)->first();
+        return view('otp', compact(['user']));
     }
 
     public function kirimotp(Request $request)
     {
-        $otps = otp::where('user_id',$request->id)->first();
-        $user = User::where('id',$request->id)->first();
+        $otps = otp::where('user_id', $request->id)->first();
+        $user = User::where('id', $request->id)->first();
 
 
-        $this->validate($request,[
-            'otp'=>'required'
+        $this->validate($request, [
+            'otp' => 'required'
         ]);
 
         if ($request->otp == $otps->otp) {
             $user->update([
-                'status_users'=>'aktif'
+                'status_users' => 'aktif'
             ]);
-            $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
+            $response = Http::post('http://127.0.0.1:8001/send-message', [
                 'number' => $user->no_hp,
                 'message' => 'Terima Kasih akun anda sudah aktif',
             ]);
             // $this->guard()->login($user);
-            return redirect()->route('home')->with('message', 'Akun Anda telah berhasil diaktifkan.');
-
-        }else {
+            return redirect()->route('login')->with('message', 'Akun Anda telah berhasil diaktifkan.');
+        } else {
             return back()->with('message', 'Otp yang anda masukkan salah.');
         }
-
-
     }
 
     // protected function registered(Request $request, $user)

@@ -105,17 +105,17 @@ public function simpan($id ,$st)
             'status_berkas'=> $sta,
             // 'catatan' => $this->catatan[$id]
     ]);
-        $this->alert('success', 'Berhasil', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
-    }else {
-        $this->alert('error', 'berkas kosong', [
-            'position' => 'top-right',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+    //     $this->alert('success', 'Berhasil', [
+    //         'position' => 'top-right',
+    //         'timer' => 3000,
+    //         'toast' => true,
+    //     ]);
+    // }else {
+    //     $this->alert('error', 'berkas kosong', [
+    //         'position' => 'top-right',
+    //         'timer' => 3000,
+    //         'toast' => true,
+    //     ]);
     }
 
 }

@@ -10,7 +10,7 @@ class Rapat extends Model
     use HasFactory;
     protected $guarded  = ['id'];
     protected $primayKey = 'id';
-    protected $table = 'rapats';
+    protected $table = 'tb_rapat';
 
     public function rapat()
     {

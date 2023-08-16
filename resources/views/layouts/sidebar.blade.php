@@ -15,12 +15,12 @@
             </li> --}}
             <li class="{{ request()->is('admin/wa-gateway') ? ' mm-active' : '' }}"><a href="{{ route('admin-wa') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-smartphone-4"></i>
-                <span class="nav-text">Whatshap Gateway</span>
+                <span class="nav-text">Whatshapp Gateway</span>
                 </a>
             </li>
             <li ><a href="{{ route('user-management') }}" class="ai-icon" aria-expanded="false">
                 <i class="flaticon-381-user-3"></i>
-                <span class="nav-text">Pengelolaan Pengguna</span>
+                <span class="nav-text">User Management</span>
             </a>
             </li>
             <li class="{{ request()->is('admin/show-riwayat/*') ? ' mm-active' : '' }}"><a href="{{ route('riwayat-admin') }}" class="ai-icon" aria-expanded="false">

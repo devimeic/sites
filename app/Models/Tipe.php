@@ -22,6 +22,6 @@ class Tipe extends Model
 
     public function tipe()
     {
-        return $this->hasMany(Pengajuan::class, 'pengajuan_id');
+        return $this->belongsTo(Pengajuan::class, 'pengajuan_id');
     }
 }

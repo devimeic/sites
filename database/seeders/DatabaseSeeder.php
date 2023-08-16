@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BerkasSeeder::class);
         // $this->call(PengajuanSeeder::class);
         // $this->call(TipeSeeder::class);
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
         // $this->call(PengajuanSeeder::class);
         // $this->call(DataSeeder::class);
         // $this->call(FileSeeder::class);

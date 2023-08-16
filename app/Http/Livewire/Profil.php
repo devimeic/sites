@@ -75,7 +75,7 @@ class Profil extends Component
     {
         $this->validate([
             'name' => 'required',
-            'username' => 'required|unique:users,username,' . Auth::id(),
+            'username' => 'required|unique:tb_user,username,' . Auth::id(),
             'no_hp' => 'required|min:12',
         ]);
 
@@ -96,9 +96,10 @@ class Profil extends Component
             'timerProgressBar' => true,
         ]);
         $this->resetInput();
+        return redirect()->route('profil');
     }
 
-public function resetpsswd($id)
+    public function resetpsswd($id)
         {
 
             $Users = User::where('id',$id)->first();
@@ -128,7 +129,7 @@ public function resetpsswd($id)
                 'timerProgressBar' => true,
             ]);
             $this->resetInput();
-            // return redirect()->route('user-management');
+            return redirect()->route('profil');
 
         }
 

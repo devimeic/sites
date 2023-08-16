@@ -59,7 +59,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'max:255'],
-            'username' => ['required', 'max:255', 'unique:users'],
+            'username' => ['required', 'max:255', 'unique:tb_user'],
             'password' => ['required', 'min:8', 'confirmed'],
             'no_hp' => ['required', 'min:11', 'max:15' ],
         ],[
@@ -109,7 +109,7 @@ class RegisterController extends Controller
             'no_hp'=> $user->no_hp,
 
         ]);
-        $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
+        $response = Http::post('http://103.205.82.106:8001/send-message', [
             'number' => $user->no_hp,
             'message' => 'Silahkan Masukkan nomer otp berikut '.$otp. " pada siteplan.dinaspkp.magetan.site/otp/" . $user->id,
         ]);
@@ -145,7 +145,7 @@ class RegisterController extends Controller
             $user->update([
                 'status_users'=>'aktif'
             ]);
-            $response = Http::post('https://whatsaap-api-perkim.up.railway.app/send-message', [
+            $response = Http::post('http://103.205.82.106:8001/send-message', [
                 'number' => $user->no_hp,
                 'message' => 'Terima Kasih akun anda sudah aktif',
             ]);

@@ -32,6 +32,6 @@ class CreateNotifikasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifikasis');
+        Schema::dropIfExists('tb_notifikasi');
     }
 }

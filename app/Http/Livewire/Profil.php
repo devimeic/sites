@@ -129,7 +129,9 @@ class Profil extends Component
                 'timerProgressBar' => true,
             ]);
             $this->resetInput();
+
             return redirect()->route('profil');
+
 
         }
 

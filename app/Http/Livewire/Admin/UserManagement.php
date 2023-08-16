@@ -86,7 +86,7 @@ class UserManagement extends Component
     {
         $this->validate([
             'name' => 'required',
-            'username' => 'required|unique:users,username',
+            'username' => 'required|unique:tb_user,username',
             'password' => 'required|min:8',
             'no_hp' => 'required|min:11|max:15',
             'role' => 'required',
@@ -161,7 +161,7 @@ class UserManagement extends Component
         public function update(){
             $this->validate([
                 'name' => 'required',
-                'username' => 'required|unique:users,username,'.$this->ids,
+                'username' => 'required|unique:tb_user,username,'.$this->ids,
                 'password' => 'required|min:8',
                 'no_hp' => 'required|min:12',
                 'role' => 'required',

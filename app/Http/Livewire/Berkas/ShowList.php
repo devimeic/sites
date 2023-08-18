@@ -58,9 +58,12 @@ class ShowList extends Component
         $this->catatan[0]= null;
         $this->berkas_id[0]= null;
         $this->status_brks[0]= null;
+        $cttn = Berkas::all();
+            foreach($cttn as $key){
+            $this->catatan[$key->id] = null; }
         foreach( $berks as $key){
 
-        array_push($this->catatan,$key->catatan);
+        $this->catatan[$key->berkas_id] = $key->catatan;
         array_push($this->status_brks,$key->status_berkas);
         array_push($this->berkas_id,$key->id);
         };

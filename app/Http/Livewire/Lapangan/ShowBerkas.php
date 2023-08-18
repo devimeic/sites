@@ -48,13 +48,23 @@ class ShowBerkas extends Component
         $this->catatan[0]= null;
         $this->berkas_id[0]= null;
         $this->status_brks[0]= null;
+        // $stts_brks = Berkas::all();
+        //     foreach($stts_brks as $key){
+        //     $this->status_brks[$key->id] = null; }
+        $cttn = Berkas::all();
+            foreach($cttn as $key){
+            $this->catatan[$key->id] = null;
+            $this->status_brks[$key->id] = null;
+}
         foreach( $berks as $key){
 
-        array_push($this->catatan,$key->catatan);
-        array_push($this->status_brks,$key->status_lapangan);
+        $this->catatan[$key->berkas_id] = $key->catatan;
+        $this->status_brks[$key->berkas_id] = $key->status_lapangan;
+        // array_push($this->status_brks,$key->status_lapangan);
         array_push($this->berkas_id,$key->id);
         };
     }
+
     public $files ;
 
     public function showBerkas($id)

@@ -71,7 +71,7 @@
         moment.locale('id');
         new Pikaday({
         field: document.getElementById('selectedDate'),
-        format: 'dddd d MMMM YYYY',
+        format: 'dddd D MMMM YYYY',
         // format: 'Y-m-d',
         showTime       : true,
         position       : 'top right'

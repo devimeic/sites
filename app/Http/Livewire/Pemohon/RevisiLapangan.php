@@ -23,7 +23,7 @@ class RevisiLapangan extends Component
         return view('livewire.pemohon.revisi-lapangan',[
             'berkas' => Berkas::whereIn('id', function ($query) {
                 $query->select('berkas_id')
-                      ->from('uploads')
+                      ->from('tb_upload')
                       ->where('pengajuan_id', $this->pengajuan->id);
             })->get(),
             'upload' => Upload::where('pengajuan_id', $this->pengajuan->id)->first(),

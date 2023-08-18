@@ -110,7 +110,7 @@
 
     </script>
 
-    <!--  loader untuk sidebar -->
+    {{-- <!--  loader untuk sidebar -->
     <script>
         // Menampilkan loader sebelum konten menu dimuat
         function showLoader() {
@@ -148,7 +148,7 @@
         hideLoader();
         });
 
-    </script>
+    </script> --}}
 </body>
 
 </html>
